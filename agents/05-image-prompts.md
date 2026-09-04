@@ -10,6 +10,8 @@
 
 ## 1. بنية البرومبت ذات الطبقات العشر
 
+قبل كتابة أي برومبت، اقرأ `references/copywriting-and-text-in-images.md`. إذا كان الفريم نصيًا، أضف طبقة **المحتوى** بين التكوين والقيود: اكتب العنوان والعبارات الثانوية بنفسك إن لم يحددها المستخدم، ثم ضعها في كتلة `EXACT ARABIC TEXT TO RENDER`.
+
 استخدم الطبقات بالترتيب. احذف أي طبقة لا تخدم هذا الفريم.
 
 | # | الطبقة | السؤال | مثال |
@@ -22,8 +24,9 @@
 | 6 | **العدسة** | بمنظور أي عدسة؟ | "shot on 50mm at f/2.0" |
 | 7 | **الإضاءة** | كيف الضوء؟ | "cyan neon backlight 6500K, amber practical 3200K from left" |
 | 8 | **اللون والقوام** | كيف المظهر؟ | "teal shadows, amber highlights, 35mm film grain" |
-| 9 | **القيود** | ما الممنوع؟ | "no readable text, no logos, no additional characters" |
-| 10 | **المواصفات** | الأبعاد والجودة | "16:9, 2K resolution" |
+| 9 | **المحتوى** | ما النص الدقيق داخل الصورة؟ | `EXACT ARABIC TEXT TO RENDER` |
+| 10 | **القيود** | ما الممنوع؟ | "no additional readable words beyond the exact text listed below" |
+| 11 | **المواصفات** | الأبعاد والجودة | "16:9, 2K resolution" |
 
 ---
 
@@ -46,6 +49,16 @@ no extra limbs, anatomically correct hands.
 ```
 
 ثم أضف مواصفات النموذج خارج البرومبت (aspect_ratio، image_size) — لا داخله، لأن كتابتها داخل النص لا تضبط المخرجات في نماذج Gemini.
+
+إذا كان الفريم نصيًا، استخدم هذه الإضافة داخل البرومبت بعد `COLOR & TEXTURE`:
+
+```text
+EXACT ARABIC TEXT TO RENDER: [MAIN HEADLINE] [SECONDARY COPY] [LABELS].
+Render every Arabic phrase exactly as provided, right-to-left, with correctly
+connected Arabic letters, accurate spelling and punctuation, and clear editorial
+typographic hierarchy. No Latin letters, no gibberish, no mirrored text, no
+additional readable words beyond the exact text listed below.
+```
 
 ---
 
@@ -95,7 +108,7 @@ symmetrical facial features, correct limb proportions
 ## 4. لهجات النماذج — الاختلافات الحرجة
 
 ### Nano Banana 2 (`gemini-3.1-flash-image`)
-**الأفضل افتراضيًا للفريمات السينمائية.**
+**الأفضل افتراضيًا للفريمات السينمائية.** يدعم النص العربي القصير داخل الفريم؛ استخدم Nano Banana 2 Pro عندما يجتمع نص مهم مع مرجع أسلوب منفصل أو تركيب معقد.
 
 | المعامل | القيم |
 |---|---|
@@ -126,7 +139,7 @@ symmetrical facial features, correct limb proportions
 **ملاحظة:** يولّد 2K أصلًا ويرفع إلى 4K عبر خط أنابيب 16-bit — تدرجات أنعم، banding أقل.
 
 ### GPT Image 2 (`gpt-image-2`)
-**استخدمه عندما:** النص داخل الصورة يجب أن يُقرأ بدقة، أو تحتاج تخطيطًا/ملصقًا.
+**استخدمه عندما:** النص داخل الصورة يجب أن يُقرأ بدقة قصوى، أو تحتاج تخطيطًا/ملصقًا. لا تجعله الخيار التلقائي لفريم 9:16 لأن نسب الفيديو ليست مدعومة أصليًا.
 
 | المعامل | القيم |
 |---|---|
@@ -250,7 +263,8 @@ anatomically correct hands with five fingers, natural joint articulation.
 | تكديس 5 أساليب في برومبت واحد | النموذج يخلطها ويخرج بلا هوية | أسلوب واحد، ثم كرّر |
 | صفات مجردة بلا بديل مرئي | لا شيء يُرسم | استخدم جدول التحويل في `02-creative-direction.md` |
 | عدم تسمية العدسة والإضاءة | إضاءة عامة مسطحة | سمِّ العتاد والمخطط |
-| طلب نص طويل داخل الصورة | أخطاء إملائية | GPT Image 2، أو أضفه في المونتاج |
+| نص غير منظم داخل الصورة | أخطاء إملائية أو هرم بصري ضعيف | اكتب copy قصيرًا، افصل العنوان عن التفاصيل، ثم اطلب النص داخل الصورة حرفيًا |
+| نص مطلوب لكن البرومبت يقول no readable text | النموذج يحذف النص | استبدلها بكتلة `EXACT ARABIC TEXT TO RENDER` وقيد منع الكلمات الإضافية |
 | تغيير Identity String بين الطلبات | انحراف الهوية | انسخ حرفيًا، لا تعد صياغة |
 | كتابة «4K» في البرومبت | لا تضبط الدقة | استخدم `image_size: "4K"` |
 | طلب خلفية شفافة من GPT Image 2 | غير مدعوم | نموذج آخر أو معالجة لاحقة |
@@ -263,6 +277,8 @@ anatomically correct hands with five fingers, natural joint articulation.
 
 - [ ] كل فريم في قائمة اللقطات له برومبت كامل
 - [ ] كل برومبت يلصق Identity String حرفيًا
+- [ ] كل فريم نصي يحتوي copy-deck عربيًا معتمدًا وكتلة `EXACT ARABIC TEXT TO RENDER`
+- [ ] لا توجد عبارة `no readable text` في فريم مطلوب أن يحتوي نصًا
 - [ ] كل برومبت يسمّي العدسة والإضاءة والخامات
 - [ ] معاملات النموذج محددة خارجه (aspect_ratio، image_size)
 - [ ] عدد المراجع ضمن سقف النموذج
