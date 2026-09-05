@@ -95,6 +95,30 @@
 
 ---
 
+## 7. أعطال الترجمات والتوطين (v1.5)
+
+| العَرَض | السبب الجذري | الإصلاح |
+|---|---|---|
+| الشخصية تبدو أوروبية رغم طلب «عربي» | ترجمة حرفية للملامح دون تحديد | ضف صراحة: «Middle Eastern / Arab features, skin tone, hair texture» |
+| الملابس غير مناسبة ثقافيًا | برومبت عام «traditional attire» | حدد: «Yemeni / Saudi / Gulf thobe / Egyptian galabeya» مع تفاصيل |
+| المكان لا يبدو عربيًا | برومبت عام «middle eastern» | أضف: «Sanaani / Cairo / Dubai / Damascus specific details» |
+| النص العربي مشوّه أو مقطوع | prompt لم يطلب صراحة RTL + اتصال الحروف | أضف كتلة `EXACT ARABIC TEXT TO RENDER` مع `right-to-left, correct connected Arabic letters, accurate spelling` |
+| الشخصية تتكلم لكن فمها لا يتحرك | prompt يحتوي حوار لكن لم يُطلب lip-sync | في Seedance: ضع النص بين علامتي اقتباس مع `with clear lip sync` |
+| الترجمة غريبة أسلوبيًا | ترجمة حرفية من google translate | استعن بوكيل 20-localization، وأعد صياغة المعنى بالجسد |
+
+---
+
+## 8. أعطال ما قبل التوليد (v1.5)
+
+| العَرَض | السبب الجذري | الإصلاح |
+|---|---|---|
+| برومبت يفشل preflight ثم يُنفّذ | الـ preflight لم يُدمج في المسار | استدعِ `agents/19-preflight-check.md` قبل كل توليد |
+| النموذج يرفض prompt بسبب حساسيات | prompt يحتوي وصفًا حساسًا سياقيًا | أعد صياغة الوصف بطريقة محايدة |
+| بطء شديد بدون سبب | تكرار نفس الـ prompt بدون تغيير seed | غيّر seed أو فعّل `thinking_level: high` |
+| prompt طويل جدًا | نسخ ولصق من عدة sources | قلل إلى الحد الأدنى: identity + action + camera + lighting + constraints |
+
+---
+
 ## 2. شجرة قرار الفشل
 
 عند فشل توليد، اتبع هذا الترتيب — لا تقفز:

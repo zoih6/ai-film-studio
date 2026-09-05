@@ -19,7 +19,7 @@ def ok(m):   print(f"  ✓ {m}")
 # ── 1. البنية ───────────────────────────────────────────────
 print("\n[1] فحص البنية")
 REQUIRED = [
-    "SKILL.md", "README.md",
+    "SKILL.md", "README.md", "INDEX.md",  # v1.5: INDEX.md
     "agents/01-intake.md", "agents/02-creative-direction.md",
     "agents/03-character-world-bible.md", "agents/04-shot-list.md",
     "agents/05-image-prompts.md", "agents/06-motion-prompts.md",
@@ -30,6 +30,8 @@ REQUIRED = [
     "agents/13-production-architecture.md", "agents/14-animation-ready-assets.md",
     "agents/15-motion-direction.md", "agents/16-dialogue-lipsync.md",
     "agents/17-continuity-qc.md", "agents/18-hybrid-edit-assembly.md",
+    # v1.5: الوكلاء الجدد
+    "agents/19-preflight-check.md", "agents/20-localization.md",
     "references/agent-contract.md", "references/production-state-machine.md",
     "references/shot-contract.md", "references/prompt-compiler.md",
     "references/model-adapters.md", "references/prompt-quality-gate.md",
@@ -44,6 +46,7 @@ REQUIRED = [
     "references/failure-modes.md",
     "templates/production-brief.md", "templates/delivery-package.md",
     "templates/style-dna-sheet.md", "templates/reference-library.md",
+    "templates/concept-deck.md",  # v1.5: قالب جديد
     "examples/coffee-short.md",
 ]
 for r in REQUIRED:
@@ -200,6 +203,9 @@ ROUTING = [
     ("16-dialogue-lipsync", "توجيه إلى الحوار والشفاه"),
     ("17-continuity-qc", "توجيه إلى فحص الاتساق"),
     ("18-hybrid-edit-assembly", "توجيه إلى التجميع الهجين"),
+    # v1.5: الوكلاء الجدد
+    ("19-preflight-check", "توجيه إلى وكيل ما قبل التوليد"),
+    ("20-localization", "توجيه إلى وكيل التوطين"),
 ]
 for needle, label in ROUTING:
     if needle in sk: ok(f"{label} موجود في SKILL.md")
@@ -209,6 +215,33 @@ for needle, label in ROUTING:
 for n in [18, 19, 20, 21, 22, 23, 24]:
     if f"\n{n}. " in sk: ok(f"القاعدة {n} مرقمة")
     else: fail(f"القاعدة {n} مفقودة أو غير مرقمة")
+
+# ── 8. فحص v1.5: الوكلاء والقوالب الجديدة ─────────────────
+print("\n[8] فحص طبقة v1.5 (Pre-flight + Localization + Index)")
+V15_CHECKS = [
+    # Pre-flight
+    ("Hard Gates",                 "Gates موثقة في Pre-flight"),
+    ("G1 — الهوية",                "Gate G1 مسمى"),
+    ("G5 — توافق النموذج",          "Gate G5 مسمى"),
+    ("G6 — النص",                  "Gate G6 مسمى"),
+    ("G7 — النظافة اللغوية",         "Gate G7 مسمى"),
+    # Localization
+    ("EXACT ARABIC TEXT TO RENDER", "كتلة النص العربي في Localization"),
+    ("right-to-left",               "قاعدة RTL"),
+    ("cultural_flags",              "معالجة الحساسية الثقافية"),
+    ("فصحى مبسطة",                   "قاعدة الفصحى المبسطة"),
+    ("Middle Eastern / Arab",        "قاعدة التفاصيل العربية"),
+    # INDEX
+    ("INDEX.md",                   "INDEX.md موجود"),
+    ("خريطة المسارات",              "خريطة المسارات في INDEX"),
+    ("Concept Deck",               "مرجع Concept Deck"),
+    # Concept deck template
+    ("اللحظة الحاسمة",              "قالب Concept Deck للحظة الحاسمة"),
+    ("التكلفة التقديرية",            "تقدير التكلفة في Concept Deck"),
+]
+for needle, label in V15_CHECKS:
+    if needle in CORPUS: ok(f"v1.5: {label}")
+    else: fail(f"v1.5 ناقص: {label} ('{needle}')")
 
 print("\n" + "="*64)
 if FAIL:
