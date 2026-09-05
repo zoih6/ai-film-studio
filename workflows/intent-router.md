@@ -47,13 +47,15 @@ when_to_load: "دائمًا عند بداية أي مشروع جديد"
    → DIALOGUE_LIPSYNC: workflows/shortcuts/dialogue-lipsync.md
    
 6. طلب لقطة واحدة من مشروع قائم
-   → SHOT_BUILD: workflows/M0-intake.md → M7b
-   
+   → SHOT_BUILD: workflows/M3a-shot-design.md → M8a-motion-prompts.md (يشمل M4c QC)
+    
 7. طلب مشهد متعدد اللقطات
-   → SCENE_BUILD: workflows/M0-intake.md → M3a-shot-design.md
-   
+   → SCENE_BUILD: workflows/M0-intake.md → M3a → M4a → **M4c (QC إلزامي)** → M9c
+   → الرجوع لـ `references/protocols/orchestration-runtime.md` للترتيب الكامل
+    
 8. طلب فيلم/إعلان متعدد المشاهد
    → FULL_PRODUCTION: workflows/M0-intake.md → M11
+   → كل المراحل M0–M11 + **M4c إلزامي** + G-APPROVAL × 3
 
 9. طلب "اكتب برومبت" دون نطاق واضح
    → PROMPT_ONLY: workflows/shortcuts/single-prompt.md
@@ -64,16 +66,20 @@ when_to_load: "دائمًا عند بداية أي مشروع جديد"
 
 ## المسارات السريعة (Shortcuts)
 
-| الاختصار | المسار | متى |
-|---|---|---|
-| CONCEPT_ONLY | `workflows/shortcuts/concept-only.md` | "عندي فكرة، حوّلها concept" |
-| SINGLE_PROMPT | `workflows/shortcuts/single-prompt.md` | "اكتب برومبت واحد" |
-| IMAGE_GEN | `workflows/shortcuts/image-generation.md` | "صورة/فريم" |
-| I2V | `workflows/shortcuts/image-to-video.md` | "حرّك هذه الصورة" |
-| MOTION_GFX | `workflows/shortcuts/motion-graphics.md` | "موشن تايبوجرافي" |
-| LIPSYNC | `workflows/shortcuts/dialogue-lipsync.md` | "حوار/شفاه متحركة" |
-| SCENE | M0 → M3 | مشهد (3-8 لقطات) |
-| FULL | M0 → M11 | فيلم/إعلان (30s-3min) |
+| الاختصار | المسار | متى | M4c QC |
+|---|---|---|---|
+| CONCEPT_ONLY | `workflows/shortcuts/concept-only.md` | "عندي فكرة، حوّلها concept" | ❌ |
+| SINGLE_PROMPT | `workflows/shortcuts/single-prompt.md` | "اكتب برومبت واحد" | ❌ |
+| IMAGE_GEN | `workflows/shortcuts/image-generation.md` | "صورة/فريم" | ❌ |
+| I2V | `workflows/shortcuts/image-to-video.md` | "حرّك هذه الصورة" | ❌ |
+| MOTION_GFX | `workflows/shortcuts/motion-graphics.md` | "موشن تايبوجرافي" | ❌ |
+| LIPSYNC | `workflows/shortcuts/dialogue-lipsync.md` | "حوار/شفاه متحركة" | ❌ |
+| SHOT_BUILD | M3a → M4a → M7b → M8a | لقطة واحدة في مشروع قائم | ✅ |
+| SCENE | M0 → M4c (QC) → M9c | مشهد (3-8 لقطات) | ✅ إلزامي |
+| FULL | M0 → M11 (بما فيه M4c) | فيلم/إعلان (30s-3min) | ✅ إلزامي |
+
+**القاعدة:** M4c إلزامي في أي مسار متعدد اللقطات (SHOT_BUILD، SCENE، FULL).
+M4c اختياري في المسارات المستقلة (SINGLE، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT).
 
 ## الأسئلة التشخيصية (إذا غامض)
 
@@ -137,3 +143,4 @@ flowchart TD
 - **Shortcuts** → ارجع لـ `SKILL.md` § Quick Start
 - **M0+** → ابدأ بـ `workflows/M0-intake.md`
 - **REPAIR** → اقرأ `references/knowledge/failure-modes.md`
+- **SCENE / FULL / SHOT_BUILD** → اقرأ `references/protocols/orchestration-runtime.md` (الـ executable spec للترتيب الكامل، load_context، validate، commit)

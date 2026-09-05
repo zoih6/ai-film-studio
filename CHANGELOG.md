@@ -667,3 +667,69 @@ MIT License — نفس v1.5
 | ملفات MD | 91 | 91 (محتوى محفوظ) |
 | ROOT files | 9 (README, SKILL, INDEX, 3 CHANGELOG, 5 _verify) | 4 (SKILL, README, CHANGELOG, LICENSE) |
 | SKILL.md | 232 سطر | 164 سطر (≤ 200) |
+
+---
+
+## v2.0.2 — Stage Model Unification (2026-01-15)
+
+**النوع:** Structural Repair (Backward Compatible)
+**الهدف:** حل تضاربات ترقيم المراحل بين الملفات (M0–M13 vs M0–M11) وتوفير orchestration spec تنفيذي.
+
+### P0-1 — توحيد Production Stage Model
+
+- **قبل:** `references/protocols/production-state-machine.md` يحوي M0–M13 (v1.1، 14 gates).
+- **بعد:** v2.0.2 موحّد على **M0–M11** (12 مرحلة رئيسية، 31 workflow، 8 gates).
+- هذا الملف الآن **المرجع الرسمي الوحيد** لتعريف المراحل.
+- filesystem (`workflows/M*.md`) يبقى source of truth تشغيلي.
+
+### P0-2 — Orchestration Runtime (جديد)
+
+- **ملف جديد:** `references/protocols/orchestration-runtime.md` (≈450 سطر).
+- يغطي **9 مسارات** (REPAIR، SINGLE_PROMPT، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT، SHOT_BUILD، SCENE_BUILD، FULL_PRODUCTION).
+- لكل مسار: route + load_context + run (ordered/parallelizable/skip) + validate + commit.
+- مرجع تشغيلي لـ LLM agents، ليس مجرد توثيق وصفي.
+
+### P0-3 — إصلاح تضارب M2/M3/M11
+
+- **قبل:** M9a-EP يقول M2=Concept، M3=Narrative، M4=Shot، M5=Continuity، M6=Transitions، M7=Audio، M8=Image Prompts، M9=Motion، M11=Final Assembly.
+- **بعد:** يطابق filesystem (M2=Narrative، M3=Shot، M4=Continuity، M5=Graphics، M6=Audio، M7=Image، M8=Motion، M9=Quality، M11=Final Delivery).
+- كل من M9a و SKILL.md و README.md و intent-router.md يستخدم نفس التعريف.
+
+### P1-4 — M4c إلزامي في المسارات المتعددة
+
+- `intent-router.md` يحدد بوضوح: M4c required في SHOT_BUILD، SCENE، FULL.
+- اختياري في SINGLE_PROMPT، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT (لا multi-shot).
+
+### إصلاحات بنيوية إضافية
+
+- `quality/quality-gates.md` يحدد رسميًا: production-state-machine = AUTHORITATIVE للـ stages.
+- `SKILL.md` و `README.md` يوضحان "12 stages / 31 workflows".
+- `interaction-flow.md` و `M9d-localization.md` يحدّثان M13 → M11.
+
+### Backward Compatibility
+
+✅ كل المحتوى v2.0.1 محفوظ.
+✅ v1.x paths (M0–M13) ما زالت تعمل عبر LLM interpreter.
+✅ لا workflow حُذف ولا عُدّل.
+✅ CHANGELOG يحوي v1.1، v1.2، v1.3، v1.4، v1.5، v2.0.0، v2.0.1، v2.0.2.
+
+### ما لم يدخل v2.0.2 (ديون تقنية)
+
+- ❌ Memory Conflict Resolution (P1#5 القديمة) — مؤجل.
+- ❌ Story / Editorial QC (P1#7) — مؤجل.
+- ❌ إعادة كتابة verify_functional.py (سيناريو happy path).
+- ❌ إعادة هيكلة M8b / M8c (ملفات شبه فارغة).
+- ❌ تحديثات prompt-compiler / model-adapters من v1.3.
+
+### الفحوص
+
+- `bash scripts/verify_all.sh` → 4/4 ✅
+- `grep "M12\|M13" workflows/ references/ schemas/ quality/ scripts/` → 0 matches (في الملفات الجديدة/المعدّلة).
+- تطابق M2/M3/M11 بين M9a و SKILL و README و intent-router: ✅
+
+### الملفات المتأثرة
+
+| نوع | عدد | أمثلة |
+|---|---|---|
+| معدّل | 7 | production-state-machine.md، M9a-executive-producer.md، SKILL.md، README.md، quality-gates.md، intent-router.md، interaction-flow.md، M9d-localization.md |
+| جديد | 1 | orchestration-runtime.md |

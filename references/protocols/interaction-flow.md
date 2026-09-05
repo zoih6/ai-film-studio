@@ -22,11 +22,11 @@ UP TO 3 MORE QUESTIONS
    ↓
 BUILD
    ↓
-M0–M5
+M0–M4c(QC)
    ↓
 ONE APPROVAL GATE
    ↓
-M6–M13
+M5–M11
    ↓
 DELIVER
 ```
@@ -63,7 +63,7 @@ DELIVER
 
 ## v1.2 Adaptive Routing Overlay
 
-بعد `CLASSIFY` لا تفترض أن كل طلب يحتاج M0–M13:
+بعد `CLASSIFY` لا تفترض أن كل طلب يحتاج M0–M11:
 
 ```text
 USER REQUEST

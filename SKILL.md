@@ -1,8 +1,8 @@
 ---
 name: ai-film-studio
 description: |
-  AI Film Studio v2.0 — نظام إنتاج أفلام متكامل بالذكاء الاصطناعي. يحوّل فكرة بسيطة إلى حزمة إنتاج كاملة: Concept + Script + Shot List + Prompts (10-Layer A-J) + Audio + Assembly Guide. يدعم 31 تخصصًا (Creative Research, Narrative, Shot Design, Continuity, Transitions, Graphics, Audio, Quality Gates) عبر 12 مرحلة (M0–M11) و 8 بوابات جودة. يُستخدم للإعلانات، Brand Films، الأفلام القصيرة، الموشن جرافيك، والشورتس.
-version: 2.0.1
+  AI Film Studio v2.0.2 — نظام إنتاج أفلام متكامل بالذكاء الاصطناعي. يحوّل فكرة بسيطة إلى حزمة إنتاج كاملة: Concept + Script + Shot List + Prompts (10-Layer A-J) + Audio + Assembly Guide. يدعم 31 تخصصًا عبر 12 مرحلة (M0–M11) تتحقق كـ 31 workflow فعلي (filesystem)، و 8 بوابات جودة، و Orchestration Runtime لـ 9 مسارات. يُستخدم للإعلانات، Brand Films، الأفلام القصيرة، الموشن جرافيك، والشورتس.
+version: 2.0.2
 license: MIT
 triggers:
   - "فيديو إعلاني", "إعلان ذكاء اصطناعي", "فيلم قصير", "برومبت فيديو", "موشن جرافيك"
@@ -16,6 +16,7 @@ inputs:
 outputs:
   - "5 production packages: Blueprint + Image Prompts + Motion Prompts + Audio + Assembly Guide"
   - "Continuity Bible + Frame Chain + Quality Gates log"
+  - "Orchestration Runtime: 9 routes (REPAIR / SINGLE_PROMPT / IMAGE_GEN / I2V / MOTION_GFX / LIPSYNC / CONCEPT / SHOT_BUILD / SCENE / FULL)"
 when_to_use: "أي مشروع فيديو يحتاج برومبتات احترافية، اتساق بصري، تخطيط صوتي، ودليل تجميع."
 ---
 
@@ -27,7 +28,7 @@ when_to_use: "أي مشروع فيديو يحتاج برومبتات احترا�
 
 > **"كلما كان المستخدم أقل خبرة، يجب أن تكون المهارة أكثر قدرة على تعويض هذه الخبرة داخليًا."**
 
-المهارة تُحاكي **استوديو إنتاج حقيقي**: 31 تخصصًا يعملون عبر 12 مرحلة، مع 8 بوابات جودة صارمة، ومخرج نهائي واحد عبر `workflows/M9a-executive-producer.md`.
+المهارة تُحاكي **استوديو إنتاج حقيقي**: 31 تخصصًا يعملون عبر **12 مرحلة رئيسية (M0–M11)** تتحقق كـ **31 workflow فعلي** (filesystem)، مع 8 بوابات جودة صارمة، ومخرج نهائي واحد عبر `workflows/M9a-executive-producer.md`.
 
 ## بنية المستودع (Progressive Disclosure)
 
@@ -88,22 +89,26 @@ tier 3 — يُحمَّل عند الحاجة المتخصصة
 | 04 | `schemas/audio-package.md` | كل الطبقات الصوتية + lip-sync |
 | 05 | `schemas/assembly-guide.md` | دليل التجميع خطوة بخطوة |
 
-## المراحل الـ 12 (M0–M11)
+## المراحل الـ 12 / الـ 31 Workflow
 
-| # | الاسم | الوكيل الرئيسي | الجودة |
+> **النموذج الرسمي للمراحل:** `references/protocols/production-state-machine.md`.
+> **الـ Orchestration Executable Spec:** `references/protocols/orchestration-runtime.md`.
+> **Source of truth تشغيلي:** `workflows/M*.md` (filesystem).
+
+| المرحلة | الاسم | الـ Workflows الفعلية | الجودة |
 |---|---|---|---|
-| **M0** | Intake | `workflows/M0-intake.md` | G0 |
-| **M1** | Research + Concept | `workflows/M1c-research-lab.md` | G1 |
-| **M2** | Narrative | `workflows/M2-narrative.md` | G2 |
-| **M3** | Shot Design | `workflows/M3a-shot-design.md` | G3.1 |
-| **M4** | Continuity + Transitions | `workflows/M4a-continuity.md` | G3.2, G5 |
-| **M5** | Graphics + Text | `workflows/M5a-graphics.md` | G6 |
-| **M6** | Audio | `workflows/M6-audio.md` | G7 |
-| **M7** | Image Prompts | `workflows/M7a-prompt-architecture.md` | G4 (Hard) |
-| **M8** | Motion Prompts | `workflows/M7a-prompt-architecture.md` | G4 (Hard) |
-| **M9** | Quality Gates | `workflows/M9b-quality-gates.md` | G4–G8 |
-| **M10** | Delivery (5 files) | `workflows/M9a-executive-producer.md` | G8 (Hard) |
-| **M11** | Assembly | `workflows/M10b-hybrid-assembly.md` | Final |
+| **M0** | Intake | `M0-intake.md` | G0 |
+| **M1** | Research + Concept | `M1a-creative-direction`، `M1b-concept-expansion`، `M1c-research-lab` | G1 |
+| **M2** | Narrative | `M2-narrative.md` | G2 |
+| **M3** | Shot Architecture | `M3a-shot-design`، `M3b-shot-list` | G3.1 |
+| **M4** | Continuity + Transitions | `M4a-continuity`، `M4b-character-world`، `M4c-continuity-qc` (MANDATORY في multi-shot)، `M4d-transitions` | G3.2, G5 |
+| **M5** | Graphics + Text | `M5a-graphics`، `M5b-text-motion` | G6 |
+| **M6** | Audio | `M6-audio`، `M6b-sound-design`، `M6c-dialogue-lipsync` | G7 |
+| **M7** | Image Prompts | `M7a-prompt-architecture`، `M7b-image-prompts` | G4 (Hard) |
+| **M8** | Motion Prompts | `M8a-motion-prompts`، `M8b-motion-direction`، `M8c-animation-ready`، `M8d-motion-graphics` | G4 (Hard) |
+| **M9** | Quality + Orchestration | `M9a-executive-producer`، `M9b-quality-gates`، `M9c-preflight`، `M9d-localization` | G4, G8 (Hard) |
+| **M10** | Pre-Production Review | `M10a-production-architecture`، `M10b-hybrid-assembly`، `M10c-edit-color` | G8 (Hard) |
+| **M11** | Final Delivery | `M11a-reference-analyst`، `M11b-visual-research` | Final |
 
 ## المبادئ المؤسِّسة (Core Principles)
 
@@ -156,6 +161,7 @@ python3 scripts/verify_motion.py
 
 ## النسخة
 
+- **v2.0.2** — Stage Model Unification (M0–M11) + Orchestration Runtime
 - **v2.0.1** — Agent Skills Standard restructure (workflows/schemas/references/quality/scripts)
 - **v2.0.0** — من Prompt Writer إلى AI Film Production System
 - **v1.5.0** — Pre-flight + Localization

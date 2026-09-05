@@ -11,7 +11,7 @@
 ## متى تُنفَّذ
 
 - **مستمرة** — تبدأ من M1 وتنتهي عند التسليم النهائي
-- **مُجمِّعة** في M10 (Pre-Production Review) و M11 (Final Assembly)
+- **مُجمِّعة** في M10 (Pre-Production Review) و M11 (Final Delivery)
 - **حاسمة** عند كل Quality Gate
 
 ---
@@ -113,11 +113,15 @@ risk_management:
 
 ## سير العمل الكامل (12 Stage Pipeline)
 
+> **نموذج المراحل الرسمي:** `references/protocols/production-state-machine.md` (v2.0.2).
+> أي تضارب بين هذا الملف و production-state-machine = الـ state-machine هو المرجع.
+> **Source of truth تشغيلي:** `workflows/M*.md` (filesystem).
+
 ### M0 — Intake (الاستقبال)
 
 ```yaml
 M0:
-  agent: "01-intake"
+  workflow: "M0-intake.md"
   duration_minutes: 5
   inputs: "user_request"
   outputs: "intake_brief"
@@ -127,11 +131,14 @@ M0:
   notes: ""
 ```
 
-### M1 — Creative Research (البحث الإبداعي)
+### M1 — Research + Concept (البحث + تثبيت المفهوم)
 
 ```yaml
 M1:
-  agent: "21-creative-research-lab"
+  workflows:
+    - "M1a-creative-direction.md"
+    - "M1b-concept-expansion.md"
+    - "M1c-research-lab.md"
   duration_minutes: 30-60
   inputs: "intake_brief"
   outputs:
@@ -140,28 +147,17 @@ M1:
     - "expansion_grid.yaml"
     - "brainstorming.yaml"
     - "concept_handover.yaml"
+    - "concept_deck"
   gate: "G1 Idea Quality"
   user_approval: "Concept Deck"
   status: "..."
 ```
 
-### M2 — Concept Finalization (تثبيت المفهوم)
+### M2 — Narrative Architecture (البنية السردية)
 
 ```yaml
 M2:
-  agent: "30-executive-producer"
-  duration_minutes: 5
-  inputs: "concept_handover + user approval"
-  outputs: "approved_concept"
-  gate: "G1.5 User Approval"
-  status: "..."
-```
-
-### M3 — Narrative Architecture (البنية السردية)
-
-```yaml
-M3:
-  agent: "23-narrative-architect"
+  workflow: "M2-narrative.md"
   duration_minutes: 30-60
   inputs: "approved_concept"
   outputs:
@@ -176,11 +172,13 @@ M3:
   status: "..."
 ```
 
-### M4 — Shot Architecture (هندسة اللقطات)
+### M3 — Shot Architecture (هندسة اللقطات)
 
 ```yaml
-M4:
-  agent: "24-shot-architect"
+M3:
+  workflows:
+    - "M3a-shot-design.md"
+    - "M3b-shot-list.md"
   duration_minutes: 30-60
   inputs: "scene_breakdown"
   outputs:
@@ -192,11 +190,15 @@ M4:
   status: "..."
 ```
 
-### M5 — Continuity Architecture (الاستمرارية)
+### M4 — Continuity + Transitions (الاستمرارية + الانتقالات)
 
 ```yaml
-M5:
-  agent: "25-continuity-supervisor"
+M4:
+  workflows:
+    - "M4a-continuity.md"
+    - "M4b-character-world.md"
+    - "M4c-continuity-qc.md"     # MANDATORY في SCENE/FULL
+    - "M4d-transitions.md"
   duration_minutes: 30-60
   inputs: "shot_architecture"
   outputs:
@@ -204,29 +206,19 @@ M5:
     - "frame_chain"
     - "color_palette"
     - "image_anchors"
-  gate: "G3 Continuity Quality (Part 2)"
+    - "transition_map"
+  gate: "G3 Continuity Quality (Part 2) + G5 Transition Quality"
   status: "..."
+  notes: "M4c إلزامي في كل مشروع متعدد اللقطات؛ اختياري في standalone image/shot"
 ```
 
-### M6 — Transitions Design (تصميم الانتقالات)
+### M5 — Graphics + Text (الجرافيكس + النص)
 
 ```yaml
-M6:
-  agent: "26-transition-engineer"
-  duration_minutes: 15-30
-  inputs: "shot_architecture + frame_chain"
-  outputs: "transition_map"
-  gate: "G5 Transition Quality"
-  status: "..."
-```
-
-### M6.5 — Typography & Graphics (الجرافيكس)
-
-```yaml
-M6_5:
-  agents:
-    - "27-graphic-typography-director"
-    - "28-text-preservation-motion"
+M5:
+  workflows:
+    - "M5a-graphics.md"
+    - "M5b-text-motion.md"
   duration_minutes: 15-30
   inputs: "script + concept"
   outputs:
@@ -237,11 +229,14 @@ M6_5:
   status: "..."
 ```
 
-### M7 — Audio Design (تصميم الصوت)
+### M6 — Audio (الصوت)
 
 ```yaml
-M7:
-  agent: "29-audio-decision-engine"
+M6:
+  workflows:
+    - "M6-audio.md"
+    - "M6b-sound-design.md"
+    - "M6c-dialogue-lipsync.md"
   duration_minutes: 30-45
   inputs: "script + concept"
   outputs: "audio_package"
@@ -249,13 +244,13 @@ M7:
   status: "..."
 ```
 
-### M8 — Image Prompts (برومبتات الصور)
+### M7 — Image Prompts (برومبتات الصور)
 
 ```yaml
-M8:
-  agents:
-    - "22-prompt-architecture (for each shot)"
-    - "31-quality-gate-controller"
+M7:
+  workflows:
+    - "M7a-prompt-architecture.md"
+    - "M7b-image-prompts.md"
   duration_minutes: 60-120
   inputs:
     - "shot_architecture"
@@ -268,13 +263,15 @@ M8:
   status: "..."
 ```
 
-### M9 — Motion Prompts (برومبتات الفيديو)
+### M8 — Motion Prompts (برومبتات الفيديو + الموشن)
 
 ```yaml
-M9:
-  agents:
-    - "22-prompt-architecture (for motion)"
-    - "31-quality-gate-controller"
+M8:
+  workflows:
+    - "M8a-motion-prompts.md"
+    - "M8b-motion-direction.md"
+    - "M8c-animation-ready.md"
+    - "M8d-motion-graphics.md"
   duration_minutes: 60-120
   inputs:
     - "image_prompts"
@@ -286,33 +283,58 @@ M9:
   status: "..."
 ```
 
+### M9 — Quality + Orchestration (الجودة + التنسيق)
+
+```yaml
+M9:
+  workflows:
+    - "M9a-executive-producer.md"   # هذا الملف
+    - "M9b-quality-gates.md"        # 8 Quality Gates
+    - "M9c-preflight.md"            # Pre-flight Check
+    - "M9d-localization.md"         # Localization
+  duration_minutes: 30-60
+  inputs: "كل المخرجات السابقة"
+  outputs:
+    - "quality_gates_log"
+    - "preflight_report"
+    - "localization_check"
+  gate: "G4 + G8 (Hard Gates) + G-APPROVAL"
+  status: "..."
+```
+
 ### M10 — Pre-Production Review (مراجعة ما قبل الإنتاج)
 
 ```yaml
 M10:
-  agent: "30-executive-producer + 31-quality-gate-controller"
+  workflows:
+    - "M10a-production-architecture.md"
+    - "M10b-hybrid-assembly.md"
+    - "M10c-edit-color.md"
   duration_minutes: 30-60
-  inputs: "كل المخرجات السابقة"
+  inputs: "كل المخرجات السابقة + Quality Gates log"
   outputs:
     - "5 output files (الحزم)"
-    - "quality_gates_log"
-    - "risks_register"
+    - "pre_production_review"
+    - "edit_color_pass"
   gate: "G8 Master Quality"
   user_approval: "Final Approval"
   status: "..."
 ```
 
-### M11 — Final Assembly & Delivery (التجميع النهائي)
+### M11 — Final Delivery (التسليم النهائي)
 
 ```yaml
 M11:
-  agent: "30-executive-producer"
+  workflows:
+    - "M11a-reference-analyst.md"
+    - "M11b-visual-research.md"
   duration_minutes: 15
   inputs: "5 output files + final approval"
   outputs:
     - "5 production files delivered"
     - "executive_summary"
     - "next_steps (recommendations)"
+    - "reference_library"
   gate: "Final Delivery Complete"
   status: "..."
 ```
@@ -656,16 +678,16 @@ decision_log:
     alternatives_considered:
       - "Regenerate with audio: أقل موثوقية"
       - "Voiceover in post: أقل طبيعية"
-    agent: "29-audio-decision-engine"
+    agent: "M6-audio (29-audio-decision-engine)"
     approved_by: "user"
-  
+   
   - id: "DEC-002"
     timestamp: "2026-01-15T10:35:00Z"
     decision: "تحويل brand logo إلى post_overlay"
     reason: "الأمان، 100% دقة"
     alternatives_considered:
       - "burn_in: 60% دقة فقط"
-    agent: "27-graphic-typography-director"
+    agent: "M5a-graphics (27-graphic-typography-director)"
     approved_by: "user"
 ```
 
@@ -680,31 +702,31 @@ risk_register:
     probability: "high"
     impact: "critical"
     mitigation: "post_overlay كخطة B إلزامية"
-    owner: "27-graphic-typography-director"
+    owner: "M5a-graphics (27-graphic-typography-director)"
     status: "mitigated"
-  
+   
   - id: "RISK-002"
     risk: "عدم تطابق وجه الشخصية بين المشاهد"
     probability: "medium"
     impact: "high"
     mitigation: "character_anchor images + identity string"
-    owner: "25-continuity-supervisor"
+    owner: "M4a-continuity (25-continuity-supervisor)"
     status: "mitigated"
-  
+   
   - id: "RISK-003"
     risk: "اختلاف الإضاءة بين اللقطات"
     probability: "medium"
     impact: "high"
     mitigation: "lighting_grammar في كل prompt + color script map"
-    owner: "25-continuity-supervisor"
+    owner: "M4a-continuity (25-continuity-supervisor)"
     status: "mitigated"
-  
+   
   - id: "RISK-004"
     risk: "Lip-sync غير متطابق"
     probability: "high"
     impact: "high"
     mitigation: "fallback: voiceover only"
-    owner: "29-audio-decision-engine"
+    owner: "M6c-dialogue-lipsync (29-audio-decision-engine)"
     status: "mitigated"
 ```
 

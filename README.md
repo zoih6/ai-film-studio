@@ -2,7 +2,7 @@
 
 > **AI-powered end-to-end film production system.** Transform a one-line idea into a complete production package: concept, script, shot list, image & motion prompts (10-Layer A-J), audio plan, and assembly guide.
 
-[![Version](https://img.shields.io/badge/version-2.0.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.0.2-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Standard](https://img.shields.io/badge/standard-Agent%20Skills%20Standard-orange.svg)](#)
 
@@ -11,10 +11,11 @@
 AI Film Studio is a **production-system skill** for AI agents (Claude, GPT, Gemini, etc.) that simulates a complete film studio. It contains:
 
 - **31 specialist roles** (Creative Director, DP, Sound Designer, Editor, Colorist, Continuity Supervisor, etc.)
-- **12 production stages** (M0–M11: Intake → Assembly)
+- **12 production stages** (M0–M11) materialized as **31 workflows** (see `workflows/M*.md`)
 - **10-Layer Prompt Architecture (A–J)** for any image/video generation model
 - **8 Quality Gates** with hard gates at G4 (prompts) and G8 (master)
 - **5 production packages** as final deliverables
+- **Orchestration Runtime**: 9 executable routes (REPAIR، SINGLE_PROMPT، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT، SHOT_BUILD، SCENE_BUILD، FULL_PRODUCTION) — see `references/protocols/orchestration-runtime.md`
 
 ## Quick Start
 
@@ -38,12 +39,26 @@ ai-film-studio/
 ├── CHANGELOG.md
 ├── LICENSE
 │
-├── workflows/               ← tier 2: how to execute (M0–M11)
+├── workflows/               ← tier 2: how to execute (12 stages / 31 workflows)
 │   ├── intent-router.md     ← start here
 │   ├── M0-intake.md
-│   ├── M1c-research-lab.md
-│   ├── ... (12 stages)
+│   ├── M1a-creative-direction.md, M1b-concept-expansion.md, M1c-research-lab.md
+│   ├── M2-narrative.md
+│   ├── M3a-shot-design.md, M3b-shot-list.md
+│   ├── M4a-continuity.md, M4b-character-world.md, M4c-continuity-qc.md, M4d-transitions.md
+│   ├── M5a-graphics.md, M5b-text-motion.md
+│   ├── M6-audio.md, M6b-sound-design.md, M6c-dialogue-lipsync.md
+│   ├── M7a-prompt-architecture.md, M7b-image-prompts.md
+│   ├── M8a-motion-prompts.md, M8b-motion-direction.md, M8c-animation-ready.md, M8d-motion-graphics.md
+│   ├── M9a-executive-producer.md, M9b-quality-gates.md, M9c-preflight.md, M9d-localization.md
+│   ├── M10a-production-architecture.md, M10b-hybrid-assembly.md, M10c-edit-color.md
+│   ├── M11a-reference-analyst.md, M11b-visual-research.md
 │   └── shortcuts/           ← quick paths (single-prompt, image-gen, etc.)
+│
+├── references/protocols/    ← orchestration & state machine
+│   ├── production-state-machine.md   ← AUTHORITATIVE stage model (M0–M11)
+│   ├── orchestration-runtime.md      ← executable spec for 9 routes
+│   ├── agent-contract.md, decision-policy.md, output-protocol.md, interaction-flow.md
 │
 ├── schemas/                 ← tier 3: data structures (output templates)
 │   ├── production-blueprint.md
