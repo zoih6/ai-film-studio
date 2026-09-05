@@ -27,6 +27,8 @@ REQUIRED = [
     # الطبقة الجديدة: بحث المرجعيات، تحليلها، الموشن، توسيع المفاهيم
     "agents/09-visual-research.md", "agents/10-reference-analyst.md",
     "agents/11-motion-graphics.md", "agents/12-concept-expansion.md",
+    "agents/13-storyboard-continuity.md", "agents/14-animation-staging.md",
+    "agents/15-dialogue-lipsync.md", "agents/16-continuity-qc.md",
     "references/model-matrix.md", "references/prompt-patterns.md",
     "references/failure-modes.md",
     "templates/production-brief.md", "templates/delivery-package.md",
@@ -155,6 +157,12 @@ NEW_MUST = [
     ("المنطقة الآمنة",         "قواعد المنطقة الآمنة"),
     # توسيع المفاهيم
     ("محورين على الأقل",       "قاعدة تباين الاتجاهات"),
+    ("START_STATE",             "حالة بداية الحركة"),
+    ("END_STATE",               "حالة نهاية الحركة"),
+    ("COMPOSITING_MOTION",      "فصل حركة التركيب"),
+    ("حرّك العنصر لا الصورة كلها", "قاعدة الحركة العنصرية"),
+    ("Cross-Clip Continuity Report", "تقرير الاتساق بين المقاطع"),
+    ("Dialogue Copy Deck",       "دفتر الحوار الحرفي"),
 ]
 for needle, label in NEW_MUST:
     if needle in CORPUS: ok(label)
@@ -168,6 +176,10 @@ ROUTING = [
     ("10-reference-analyst","توجيه إلى محلل المرجعيات"),
     ("09-visual-research", "توجيه إلى البحث البصري"),
     ("12-concept-expansion","توجيه إلى موسّع المفاهيم"),
+    ("13-storyboard-continuity", "توجيه إلى مشرف الاستمرارية"),
+    ("14-animation-staging", "توجيه إلى تحضير التحريك"),
+    ("15-dialogue-lipsync", "توجيه إلى الحوار والشفاه"),
+    ("16-continuity-qc", "توجيه إلى فحص الاتساق النهائي"),
 ]
 for needle, label in ROUTING:
     if needle in sk: ok(f"{label} موجود في SKILL.md")
