@@ -27,8 +27,19 @@ REQUIRED = [
     # الطبقة الجديدة: بحث المرجعيات، تحليلها، الموشن، توسيع المفاهيم
     "agents/09-visual-research.md", "agents/10-reference-analyst.md",
     "agents/11-motion-graphics.md", "agents/12-concept-expansion.md",
-    "agents/13-storyboard-continuity.md", "agents/14-animation-staging.md",
-    "agents/15-dialogue-lipsync.md", "agents/16-continuity-qc.md",
+    "agents/13-production-architecture.md", "agents/14-animation-ready-assets.md",
+    "agents/15-motion-direction.md", "agents/16-dialogue-lipsync.md",
+    "agents/17-continuity-qc.md", "agents/18-hybrid-edit-assembly.md",
+    "references/agent-contract.md", "references/production-state-machine.md",
+    "references/shot-contract.md", "references/prompt-compiler.md",
+    "references/model-adapters.md", "references/prompt-quality-gate.md",
+    "references/text-execution-matrix.md", "references/project-memory.md",
+    "references/memory-schema.md", "references/memory-lifecycle.md",
+    "references/session-continuation.md", "references/memory-context-policy.md",
+    "state/production-brief.md", "state/asset-registry.md",
+    "state/continuity-ledger.md", "state/approval-log.md",
+    "state/generation-log.md", "state/project-memory.md",
+    "state/decision-log.md", "state/session-checkpoint.md",
     "references/model-matrix.md", "references/prompt-patterns.md",
     "references/failure-modes.md",
     "templates/production-brief.md", "templates/delivery-package.md",
@@ -39,7 +50,7 @@ for r in REQUIRED:
     p = ROOT / r
     if not p.exists():
         fail(f"ملف مفقود: {r}")
-    elif p.stat().st_size < 500:
+    elif p.stat().st_size < (100 if str(p.relative_to(ROOT)).startswith("state/") else 500):
         fail(f"ملف شبه فارغ: {r} ({p.stat().st_size} بايت)")
     else:
         ok(f"{r} ({p.stat().st_size:,} بايت)")
@@ -97,6 +108,13 @@ MUST_CONTAIN = [
     ("SynthID",                      "العلامة المائية Google"),
     ("C2PA",                         "العلامة المائية ByteDance"),
     ("Keep everything else the same","صيغة تحرير Omni"),
+    ("Canonical Prompt Schema",      "مخطط البرومبت المعياري"),
+    ("MODEL ADAPTER",                 "طبقة محولات النماذج"),
+    ("FAIL → DIAGNOSE → REPAIR → REVALIDATE → PASS", "حلقة الإصلاح وإعادة التحقق"),
+    ("continuity_delta",              "سجل تغييرات الاستمرارية"),
+    ("Memory is state, not chat history", "قاعدة ذاكرة المشروع"),
+    ("APPROVE / EDIT",                "بروتوكول اعتماد المستخدم"),
+    ("Text Execution Matrix",         "مصفوفة تنفيذ النص"),
     ("image_size",                   "معامل دقة Gemini"),
     ("aspect_ratio",                 "معامل النسبة"),
     ("generate_audio",               "معامل صوت Seedance"),
@@ -157,12 +175,12 @@ NEW_MUST = [
     ("المنطقة الآمنة",         "قواعد المنطقة الآمنة"),
     # توسيع المفاهيم
     ("محورين على الأقل",       "قاعدة تباين الاتجاهات"),
-    ("START_STATE",             "حالة بداية الحركة"),
-    ("END_STATE",               "حالة نهاية الحركة"),
-    ("COMPOSITING_MOTION",      "فصل حركة التركيب"),
-    ("حرّك العنصر لا الصورة كلها", "قاعدة الحركة العنصرية"),
-    ("Cross-Clip Continuity Report", "تقرير الاتساق بين المقاطع"),
-    ("Dialogue Copy Deck",       "دفتر الحوار الحرفي"),
+    ("Start state:",             "حالة بداية الحركة"),
+    ("End state:",               "حالة نهاية الحركة"),
+    ("Composite later:",         "فصل حركة التركيب"),
+    ("Depth layers",              "طبقات العمق"),
+    ("Continuity Ledger",         "سجل الاتساق بين المقاطع"),
+    ("DIALOGUE ID:",              "دفتر الحوار الحرفي"),
 ]
 for needle, label in NEW_MUST:
     if needle in CORPUS: ok(label)
@@ -176,10 +194,12 @@ ROUTING = [
     ("10-reference-analyst","توجيه إلى محلل المرجعيات"),
     ("09-visual-research", "توجيه إلى البحث البصري"),
     ("12-concept-expansion","توجيه إلى موسّع المفاهيم"),
-    ("13-storyboard-continuity", "توجيه إلى مشرف الاستمرارية"),
-    ("14-animation-staging", "توجيه إلى تحضير التحريك"),
-    ("15-dialogue-lipsync", "توجيه إلى الحوار والشفاه"),
-    ("16-continuity-qc", "توجيه إلى فحص الاتساق النهائي"),
+    ("13-production-architecture", "توجيه إلى هندسة الإنتاج"),
+    ("14-animation-ready-assets", "توجيه إلى الأصول المهيأة للتحريك"),
+    ("15-motion-direction", "توجيه إلى مخرج الحركة"),
+    ("16-dialogue-lipsync", "توجيه إلى الحوار والشفاه"),
+    ("17-continuity-qc", "توجيه إلى فحص الاتساق"),
+    ("18-hybrid-edit-assembly", "توجيه إلى التجميع الهجين"),
 ]
 for needle, label in ROUTING:
     if needle in sk: ok(f"{label} موجود في SKILL.md")
