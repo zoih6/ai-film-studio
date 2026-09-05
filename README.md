@@ -2,7 +2,7 @@
 
 > **AI-powered end-to-end film production system.** Transform a one-line idea into a complete production package: concept, script, shot list, image & motion prompts (10-Layer A-J), audio plan, and assembly guide.
 
-[![Version](https://img.shields.io/badge/version-2.0.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Standard](https://img.shields.io/badge/standard-Agent%20Skills%20Standard-orange.svg)](#)
 
@@ -15,7 +15,8 @@ AI Film Studio is a **production-system skill** for AI agents (Claude, GPT, Gemi
 - **10-Layer Prompt Architecture (A–J)** for any image/video generation model
 - **8 Quality Gates** with hard gates at G4 (prompts) and G8 (master)
 - **5 production packages** as final deliverables
-- **Orchestration Runtime**: 9 executable routes (REPAIR، SINGLE_PROMPT، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT، SHOT_BUILD، SCENE_BUILD، FULL_PRODUCTION) — see `references/protocols/orchestration-runtime.md`
+- **Orchestration Runtime**: 10 executable routes (REPAIR، SINGLE_PROMPT، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT، SHOT_BUILD، SCENE_BUILD، FULL_PRODUCTION) — see `references/protocols/orchestration-runtime.md`
+- **Memory Conflict Resolution**: 6 conflict types (NoConflict، ShotOverride، SceneOverride، ProjectCanonical، UserApproved، Ambiguous) — see `references/knowledge/memory-conflict-contract.md`
 
 ## Quick Start
 

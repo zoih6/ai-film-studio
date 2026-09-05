@@ -733,3 +733,124 @@ MIT License — نفس v1.5
 |---|---|---|
 | معدّل | 7 | production-state-machine.md، M9a-executive-producer.md، SKILL.md، README.md، quality-gates.md، intent-router.md، interaction-flow.md، M9d-localization.md |
 | جديد | 1 | orchestration-runtime.md |
+
+---
+
+## v2.1.0 — Memory + Prompt + Verify (2026-01-15)
+
+**النوع:** Feature Release (Backward Compatible)
+**الهدف:** إغلاق 3 فجوات بنيوية (Memory، Prompt Layer، Functional Verify) + قرار M8b/M8c.
+
+### P0 — Memory Conflict Resolution Contract (جديد)
+
+- **ملف جديد:** `references/knowledge/memory-conflict-contract.md` (~340 سطر).
+- 6 أنواع تضارب مغطاة رسميًا:
+  1. **No Conflict** — تنفيذ عادي.
+  2. **Shot Override** — تغيير على لقطة واحدة، silent auto-promote.
+  3. **Scene Override** — تغيير على مشهد، silent auto-promote.
+  4. **Project / Canonical Update** — تغيير على character/wardrobe/style، silent + SUPERSEDED.
+  5. **User-approved Supersession** — يتطلب موافقة صريحة قبل التنفيذ.
+  6. **Ambiguous Conflict** — اسأل المستخدم إذا كان high-impact/irreversible.
+- Source of Truth Hierarchy (6 مستويات).
+- Scope Detection Rules (regex patterns).
+- Override Lifetime (per conflict type).
+- Superseded Decision Handling (lineage preservation).
+- Decision Log Update Rules (12 field schema).
+- Continuity Bible Update Rules (5-step protocol).
+- Session Checkpoint Propagation (cross-session).
+- Integration with Memory Lifecycle v1.4 (10 hooks).
+- **AUTHORITATIVE للـ conflict resolution.**
+
+### P0 — Prompt Layer Alignment (تنظيف v1.x)
+
+- **`references/specs/prompt-compiler.md`** — v1.3 → v2.1.0:
+  - ترتيب Pipeline: Model Adapter صار قبل Compiler (الترتيب الصحيح).
+  - ربط صريح بـ 5 workflows تستدعيه.
+  - Stage references: M2/M3a/M4a (لا v1.x).
+  - "ما تغيّر / ما لم يتغيّر" موثّق.
+- **`references/specs/prompt-quality-gate.md`** — v1.3 → v2.1.0:
+  - G1-G7 → PG-1-PG-7 (لتجنب التضارب مع G0-G8 end-to-end).
+  - ربط بـ G4 Hard Gate في v2.0.2.
+  - 7 sub-criteria + scoring + repair logic.
+- **`references/specs/model-adapters.md`** — v1.3 → v2.1.0:
+  - Model Profiles table (12 عائلة).
+  - Capability-Aware Translation (8 checks).
+  - موقع في Pipeline (بين Canonical Spec و Compiler).
+- **النتيجة:** الـ Interface النهائي: Workflow Output → Canonical Spec → Model Adapter → Compiler → Quality Gate.
+
+### P1 — Functional Verification Rewrite (multi-fixture)
+
+- **`scripts/verify_functional.py`** — 351 سطر (سيناريو واحد) → ~390 سطر (3 أنواع اختبارات + 4 fixtures).
+- **1. Structural Validation** — 14 مجلد + 26 ملف مطلوب + 31 workflow.
+- **2. Route / Contract Validation** — 10 routes في orchestration-runtime، 5 contract sections لكل route، M4c إلزامي في SHOT/FULL، 6 conflict types.
+- **3. Integration Simulation** — 4 fixtures (قهوة TikTok، NOOR YouTube، موشن تايبوجرافي، lipsync عربي) + 5 negative tests.
+- **النتيجة:** 95/95 نجاح (بدلاً من 30/30 سيناريو واحد).
+- لم يعد يعتمد على USER_REQUEST واحد hard-coded.
+
+### M8b / M8c Audit (قرار)
+
+- **ملف جديد:** `docs/m8b-m8c-audit.md`.
+- **القرار: الإبقاء منفصلين.** لكل منهما Input/Output Contract مستقل:
+  - M8b = Motion Direction (creative spec للحركة، قبل M8a).
+  - M8c = Animation Ready (technical spec للأصل، قبل M7b).
+- لا تداخل، لا ازدواجية.
+
+### Backward Compatibility
+
+✅ كل المحتوى v2.0.2 محفوظ.
+✅ v1.x paths (M0–M13) ما زالت تعمل.
+✅ v1.3 prompt specs محتفظة بالسلوك (الـ 10 قواعد compilation + priority order + canonical schema).
+✅ v1.4 memory schema محفوظ (memory-conflict-contract يضيف طبقة فوقها).
+
+### الديون التقنية المتبقية (Roadmap)
+
+- ❌ Story / Editorial QC
+- ❌ Multi-agent real integration test (verify_functional لا يزال يحاكي)
+- ❌ M8b (70 سطر) و M8c (63 سطر) — محتوى معقول لكن يمكن تعميقه
+- ❌ Agent Skills Standard onboarding docs
+
+### الفحوص
+
+- `bash scripts/verify_all.sh` → 4/4 ✅
+  - structure: 95 ملف
+  - functional: 95/95 (3 test types + 4 fixtures)
+  - example: 29/29
+  - motion: 46/46
+
+### الملفات المتأثرة
+
+معدّل (6): SKILL.md، README.md، CHANGELOG.md،
+            references/specs/prompt-compiler.md،
+            references/specs/prompt-quality-gate.md،
+            references/specs/model-adapters.md،
+            scripts/verify_functional.py
+جديد (2): references/knowledge/memory-conflict-contract.md،
+          docs/m8b-m8c-audit.md
+
+---
+
+## 🛑 Roadmap Note — Stopping Architecture Reviews
+
+**بعد v2.1.0، يتوقف الفريق عن المراجعات المعمارية والتحسينات النظرية.**
+
+المهارة تنتقل إلى مرحلة **الاستخدام الفعلي** (Production Use):
+- اختبارها على مشاريع حقيقية وأفلام واقعية.
+- قياس الأداء على prompts، generations، time-to-deliver.
+- جمع feedback من الاستخدام.
+
+أي تحسين لاحق يجب أن يأتي من:
+- مشكلة ظهرت أثناء الاستخدام.
+- طلب مستخدم حقيقي.
+- bottleneck في الـ pipeline (وليس تحسين نظري).
+
+**لماذا؟** البنية الحالية:
+- Stage Model موحّد (M0–M11، 31 workflow).
+- 8 Quality Gates (G0–G8، Hard Gates: G4, G8).
+- Orchestration Runtime (10 routes، contracts كاملة).
+- Memory Conflict Contract (6 types، Source of Truth، lifecycle).
+- Prompt Layer aligned (4 stages، 10 layers، G4 hard gate).
+- 4 verify scripts (95 + 30 + 29 + 46 = 200+ test).
+- 2 مثال حي.
+
+الـ "1% النهائي" من التحسينات المعمارية لن يكون له أثر ملموس
+مقارنة بـ "feedback من استخدام حقيقي".

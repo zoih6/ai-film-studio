@@ -1,8 +1,8 @@
 ---
 name: ai-film-studio
 description: |
-  AI Film Studio v2.0.2 — نظام إنتاج أفلام متكامل بالذكاء الاصطناعي. يحوّل فكرة بسيطة إلى حزمة إنتاج كاملة: Concept + Script + Shot List + Prompts (10-Layer A-J) + Audio + Assembly Guide. يدعم 31 تخصصًا عبر 12 مرحلة (M0–M11) تتحقق كـ 31 workflow فعلي (filesystem)، و 8 بوابات جودة، و Orchestration Runtime لـ 9 مسارات. يُستخدم للإعلانات، Brand Films، الأفلام القصيرة، الموشن جرافيك، والشورتس.
-version: 2.0.2
+  AI Film Studio v2.1.0 — نظام إنتاج أفلام متكامل بالذكاء الاصطناعي. يحوّل فكرة بسيطة إلى حزمة إنتاج كاملة: Concept + Script + Shot List + Prompts (10-Layer A-J) + Audio + Assembly Guide. يدعم 31 تخصصًا عبر 12 مرحلة (M0–M11) تتحقق كـ 31 workflow فعلي، و 8 بوابات جودة، و Orchestration Runtime لـ 10 مسارات، و Memory Conflict Resolution بـ 6 أنواع. يُستخدم للإعلانات، Brand Films، الأفلام القصيرة، الموشن جرافيك، والشورتس.
+version: 2.1.0
 license: MIT
 triggers:
   - "فيديو إعلاني", "إعلان ذكاء اصطناعي", "فيلم قصير", "برومبت فيديو", "موشن جرافيك"
@@ -16,7 +16,8 @@ inputs:
 outputs:
   - "5 production packages: Blueprint + Image Prompts + Motion Prompts + Audio + Assembly Guide"
   - "Continuity Bible + Frame Chain + Quality Gates log"
-  - "Orchestration Runtime: 9 routes (REPAIR / SINGLE_PROMPT / IMAGE_GEN / I2V / MOTION_GFX / LIPSYNC / CONCEPT / SHOT_BUILD / SCENE / FULL)"
+  - "Orchestration Runtime: 10 routes (REPAIR / SINGLE_PROMPT / IMAGE_GEN / I2V / MOTION_GFX / LIPSYNC / CONCEPT / SHOT_BUILD / SCENE / FULL)"
+  - "Memory Conflict Resolution: 6 types (NoConflict, ShotOverride, SceneOverride, ProjectCanonical, UserApproved, Ambiguous)"
 when_to_use: "أي مشروع فيديو يحتاج برومبتات احترافية، اتساق بصري، تخطيط صوتي، ودليل تجميع."
 ---
 
@@ -161,6 +162,7 @@ python3 scripts/verify_motion.py
 
 ## النسخة
 
+- **v2.1.0** — Memory Conflict Contract + Prompt Layer Alignment + Multi-fixture verify
 - **v2.0.2** — Stage Model Unification (M0–M11) + Orchestration Runtime
 - **v2.0.1** — Agent Skills Standard restructure (workflows/schemas/references/quality/scripts)
 - **v2.0.0** — من Prompt Writer إلى AI Film Production System
