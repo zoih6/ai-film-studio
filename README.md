@@ -1,243 +1,158 @@
-# AI Film Studio — استوديو الفيلم بالذكاء الاصطناعي
+# AI Film Studio
 
-مهارة متعددة الوكلاء تحوّل طلب المستخدم الغامض عن فيديو إلى **حزمة إنتاج احترافية كاملة**.
+> **AI-powered end-to-end film production system.** Transform a one-line idea into a complete production package: concept, script, shot list, image & motion prompts (10-Layer A-J), audio plan, and assembly guide.
 
----
+[![Version](https://img.shields.io/badge/version-2.0.1-blue.svg)](CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Standard](https://img.shields.io/badge/standard-Agent%20Skills%20Standard-orange.svg)](#)
 
-## ما تفعله هذه المهارة
+## What is it?
 
-المستخدم يكتب: «أبغى فيديو عن القهوة».
-المهارة تسلّم: لوجلاين، هوية بصرية، بطاقات شخصيات، قائمة لقطات، برومبتات صور مرجعية، برومبتات تحريك، تصميم صوتي، خطة مونتاج، ومواصفات تسليم.
+AI Film Studio is a **production-system skill** for AI agents (Claude, GPT, Gemini, etc.) that simulates a complete film studio. It contains:
 
-**المشكلة التي تحلها:** المستخدم ليس مخرجًا. يملك فكرة ولا يملك المفردات السينمائية. النتيجة من شخص لا يعرف المصطلحات تكون هاوية مهما كان النموذج قويًا. هذه المهارة تحمل خبرة الفريق نيابة عنه.
+- **31 specialist roles** (Creative Director, DP, Sound Designer, Editor, Colorist, Continuity Supervisor, etc.)
+- **12 production stages** (M0–M11: Intake → Assembly)
+- **10-Layer Prompt Architecture (A–J)** for any image/video generation model
+- **8 Quality Gates** with hard gates at G4 (prompts) and G8 (master)
+- **5 production packages** as final deliverables
 
----
+## Quick Start
 
-## البنية
+```bash
+# 1. Clone
+git clone https://github.com/zoih6/ai-film-studio.git
+
+# 2. For an agent: read SKILL.md first
+# For humans: read this README + workflows/intent-router.md
+
+# 3. Run verification
+bash scripts/verify_all.sh
+```
+
+## Repository Structure
 
 ```
 ai-film-studio/
-├── SKILL.md                              ← نقطة الدخول: موجّه المسار + القواعد + البروتوكولات
+├── SKILL.md                 ← entry point (agents read this first)
+├── README.md                ← you are here
+├── CHANGELOG.md
+├── LICENSE
 │
-├── agents/                               ← 12 وكيلًا
-│   │  ── الفريق الأساسي (المسار السردي والإعلاني) ──
-│   ├── 01-intake.md                         استقبال الطلب الغامض وأسئلة الحسم
-│   ├── 02-creative-direction.md             اللوجلاين، البنية، الهوية البصرية
-│   ├── 03-character-world-bible.md          ثبات الشخصيات والعالم  ★ أهم ملف تقنيًا
-│   ├── 04-shot-list.md                      تقطيع اللقطات + بوابة الموافقة
-│   ├── 05-image-prompts.md                  برومبتات الصور المرجعية
-│   ├── 06-motion-prompts.md                 برومبتات التحريك
-│   ├── 07-sound-design.md                   الصوت والمزامنة
-│   ├── 08-edit-color-qc.md                  المونتاج والتدرج والفحص
-│   │  ── طبقة التغذية (تُنفَّذ داخل المراحل) ──
-│   ├── 09-visual-research.md                البحث البصري الإلزامي + الحقوق
-│   ├── 10-reference-analyst.md              Style DNA من صور المستخدم
-│   ├── 12-concept-expansion.md              توليد اتجاهات إبداعية متعددة
-│   │  ── المسار المتخصص ──
-│   └── 11-motion-graphics.md                الموشن جرافيك والـkinetic typography
+├── workflows/               ← tier 2: how to execute (M0–M11)
+│   ├── intent-router.md     ← start here
+│   ├── M0-intake.md
+│   ├── M1c-research-lab.md
+│   ├── ... (12 stages)
+│   └── shortcuts/           ← quick paths (single-prompt, image-gen, etc.)
 │
-├── references/
-│   ├── model-matrix.md                   ← قرار الأداة + كل المواصفات
-│   ├── prompt-patterns.md                ← مكتبة الأنماط الجاهزة
-│   └── failure-modes.md                  ← التشخيص والإصلاح
+├── schemas/                 ← tier 3: data structures (output templates)
+│   ├── production-blueprint.md
+│   ├── image-prompts-package.md
+│   ├── motion-prompts-package.md
+│   ├── audio-package.md
+│   ├── assembly-guide.md
+│   └── state/               ← runtime state files
 │
-├── templates/
-│   ├── production-brief.md               ← ملف الحالة (انسخه إلى state/)
-│   ├── style-dna-sheet.md                ← ورقة Style DNA
-│   ├── reference-library.md              ← مكتبة المرجعيات
-│   └── delivery-package.md               ← قالب التسليم النهائي
+├── references/              ← tier 3: deep knowledge
+│   ├── protocols/           ← output protocol, decision policy, etc.
+│   ├── specs/               ← 10-Layer A-J, transitions, audio, models
+│   └── knowledge/           ← failure modes, memory, context assembly
 │
-├── examples/
-│   └── coffee-short.md                   ← تشغيل كامل على «أبغى فيديو عن القهوة»
+├── quality/                 ← tier 3: 8 quality gates
+│   ├── quality-gates.md
+│   ├── checklist.md
+│   └── self-audit.md
 │
-└── state/                                ← ملفات الحالة الحية (تُنشأ لكل مشروع)
+├── examples/                ← 2 live end-to-end examples
+├── scripts/                 ← 5 verification scripts
+└── assets/                  ← static assets (placeholders)
 ```
 
----
+## Progressive Disclosure
 
-## موجّه المسار
+This skill follows the **Agent Skills Standard** with three loading tiers:
 
-| إشارة في الطلب | المسار | ابدأ بـ |
+| Tier | When loaded | Size | What |
+|---|---|---|---|
+| **1** | Always | ≤ 5KB | `SKILL.md` + `README.md` + `CHANGELOG.md` |
+| **2** | Project start | ~50KB | `workflows/` (intent-router + relevant M-stage) |
+| **3** | Specialized task | ~200KB | `references/` + `schemas/` + `quality/` |
+
+The agent reads tier 1, uses `workflows/intent-router.md` to pick a path, then loads only the relevant tier 2/3 files.
+
+## Use Cases
+
+| Use case | Path | Time |
 |---|---|---|
-| «موشن جرافيك» / نص متحرك / عناوين | **الموشن** | `agents/11-motion-graphics.md` |
-| المستخدم **رفع صورًا مرجعية** | **تحليل مرجعيات** | `agents/10-reference-analyst.md` |
-| «فيديو عن X» بلا زاوية | **سردي + توسيع** | `agents/12-concept-expansion.md` |
-| إعلان / شرح / فيلم بزاوية واضحة | **سردي مباشر** | `agents/01-intake.md` |
-| «اكتب لي برومبت» فقط | **برومبت مفرد** | `references/prompt-patterns.md` |
+| One prompt only | `workflows/shortcuts/single-prompt.md` | 2 min |
+| Single image | `workflows/shortcuts/image-generation.md` | 5 min |
+| Image to video | `workflows/shortcuts/image-to-video.md` | 5 min |
+| Lip-sync dialogue | `workflows/shortcuts/dialogue-lipsync.md` | 5 min |
+| Motion graphics | `workflows/shortcuts/motion-graphics.md` | 10 min |
+| Concept only | `workflows/shortcuts/concept-only.md` | 15 min |
+| Single scene (3-8 shots) | `workflows/M0` → M3 | 30 min |
+| Short film / ad (30-60s) | `workflows/M0` → M11 | 90 min |
 
-### المسار المركّب (الأكثر شيوعًا)
-المستخدم يبحث في Pinterest، يحمّل صورًا أعجبته، ويضع عليها حواره:
+## The 5 Output Packages
 
-```
-[صور المستخدم + نص]
-      ↓
-M0  الاستقبال         → 01-intake.md
-      ↓
-M1a تحليل المرجعيات   → 10-reference-analyst.md   ★ Style DNA
-      ↓
-M1b بحث مكمّل         → 09-visual-research.md     ★ للمحاور الناقصة فقط
-      ↓
-M1c القرار            → موشن؟  → 11-motion-graphics.md
-                      → سردي؟  → 02-creative-direction.md
-```
+Every full project produces these 5 files:
 
----
+1. **`schemas/production-blueprint.md`** — Concept, story, script, characters, locations
+2. **`schemas/image-prompts-package.md`** — All image prompts (10-Layer A-J)
+3. **`schemas/motion-prompts-package.md`** — All video prompts (with start/end frames)
+4. **`schemas/audio-package.md`** — Voice, music, SFX, foley, ambience + lip-sync plan
+5. **`schemas/assembly-guide.md`** — Step-by-step assembly in Premiere/DaVinci
 
-## الأدوات المعتمدة
+See `examples/energy-drink-ad.md` for a complete 30-second ad using all 5 packages.
 
-| الغرض | النموذج | معرف API |
-|---|---|---|
-| صور مرجعية (افتراضي) | Nano Banana 2 | `gemini-3.1-flash-image` |
-| صور (جودة قصوى) | Nano Banana 2 Pro | `gemini-3-pro-image-preview` |
-| صور (نص وتخطيط) | GPT Image 2 | `gpt-image-2` |
-| فيديو | Gemini Omni Flash | `gemini-omni-1.1-flash` |
-| فيديو | Seedance 2.0 | `bytedance/seedance-2.0` |
+## Quality System
 
----
+8 Quality Gates enforce standards:
 
-## المسار — 9 مراحل
+- **G0** — Intake clarity
+- **G1** — Idea quality
+- **G2** — Narrative quality
+- **G3** — Continuity quality
+- **G4** — **HARD GATE** — Prompt quality (10 layers A-J)
+- **G5** — Transition quality
+- **G6** — Text quality
+- **G7** — Audio quality
+- **G8** — **HARD GATE** — Master quality (all 5 files complete)
 
-```
-M0 استقبال     → M1 مفهوم     → M2 شخصيات   → M3 لقطات
-                                                    ↓
-                              ★ بوابة موافقة المستخدم ★
-                                                    ↓
-M4 صور        → M5 تحريك     → M6 صوت      → M7 مونتاج → M8 تسليم
-```
+Any critical fail on G4 or G8 = **project blocked**. See `quality/quality-gates.md`.
 
-كل مرحلة لها **بوابة خروج** — قائمة تحقق لا تنتقل قبل استيفائها.
+## Models Supported
 
----
+Tested with (see `references/specs/model-matrix.md` for full matrix):
 
-## التثبيت
+- **Image:** bytedance/seedream-4, midjourney-v6, stability/sdxl, gemini-3-pro-image
+- **Video:** bytedance/seedance-2.0, runwayml/gen4, kling-2.1, veo-3, sora
+- **Audio:** ElevenLabs, Suno, Udio, Cartesia, Stability Audio
+- **Lip-sync:** Hedra, Omniverse Audio2Face, Veo 3 (native)
 
-### Claude Skills
-```bash
-cp -r ai-film-studio ~/.claude/skills/
-```
-أو على مستوى المشروع:
-```bash
-cp -r ai-film-studio .claude/skills/
-```
-
-### ChatGPT / GPTs
-استخدم محتوى `SKILL.md` كتعليمات النظام، وأرفق ملفات `agents/` و `references/` كملفات معرفة.
-
-### أنظمة وكلاء أخرى (n8n، Cursor، مخصص)
-كل ملف في `agents/` مستقل وقابل للاستخدام كعقدة أو prompt منفصل. `state/production-brief.md` هو الذاكرة المشتركة بين العقد.
-
----
-
-## الاستخدام
-
-**ببساطة اطلب فيديو.** المهارة تُفعَّل تلقائيًا عند أي طلب يتعلق بإنشاء أو إنتاج أو تحريك فيديو.
-
-أمثلة تُفعّلها:
-- «أبغى فيديو عن القهوة»
-- «سوي إعلان لمتجري»
-- «فيلم قصير عن الفقد»
-- «اكتب لي برومبتات تحريك لهذا المشهد»
-- «كيف أحافظ على ثبات الشخصية بين اللقطات؟»
-
----
-
-## القواعد الـ24 غير القابلة للتفاوض
-
-مختصرة من `SKILL.md`:
-
-**الكتابة**
-1. ممنوع الوصف التجريدي — اكتب ما تسجله الكاميرا
-2. حركة كاميرا واحدة مهيمنة لكل لقطة
-3. فعل مرئي واحد مهيمن لكل لقطة
-4. الانفعال يُترجم إلى جسد
-5. النفي بصيغة إيجابية
-
-**الثبات**
-6. لا تحريك قبل قفل الهوية
-7. رمز الهوية ثابت ولا يُعاد صياغه (ويُلصق في سطر واحد)
-8. الاستمرارية تُورَّث صراحة
-9. لا تخلط مرجع الهوية بمرجع الأسلوب
-
-**الزمن**
-10. احترم سقف المدة الفعلي للنموذج
-11. لقطة واحدة = وحدة تغيير واحدة
-12. التمديد في الذيل فقط
-
-**العملية**
-13. بوابة موافقة إلزامية قبل التوليد
-14. متغير واحد في كل تكرار
-15. التسمية الإلزامية `SC_SH_FR_v`
-16. الحوار القصير داخل اللقطة
-17. لا تعتمد على النص المولّد داخل الفيديو
-
-**المرجعيات**
-18. لا قرار بصري بدون مرجع
-19. استخرج القاعدة لا العنصر
-20. لا تخترع مراجع أو قيم hex
-21. الحركة من صورة ثابتة استدلال لا استخراج
-
-**الموشن جرافيك**
-22. مواصفة الموشن ليست برومبت توليد فيديو — لا easing ولا طوابع في برومبتات التوليد
-23. النص طبقة حقيقية، لا بكسلات مولّدة
-24. العربية تُحرَّك كلمة بكلمة، لا حرفًا بحرف
-
----
-
-## الاختلاف الحاسم بين النماذج
-
-لا تُنقل البرومبتات بين النماذج. لكلٍّ صيغته:
-
-| النموذج | صيغة المراجع |
-|---|---|
-| Omni Flash | `<FIRST_FRAME>` `<LAST_FRAME>` `<IMAGE_REF_0>` `<VIDEO_REF_0>` |
-| Seedance 2.0 | `@Image1` `@Video1` `@Audio1` |
-| Nano Banana | صور مُرفقة + وصف لفظي للدور |
-
-**قيد حاسم في Seedance:** وضع الإطار الأول/الأخير **يستثني** مراجع الصور والفيديو.
-
-**قيد حاسم في Omni:** لا مراجع صوتية، لا تحرير صوت، سقف توليد 10 ثوانٍ، نسبتان فقط (16:9 و 9:16).
-
-**قيد حاسم في GPT Image 2:** لا يدعم 16:9 أو 9:16 أصلًا — لا تستخدمه للفريمات السينمائية.
-
----
-
-## الفحص
+## Verification
 
 ```bash
-./_verify_all.sh
+# All checks
+bash scripts/verify_all.sh
+
+# Individual
+python3 scripts/verify_structure.py    # 75+ files, structure
+python3 scripts/verify_functional.py    # 30/30 functional checks
+python3 scripts/verify_motion.py        # 46/46 motion path checks
+python3 scripts/verify_example.py       # 29/29 example validation
 ```
 
-ثلاثة اختبارات:
+Latest run: **4/4 passed**.
 
-| الفاحص | ما يفحصه |
-|---|---|
-| `_verify_structure.py` | البنية، YAML frontmatter، الروابط الداخلية، وجود كل قيد موثق، اكتمال طبقة المرجعيات والموشن |
-| `_verify_functional.py` | يشغّل المسار السردي على طلب حقيقي، ويولّد برومبتات، ويفحصها ضد قيود النماذج — **مع اختبار سلبي** |
-| `_verify_motion.py` | يشغّل مسار الموشن: صحة منحنيات bezier رياضيًا، اشتقاقها من الطاقة، الفصل المعماري، قواعد العربية، اشتقاق المشاهد — **مع اختبار سلبي** |
-| `_verify_example.py` | يفحص `examples/coffee-short.md` ليتأكد أن المثال الذي سيقلّده المستخدم صالح فعلًا |
+## License
 
-### لماذا الاختبار السلبي ضروري
-فاحص يوافق على كل شيء لا يثبت شيئًا. كل فاحص وظيفي يتعمد كسر قيود ويتأكد أنها **تُلتقط**:
+MIT — see [LICENSE](LICENSE).
 
-| الفاحص | الخروقات المتعمدة |
-|---|---|
-| `_verify_functional.py` | مدة 20s في Omni · نسبة 21:9 · مراجع صوتية · 16:9 في GPT Image 2 · ثلاث حركات كاميرا · 5 مراجع شخصيات |
-| `_verify_motion.py` | easing داخل برومبت توليد · تحريك العربية حرفًا بحرف · Punch متعددة · 4 مشاهد مثبّتة · منحنى bezier غير صالح · عنصر ساكن 1.5s |
+## Contributing
 
-### أمثلة على ما تلتقطه الفواحص فعلًا
-- `x1` في منحنى cubic-bezier يجب أن يكون في `[0,1]` — وإلا فالمنحنى غير قابل للتطبيق.
-- منحنى `back-out` يجب أن يتجاوز `y1 > 1` (overshoot) — وإلا فليس منحنى back.
-- «الاستراتيجية» (12 حرفًا) لا تصلح Hero بعرض 80% في 9:16 — تُلتقط وتُخفَّض.
-- حوار من 10 كلمات لا يأخذ 4 مشاهد — يُشتق العدد من الطول.
-- المنطقة الآمنة الفعلية 63% لا 80% — لأن واجهات المنصات تحتل أكثر مما تفترض القاعدة المنتشرة.
+Issues and PRs welcome. See `CHANGELOG.md` for the evolution of design decisions.
 
----
+## Maintainer
 
-## المصدر
-
-المواصفات الفنية جُمعت في **سبتمبر 2026** من:
-- وثائق Google الرسمية (`ai.google.dev/gemini-api/docs/omni`، `ai.google.dev/gemini-api/docs/image-generation`)
-- وثائق مزودي API (fal.ai، Cloudflare، Atlas Cloud، Scenario)
-- أدلة البرومبت الرسمية (Google DeepMind، OpenAI، Runway)
-
-النماذج في وضع **Preview** — الحدود قابلة للتغيير. أعد التحقق قبل الإنتاج التجاري.
+AI Film Studio Team · github.com/zoih6
