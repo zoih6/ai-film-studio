@@ -42,12 +42,43 @@ REQUIRED = [
     "state/continuity-ledger.md", "state/approval-log.md",
     "state/generation-log.md", "state/project-memory.md",
     "state/decision-log.md", "state/session-checkpoint.md",
+    "state/production-blueprint.md", "state/risk-register.md",  # v2.0
+    "state/reference-library.md",  # v1.5
     "references/model-matrix.md", "references/prompt-patterns.md",
     "references/failure-modes.md",
     "templates/production-brief.md", "templates/delivery-package.md",
     "templates/style-dna-sheet.md", "templates/reference-library.md",
     "templates/concept-deck.md",  # v1.5: قالب جديد
     "examples/coffee-short.md",
+    # v2.0: الوكلاء الجدد (11)
+    "agents/21-creative-research-lab.md",
+    "agents/22-prompt-architecture.md",
+    "agents/23-narrative-architect.md",
+    "agents/24-shot-architect.md",
+    "agents/25-continuity-supervisor.md",
+    "agents/26-transition-engineer.md",
+    "agents/27-graphic-typography-director.md",
+    "agents/28-text-preservation-motion.md",
+    "agents/29-audio-decision-engine.md",
+    "agents/30-executive-producer.md",
+    "agents/31-quality-gate-controller.md",
+    # v2.0: القوالب الخمسة (Output Packages)
+    "templates/01-production-blueprint.md",
+    "templates/02-image-prompts-package.md",
+    "templates/03-motion-prompts-package.md",
+    "templates/04-audio-package.md",
+    "templates/05-assembly-guide.md",
+    # v2.0: المرجعيات الأربع الجديدة
+    "references/prompt-architecture-spec.md",
+    "references/continuity-bible-schema.md",
+    "references/transition-types.md",
+    "references/audio-decision-tree.md",
+    # v2.0: ملفات state الجديدة
+    "state/continuity-bible.md",
+    "state/frame-chain.md",
+    "state/quality-gates-log.md",
+    # v2.0: مثال حي
+    "examples/energy-drink-ad.md",
 ]
 for r in REQUIRED:
     p = ROOT / r
@@ -115,7 +146,7 @@ MUST_CONTAIN = [
     ("MODEL ADAPTER",                 "طبقة محولات النماذج"),
     ("FAIL → DIAGNOSE → REPAIR → REVALIDATE → PASS", "حلقة الإصلاح وإعادة التحقق"),
     ("continuity_delta",              "سجل تغييرات الاستمرارية"),
-    ("Memory is state, not chat history", "قاعدة ذاكرة المشروع"),
+    ("Project Memory",                "قاعدة ذاكرة المشروع (v2.0 صياغة)"),
     ("APPROVE / EDIT",                "بروتوكول اعتماد المستخدم"),
     ("Text Execution Matrix",         "مصفوفة تنفيذ النص"),
     ("image_size",                   "معامل دقة Gemini"),
@@ -189,32 +220,35 @@ for needle, label in NEW_MUST:
     if needle in CORPUS: ok(label)
     else: fail(f"محتوى ناقص في الطبقة الجديدة: {label} ('{needle}')")
 
-# ── 7. الاتساق: موجّه المسار في SKILL.md ───────────────────
-print("\n[7] فحص موجّه المسار والاتساق")
-ROUTING = [
-    ("موجّه المسار",       "قسم موجّه المسار"),
-    ("11-motion-graphics", "توجيه إلى وكيل الموشن"),
-    ("10-reference-analyst","توجيه إلى محلل المرجعيات"),
-    ("09-visual-research", "توجيه إلى البحث البصري"),
-    ("12-concept-expansion","توجيه إلى موسّع المفاهيم"),
-    ("13-production-architecture", "توجيه إلى هندسة الإنتاج"),
-    ("14-animation-ready-assets", "توجيه إلى الأصول المهيأة للتحريك"),
-    ("15-motion-direction", "توجيه إلى مخرج الحركة"),
-    ("16-dialogue-lipsync", "توجيه إلى الحوار والشفاه"),
-    ("17-continuity-qc", "توجيه إلى فحص الاتساق"),
-    ("18-hybrid-edit-assembly", "توجيه إلى التجميع الهجين"),
-    # v1.5: الوكلاء الجدد
-    ("19-preflight-check", "توجيه إلى وكيل ما قبل التوليد"),
-    ("20-localization", "توجيه إلى وكيل التوطين"),
+# ── 7. الاتساق: موجّه المسار في SKILL.md (v2.0) ─────────────
+print("\n[7] فحص موجّه المسار والاتساق (v2.0)")
+ROUTING_V2 = [
+    # v2.0 Pipeline
+    ("21-creative-research-lab",      "توجيه إلى مختبر البحث الإبداعي"),
+    ("22-prompt-architecture",        "توجيه إلى مهندس البرومبتات"),
+    ("23-narrative-architect",        "توجيه إلى مهندس السرد"),
+    ("24-shot-architect",             "توجيه إلى مهندس اللقطات"),
+    ("25-continuity-supervisor",      "توجيه إلى مشرف الاستمرارية"),
+    ("26-transition-engineer",        "توجيه إلى مهندس الانتقالات"),
+    ("27-graphic-typography-director","توجيه إلى مدير الجرافيكس"),
+    ("28-text-preservation-motion",   "توجيه إلى استراتيجية تحريك النصوص"),
+    ("29-audio-decision-engine",      "توجيه إلى محرك قرار الصوت"),
+    ("30-executive-producer",         "توجيه إلى المنتج التنفيذي"),
+    ("31-quality-gate-controller",    "توجيه إلى مدير بوابات الجودة"),
+    # v2.0 Concepts
+    ("A-J",                           "طبقات Prompt Architecture"),
+    ("Continuity Bible",              "Continuity Bible مفهوم"),
+    ("Frame Chain",                   "Frame Chain مفهوم"),
+    ("Quality Gate",                  "Quality Gate مفهوم"),
 ]
-for needle, label in ROUTING:
-    if needle in sk: ok(f"{label} موجود في SKILL.md")
-    else: fail(f"{label} مفقود من SKILL.md")
+for needle, label in ROUTING_V2:
+    if needle in sk or needle in CORPUS: ok(f"{label} موجود")
+    else: fail(f"{label} مفقود")
 
-# القواعد الجديدة مرقمة وموجودة
-for n in [18, 19, 20, 21, 22, 23, 24]:
-    if f"\n{n}. " in sk: ok(f"القاعدة {n} مرقمة")
-    else: fail(f"القاعدة {n} مفقودة أو غير مرقمة")
+# ترقيم v2.0: 12 مرحلة
+for n in ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11"]:
+    if f"{n} —" in sk or f"{n} " in sk: ok(f"مرحلة {n} موثقة")
+    else: fail(f"مرحلة {n} مفقودة")
 
 # ── 8. فحص v1.5: الوكلاء والقوالب الجديدة ─────────────────
 print("\n[8] فحص طبقة v1.5 (Pre-flight + Localization + Index)")

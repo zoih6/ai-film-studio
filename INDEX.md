@@ -1,4 +1,4 @@
-# INDEX — AI Film Studio v1.5
+# INDEX — AI Film Studio v2.0
 
 > **خريطة قراءة سريعة.** عند تشغيل المهارة، اقرأ هذا الملف أولًا لتحديد ما تحتاج قراءته، ثم ادخل على القسم المطلوب فقط. هذا يحمي السياق من الإغراق.
 
@@ -10,232 +10,292 @@
 |---|---|
 | **`SKILL.md`** | مرة واحدة لفهم البنية الكاملة. لا تُقرأ في كل دورة. |
 | **`INDEX.md`** (هذا الملف) | عند بداية أي مشروع لتحديد المسار. |
-| **`references/intent-router.md`** | أولًا دائمًا — يحدد المسار الأدنى. |
+| **`CHANGELOG-v2.0.md`** | إذا كنت قادمًا من v1.5 لفهم الجديد. |
+| **`examples/energy-drink-ad.md`** | مثال حي كامل لفهم v2.0 في مشروع واقعي. |
 
 ---
 
-## 1. خريطة المسارات
+## 1. المسارات السريعة (Quick Paths)
 
-### حسب نية المستخدم (من `references/intent-router.md`)
-
-| النية | المسار الأدنى | الوكلاء المطلوبون |
+| النية | المسار الأدنى | الوكلاء |
 |---|---|---|
-| **فكرة فقط** | CONCEPT | `01` → `02` → `12` (عند الحاجة) |
-| **«اكتب برومبت»** | PROMPT_ONLY | `prompt-patterns` → `model-adapters` |
-| **صورة/فريم ثابت** | IMAGE_GENERATION | `10` (عند وجود مراجع) → `05` |
-| **تحريك صورة موجودة** | IMAGE_TO_VIDEO | `14` → `15` → `06` |
-| **موشن جرافيك/تايبوجرافي** | MOTION_GRAPHICS | `11` → `text-execution-matrix` |
-| **حوار/مزامنة شفاه** | DIALOGUE_LIPSYNC | `16` → `06`/`07` |
-| **لقطة واحدة من مشروع قائم** | SHOT_BUILD | وراثة من State → `15` → `06` |
-| **مشهد متعدد اللقطات** | SCENE_BUILD | `02`/`03` → `04` → Shot Pipeline |
-| **فيلم/إعلان كامل** | FULL_PRODUCTION | M0–M13 كاملًا |
-| **إصلاح جزء** | REPAIR | تشخيص → الوكيل المتضرر → إعادة تحقق |
+| **فكرة فقط** | CONCEPT | 01 → 21 → 23 |
+| **«اكتب برومبت واحد»** | PROMPT_ONLY | 22 → `references/prompt-patterns.md` |
+| **صورة/فريم ثابت** | IMAGE_GENERATION | 22 → 19 → 31 (G4) |
+| **تحريك صورة موجودة** | IMAGE_TO_VIDEO | 22 → 25 (Frame Chain) → 19 → 31 (G4) |
+| **موشن جرافيك/تايبوجرافي** | MOTION_GRAPHICS | 27 → 28 → 22 |
+| **حوار/مزامنة شفاه** | DIALOGUE_LIPSYNC | 29 → 22 |
+| **لقطة من مشروع قائم** | SHOT_BUILD | State → 25 → 22 → 19 → 31 |
+| **مشهد متعدد اللقطات** | SCENE_BUILD | 23 → 24 → 25 → 22 |
+| **فيلم/إعلان كامل** | FULL_PRODUCTION | M0–M11 (12 مرحلة) |
+| **إصلاح جزء** | REPAIR | تشخيص → الوكيل المتضرر → Quality Gate |
 
 ---
 
-## 2. خريطة الوكلاء (20 وكيلًا)
+## 2. الـ 12 مرحلة الكاملة (M0–M11)
 
-### الفريق الأساسي — المسار السردي والإعلاني
+| المرحلة | الوصف | الوكلاء | الجودة |
+|---|---|---|---|
+| **M0** | الاستقبال (Intake) | 01 | G0 |
+| **M1** | البحث الإبداعي | 21 | G1 |
+| **M2** | تثبيت المفهوم | 30 (Concept Deck) | G1.5 |
+| **M3** | البنية السردية | 23 | G2 |
+| **M4** | هندسة اللقطات | 24 | G3 (1/2) |
+| **M5** | الاستمرارية | 25 | G3 (2/2) |
+| **M6** | الانتقالات | 26 | G5 |
+| **M6.5** | الجرافيكس والنصوص | 27 + 28 | G6 |
+| **M7** | تصميم الصوت | 29 | G7 |
+| **M8** | برومبتات الصور | 22 | G4 (Hard) |
+| **M9** | برومبتات الفيديو | 22 | G4 (Hard) |
+| **M10** | مراجعة ما قبل الإنتاج | 30 + 31 | G8 (Hard) |
+| **M11** | التسليم النهائي | 30 | - |
 
-| # | الوكيل | الملف | المسؤولية | مرحلة |
+---
+
+## 3. الـ 31 وكيلًا
+
+### v1.0 (v1.5) — الوكلاء الأساسيون (20)
+
+| # | الوكيل | الملف | المسؤولية | المرحلة |
 |---|---|---|---|---|
-| 1 | المنتج / محلل الطلبات | `01-intake.md` | تفكيك الطلب الغامض | M0 |
-| 2 | المخرج الإبداعي | `02-creative-direction.md` | لوجلاين + هوية بصرية | M1 |
-| 3 | مشرف الشخصيات والعالم | `03-character-world-bible.md` | ثبات الهوية | M2 |
-| 4 | مساعد المخرج الأول | `04-shot-list.md` | تقطيع اللقطات | M3 |
+| 1 | محلل الطلبات | `01-intake.md` | تفكيك الطلب | M0 |
+| 2 | المخرج الإبداعي | `02-creative-direction.md` | لوجلاين + هوية | M1 |
+| 3 | مشرف الشخصيات | `03-character-world-bible.md` | ثبات الهوية | M2 |
+| 4 | مساعد المخرج | `04-shot-list.md` | تقطيع اللقطات | M3 |
 | 5 | مدير التصوير | `05-image-prompts.md` | برومبتات الصور | M4 |
 | 6 | مشرف التحريك | `06-motion-prompts.md` | برومبتات الفيديو | M5 |
-| 7 | مصمم الصوت | `07-sound-design.md` | الصوت والمزامنة | M6 |
-| 8 | مونتير ومشرف جودة | `08-edit-color-qc.md` | المونتاج والتسليم | M7 |
+| 7 | مصمم الصوت | `07-sound-design.md` | الصوت | M6 |
+| 8 | مونتير و QC | `08-edit-color-qc.md` | المونتاج | M7 |
+| 9 | باحث بصري | `09-visual-research.md` | بحث مرئي | - |
+| 10 | محلل المراجع | `10-reference-analyst.md` | تحليل المراجع | - |
+| 11 | موشن جرافيكس | `11-motion-graphics.md` | تايبوجرافي | - |
+| 12 | توسيع المفهوم | `12-concept-expansion.md` | brainstroming | M1 |
+| 13 | معماري الإنتاج | `13-production-architecture.md` | بنية الإنتاج | - |
+| 14 | أصول جاهزة للتحريك | `14-animation-ready-assets.md` | تحضير الصور | M5 |
+| 15 | مخرج الحركة | `15-motion-direction.md` | تصميم الحركة | M5 |
+| 16 | حوار و lip-sync | `16-dialogue-lipsync.md` | تزامن الحوار | M6 |
+| 17 | QC الاستمرارية | `17-continuity-qc.md` | فحص الاستمرارية | - |
+| 18 | مونتاج هجين | `18-hybrid-edit-assembly.md` | تجميع | M7 |
+| 19 | Preflight Check | `19-preflight-check.md` | فحص ما قبل التوليد | قبل كل توليد |
+| 20 | التوطين | `20-localization.md` | تكييف ثقافي | - |
 
-### طبقة التغذية (تُنفَّذ داخل المراحل)
+### v2.0 — الوكلاء الجدد (11)
 
-| # | الوكيل | الملف | متى |
-|---|---|---|---|
-| 9 | مدير البحث البصري | `09-visual-research.md` | داخل M1 — إلزامي عند غياب المراجع |
-| 10 | محلل المرجعيات | `10-reference-analyst.md` | داخل M1 — عند رفع المستخدم صورًا |
-| 12 | موسّع المفاهيم | `12-concept-expansion.md` | قبل M1 — عند غياب الزاوية |
-
-### المسار السينمائي الكامل
-
-| # | الوكيل | الملف | المسؤولية |
-|---|---|---|---|
-| 13 | مهندس الإنتاج | `13-production-architecture.md` | تنسيق الفريق والإصدارات |
-| 14 | مهندس الأصول المهيأة | `14-animation-ready-assets.md` | تحضير الفريمات للتحريك |
-| 15 | مخرج الحركة السينمائية | `15-motion-direction.md` | تصميم الحركة قبل البرومبت |
-| 16 | مشرف الحوار والشفاه | `16-dialogue-lipsync.md` | الحوار + المزامنة |
-| 17 | مشرف الاستمرارية | `17-continuity-qc.md` | فحص الاتساق |
-| 18 | مخرج التجميع الهجين | `18-hybrid-edit-assembly.md` | ما يُولَّد وما يُركَّب |
-
-### المسار المتخصص — الموشن جرافيك
-
-| # | الوكيل | الملف | ملاحظة |
-|---|---|---|---|
-| 11 | مخرج موشن جرافيك | `11-motion-graphics.md` | ⚠️ مسار معماري مختلف (لا توليد) |
-
-### الوكلاء الجدد في v1.5
-
-| # | الوكيل | الملف | المسؤولية | مرحلة |
+| # | الوكيل | الملف | المسؤولية | المرحلة |
 |---|---|---|---|---|
-| 19 | **وكيل ما قبل التوليد** | `19-preflight-check.md` | فحص البرومبت قبل إرساله للنموذج | قبل كل توليد |
-| 20 | **وكيل التوطين** | `20-localization.md` | ترجمة prompts + حساسية ثقافية | داخل M3/M4/M5 |
+| **21** | مختبر البحث الإبداعي | `21-creative-research-lab.md` | بحث + عصف ذهني + Concept Deck | M1 |
+| **22** | مهندس هندسة البرومبتات | `22-prompt-architecture.md` | 10 طبقات A-J | M8, M9 |
+| **23** | مهندس البنية السردية | `23-narrative-architect.md` | Story Spine + Scenes + Script | M3 |
+| **24** | مهندس هندسة اللقطات | `24-shot-architect.md` | Shot Cards + Blocking + Edit Handles | M4 |
+| **25** | مشرف الاستمرارية | `25-continuity-supervisor.md` | Continuity Bible + Frame Chain | M5 |
+| **26** | مهندس الانتقالات | `26-transition-engineer.md` | تصميم الانتقالات (12 نوع) | M6 |
+| **27** | مدير الجرافيكس | `27-graphic-typography-director.md` | AI-Native Graphic Composition | M6.5 |
+| **28** | استراتيجية تحريك النصوص | `28-text-preservation-motion.md` | 5 استراتيجيات للنصوص | M6.5 |
+| **29** | محرك قرار الصوت | `29-audio-decision-engine.md` | شجرة قرار الصوت | M7 |
+| **30** | المنتج التنفيذي | `30-executive-producer.md` | المنسق المركزي + 5 Output Files | M10, M11 |
+| **31** | مدير بوابات الجودة | `31-quality-gate-controller.md` | 8 Quality Gates (G0–G8) | مستمرة |
 
 ---
 
-## 3. خريطة المرجعيات (26 مرجعًا)
+## 4. الـ 28 Reference (مرجعيات)
 
-### طبقة التحكم (تُقرأ دائمًا)
+### v1.4–v1.5 (24 references)
 
-| الملف | الغرض | متى |
-|---|---|---|
-| `intent-router.md` | تصنيف النية | أولًا في كل مشروع |
-| `output-protocol.md` | شكل الإخراج للمستخدم | كل رد |
-| `interaction-flow.md` | تسلسل الأسئلة والاعتماد | كل مشروع |
-| `decision-policy.md` | من يقرر ماذا | عند كل سؤال |
+```
+references/agent-contract.md
+references/context-assembly.md
+references/copywriting-and-text-in-images.md
+references/decision-policy.md
+references/failure-modes.md
+references/intent-router.md
+references/interaction-flow.md
+references/memory-context-policy.md
+references/memory-lifecycle.md
+references/memory-schema.md
+references/model-adapters.md
+references/model-matrix.md
+references/output-protocol.md
+references/production-state-machine.md
+references/project-memory.md
+references/prompt-compiler.md
+references/prompt-patterns.md
+references/prompt-quality-gate.md
+references/scene-shot-dna.md
+references/session-continuation.md
+references/shot-contract.md
+references/text-execution-matrix.md
+references/version-lineage.md
+```
 
-### طبقة الإنتاج (تُقرأ عند الحاجة)
+### v2.0 — المرجعيات الجديدة (4)
 
-| الملف | الغرض |
-|---|---|
-| `agent-contract.md` | عقد INPUT/OUTPUT لكل وكيل |
-| `production-state-machine.md` | الحالات والبوابات |
-| `shot-contract.md` | عقد اللقطة |
-| `text-execution-matrix.md` | أين يُنفَّذ النص (image / video / compositing) |
-| `version-lineage.md` | تسمية SC_SH_FR_v وتتبع الإصدارات |
-| `prompt-compiler.md` | مخطط البرومبت المعياري |
-| `model-adapters.md` | ترجمة المواصفة لهجة كل نموذج |
-| `prompt-quality-gate.md` | فحص البرومبت قبل التسليم |
-| `context-assembly.md` | تحميل السياق الضروري فقط |
-| `scene-shot-dna.md` | ثوابت المشهد vs متغيرات اللقطة |
-
-### طبقة النماذج (تُقرأ عند اختيار النموذج)
-
-| الملف | الغرض |
-|---|---|
-| `model-matrix.md` | قدرات وحدود كل نموذج (مصدر الحقيقة) |
-| `prompt-patterns.md` | قوالب جاهزة قابلة للتعبئة |
-| `failure-modes.md` | تشخيص وإصلاح الأعطال |
-| `copywriting-and-text-in-images.md` | كتابة النص داخل الصور |
-
-### طبقة الذاكرة (v1.4+)
-
-| الملف | الغرض |
-|---|---|
-| `project-memory.md` | بنية ومراتب الذاكرة |
-| `memory-schema.md` | مخطط سجلات الذاكرة |
-| `memory-lifecycle.md` | دورة حياة الذاكرة |
-| `memory-context-policy.md` | ما يدخل السياق |
-| `session-continuation.md` | بروتوكول استئناف الجلسات |
-
----
-
-## 4. خريطة القوالب (6 قوالب)
-
-| القالب | الغرض | يُنسخ إلى |
-|---|---|---|
-| `production-brief.md` | الحالة الشاملة للمشروع | `state/production-brief.md` |
-| `style-dna-sheet.md` | ورقة Style DNA | يُحفظ داخل `state/` أو في مجلد المشروع |
-| `reference-library.md` | مكتبة المرجعيات | `state/reference-library.md` |
-| `delivery-package.md` | حزمة التسليم النهائية | يُسلَّم للمستخدم |
-| `project-memory.md` | بنية الذاكرة القانونية | `state/project-memory.md` |
-| **`concept-deck.md`** (جديد) | عرض المفاهيم للمستخدم | يُسلَّم عند M1 |
-
----
-
-## 5. خريطة ملفات الحالة (8 ملفات)
-
-| الملف | الغرض | يُحدَّث عند |
-|---|---|---|
-| `production-brief.md` | ملخص المشروع + الـ Gate الحالي | بعد كل مرحلة |
-| `asset-registry.md` | سجل كل أصل وإصداره | كل توليد |
-| `continuity-ledger.md` | الاستمرارية بين اللقطات | بعد كل لقطة |
-| `approval-log.md` | قرارات الاعتماد والرفض | عند كل اعتماد |
-| `generation-log.md` | محاولات التوليد ونتائجها | كل محاولة |
-| `decision-log.md` | القرارات الدامة | عند كل قرار |
-| `project-memory.md` | الذاكرة القانونية المعتمدة | عند كل Approved |
-| `session-checkpoint.md` | نقطة الاستئناف للجلسة القادمة | نهاية كل جلسة |
-
----
-
-## 6. خريطة الفحص والاختبار (4 scripts)
-
-| الملف | ما يفحصه | يُشغَّل متى |
-|---|---|---|
-| `_verify_all.sh` | يشغّل الثلاثة الأخرى | قبل أي commit |
-| `_verify_structure.py` | البنية، frontmatter، الروابط، القيود الموثقة | كل تغيير |
-| `_verify_functional.py` | تشغيل كامل على «أبغى فيديو عن القهوة» | كل تغيير في القواعد |
-| `_verify_motion.py` | مسار الموشن جرافيك + easing + العربية | كل تغيير في `11-motion-graphics.md` |
-| `_verify_example.py` | صحة المثال الحي `coffee-short.md` | كل تغيير في المثال |
-
----
-
-## 7. المسار الشائع: شورت 15 ثانية بـ Seedance
-
-```text
-المستخدم: «أبغى فيديو عن القهوة»
-    ↓
-[1] intent-router.md → IMAGE_TO_VIDEO أو SCENE_BUILD
-    ↓
-[2] 01-intake.md → 3 أسئلة فقط
-    ↓
-[3] 12-concept-expansion.md → 3 اتجاهات (عند الطلب الغامض)
-    ↓
-[4] 02-creative-direction.md → لوجلاين + هوية بصرية
-    ↓
-[5] 09-visual-research.md أو 10-reference-analyst.md
-    ↓
-[6] 03-character-world-bible.md → بطاقة + مراجع
-    ↓
-[7] 04-shot-list.md → قائمة اللقطات
-    ↓
-★ GATE اعتماد المستخدم (APPROVE / EDIT) ★
-    ↓
-[8] 14-animation-ready-assets.md → بطاقة لكل فريم
-    ↓
-[9] 15-motion-direction.md → Motion Choreography
-    ↓
-[10] 19-preflight-check.md → فحص قبل كل توليد
-    ↓
-[11] 05-image-prompts.md → Prompt Compiler → Quality Gate → البرومبت
-    ↓
-[12] 06-motion-prompts.md → Prompt Compiler → Quality Gate → البرومبت
-    ↓
-[13] 07-sound-design.md → تصميم الصوت
-    ↓
-[14] 17-continuity-qc.md → فحص الاتساق
-    ↓
-[15] 18-hybrid-edit-assembly.md → خطة التجميع
-    ↓
-[16] 08-edit-color-qc.md → QC + تصدير
-    ↓
-[17] delivery-package.md → حزمة التسليم
+```
+references/prompt-architecture-spec.md    # 10 طبقات A-J
+references/continuity-bible-schema.md     # مخطط Bible الكامل
+references/transition-types.md            # 12 نوع انتقال
+references/audio-decision-tree.md         # شجرة قرار الصوت
 ```
 
 ---
 
-## 8. قرارات سريعة (شجرة استشارة)
+## 5. الـ 11 Template (قوالب)
 
-| السؤال | الجواب |
-|---|---|
-| «هل أقرأ SKILL.md كاملًا؟» | لا. اقرأ هذا INDEX + الوكيل المطلوب فقط. |
-| «كم سؤالًا أطرح أولًا؟» | 3 أسئلة. عند الحاجة 3 أخرى. لا أكثر. |
-| «أي نموذج أختار؟» | `model-matrix.md` هو المرجع. لا تخمّن. |
-| «هل أضع easing في برومبت الفيديو؟» | لا. أبدًا. هذا في `11-motion-graphics.md`. |
-| «متى أطلب مرجعًا من المستخدم؟» | بعد جولتين رفض في `12-concept-expansion.md`. |
-| «هل أبدأ من الصفر في جلسة جديدة؟» | لا. اقرأ `state/session-checkpoint.md` أولًا. |
-| «كيف أتأكد أن البرومبت صالح؟» | `19-preflight-check.md` + `prompt-quality-gate.md`. |
+### v1.5 (5)
+
+```
+templates/concept-deck.md
+templates/delivery-package.md
+templates/production-brief.md
+templates/project-memory.md
+templates/reference-library.md
+templates/style-dna-sheet.md
+```
+
+### v2.0 — الحزم الخمس (5)
+
+```
+templates/01-production-blueprint.md     # النظرة الشاملة
+templates/02-image-prompts-package.md    # برومبتات الصور
+templates/03-motion-prompts-package.md   # برومبتات الفيديو
+templates/04-audio-package.md            # الحزمة الصوتية
+templates/05-assembly-guide.md           # دليل التجميع
+```
 
 ---
 
-## 9. لا تفعل (أخطاء شائعة)
+## 6. ملفات State (12 ملف)
 
-- ❌ لا تقرأ كل الوكلاء عشوائيًا — اقرأ المطلوب فقط.
-- ❌ لا تخلط لهجات النماذج (`<FIRST_FRAME>` في Seedance = خطأ).
-- ❌ لا تعيد صياغة Identity String بين البرومبتات.
-- ❌ لا تطلب من المستخدم أسئلة منخفضة الأثر.
-- ❌ لا تتجاوز `G-APPROVAL` بعد M5.
-- ❌ لا تضع النص المتحرك في نموذج الفيديو.
-- ❌ لا تدمج dolly + zoom + orbit في لقطة واحدة.
-- ❌ لا تَعِد بمدة تتجاوز سقف النموذج.
-- ❌ لا تخترع مراجع أو قيم hex.
-- ❌ لا تخلط مرجع هوية بمرجع أسلوب.
+### v1.5 (5)
+
+```
+state/project-memory.md
+state/asset-registry.md
+state/decision-log.md
+state/risk-register.md
+state/reference-library.md
+```
+
+### v2.0 (7 جديد)
+
+```
+state/continuity-bible.md       # قاموس الهوية البصرية
+state/frame-chain.md            # Start/End Frame Registry
+state/quality-gates-log.md      # G0–G8 log
+state/approval-log.md           # من v1.0
+state/continuity-ledger.md      # من v1.0
+state/generation-log.md         # من v1.0
+state/production-brief.md       # من v1.0
+state/session-checkpoint.md     # من v1.0
+```
+
+---
+
+## 7. الـ 8 Quality Gates (G0–G8)
+
+| Gate | الاسم | بعد المرحلة | المسؤولية | النوع |
+|---|---|---|---|---|
+| **G0** | وضوح الاستقبال | M0 | 30-EP | Soft |
+| **G1** | جودة الفكرة | M1 | 21-CRL | Soft |
+| **G2** | جودة السرد | M3 | 23-NA | Soft |
+| **G3** | جودة الاستمرارية | M5 | 25-CS | Soft |
+| **G4** | جودة البرومبتات | M8, M9 | 22-PA + 31-QG | **HARD** |
+| **G5** | جودة الانتقالات | M6 | 26-TE | Soft |
+| **G6** | جودة النصوص | M6.5 | 27-GTD + 28-TPM | Soft (critical on G6.4) |
+| **G7** | جودة الصوت | M7 | 29-ADE | Soft |
+| **G8** | الجودة الشاملة | M10 | 30-EP + 31-QG | **HARD** |
+
+التوثيق الكامل في `agents/31-quality-gate-controller.md`.
+
+---
+
+## 8. Prompt Architecture — 10 طبقات A-J
+
+| الطبقة | الاسم | الغرض |
+|---|---|---|
+| **A** | Intent | لماذا هذا المشهد؟ |
+| **B** | Subject | من/ما الموضوع؟ |
+| **C** | Environment | أين ومتى؟ |
+| **D** | Composition | كيف يُبنى الكادر؟ |
+| **E** | Camera | بمَ نرى؟ |
+| **F** | Lighting | كيف يُضاء؟ |
+| **G** | Motion | ما الذي يتحرك؟ (video) |
+| **H** | Cinematic Continuity | كيف يرتبط بما قبله/بعده؟ |
+| **I** | Style & Visual DNA | ما اللغة البصرية؟ |
+| **J** | Constraints | ما الذي يجب الحفاظ عليه؟ |
+
+التوثيق الكامل في `references/prompt-architecture-spec.md`.
+
+---
+
+## 9. الـ 5 Output Files (مخرجات v2.0)
+
+| # | الملف | يحوي | يُنتَج من |
+|---|---|---|---|
+| **01** | `01-production-blueprint.md` | النظرة الشاملة | 30-EP بعد M0–M9 |
+| **02** | `02-image-prompts-package.md` | كل prompt صورة | 22-PA + 30-EP |
+| **03** | `03-motion-prompts-package.md` | كل prompt فيديو | 22-PA + 30-EP |
+| **04** | `04-audio-package.md` | كل الطبقات الصوتية | 29-ADE + 30-EP |
+| **05** | `05-assembly-guide.md` | دليل التجميع خطوة بخطوة | 30-EP |
+
+---
+
+## 10. الأمثلة (Examples)
+
+| المثال | النوع | المدة | يُظهر |
+|---|---|---|---|
+| `examples/coffee-short.md` | قصة قصيرة | 60s | v1.5 نمط |
+| `examples/energy-drink-ad.md` | إعلان منتج | 30s | **v2.0 كامل** (كل المنظومة) |
+
+---
+
+## 11. أدوات الفحص (Verification)
+
+```
+_verify_structure.py    # يفحص بنية الملفات
+_verify_all.sh          # يفحص كل شيء (هيكل + وظيفي + أمثلة)
+```
+
+---
+
+## 12. كيف تقرأ v2.0 (للمستخدمين الجدد)
+
+### قراءة سريعة (5 دقائق)
+
+1. `SKILL.md` (الـ overview)
+2. `INDEX.md` (هذا الملف)
+3. `CHANGELOG-v2.0.md` (ما الجديد)
+
+### قراءة متوسطة (30 دقيقة)
+
++ `examples/energy-drink-ad.md` (مثال حي)
++ `agents/30-executive-producer.md` (المنسق)
+
+### قراءة كاملة (3 ساعات)
+
++ كل الـ 31 وكيل
++ كل الـ 5 templates
++ الـ 4 references الجديدة
+
+### بدء مشروع
+
+1. افتح `SKILL.md` → اتبع المراحل M0–M11
+2. في كل مرحلة، شغّل الوكيل المناسب
+3. في النهاية، استلم الـ 5 Output Files
+
+---
+
+## 13. التوثيق الإضافي
+
+| الملف | الوصف |
+|---|---|
+| `SKILL.md` | الـ overview الرئيسي |
+| `CHANGELOG-v1.5.md` | تغييرات v1.5 |
+| `CHANGELOG-v2.0.md` | تغييرات v2.0 (هذا الإصدار) |
+| `INDEX.md` | هذا الملف |
+| `README.md` | مقدمة عامة (إن وُجد) |
+
+---
+
+**AI Film Studio v2.0 — من Prompt Writer إلى AI Film Production System.**
+
+**31 وكيلًا • 10 طبقات • 12 مرحلة • 8 Quality Gates • 5 Output Files**
