@@ -405,3 +405,22 @@ centered, generous margin around the element. No text, no logos.
 - [ ] قوانين التزامن محترمة
 - [ ] قواعد الطباعة العربية مطبقة
 - [ ] تحذيرات أدوات التركيب مذكورة
+
+
+---
+
+## عقد التشغيل v1.1
+
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/agent-contract.md`. في نهاية كل تشغيل، أخرج:
+- **INPUT ARTIFACTS**: IDs + Versions التي استلمتها.
+- **OUTPUT ARTIFACTS**: IDs + Versions التي أنشأتها.
+- **VALIDATION**: اختبارات PASS/FAIL.
+- **STATE UPDATE**: الحقول التي تغيرت في `state/`.
+- **GATE**: `PASS` أو `FAIL` أو `REQUIRES_REVIEW`.
+- **NEXT**: الوكيل/المرحلة التالية.
+
+إذا فشل الناتج: لا تتقدم. سجّل التشخيص في `state/generation-log.md` عند التوليد، أو في سجل الحالة المناسب، وحدد متغير الإصلاح قبل إعادة المحاولة.
+
+
+## v1.3 Prompt Runtime Contract
+عند إنتاج مخرج تنفيذي، لا تسلّم Prompt نهائيًا مباشرة. ابنِ داخليًا Canonical Prompt Spec ثم مرره إلى `references/model-adapters.md` و`references/prompt-quality-gate.md` قبل التسليم. المستخدم يرى فقط النسخة المجمعة والجاهزة للنسخ.

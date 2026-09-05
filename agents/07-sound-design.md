@@ -210,3 +210,18 @@ Sound: [مؤثرات], [ambience], [music or "no music"]. Dialogue: "[النص �
 - [ ] room tone محدد لكل موقع
 - [ ] قيود النموذج الصوتية محترمة (لا مراجع صوتية في Omni)
 - [ ] خطة المراجعة الثلاثية محددة
+
+
+---
+
+## عقد التشغيل v1.1
+
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/agent-contract.md`. في نهاية كل تشغيل، أخرج:
+- **INPUT ARTIFACTS**: IDs + Versions التي استلمتها.
+- **OUTPUT ARTIFACTS**: IDs + Versions التي أنشأتها.
+- **VALIDATION**: اختبارات PASS/FAIL.
+- **STATE UPDATE**: الحقول التي تغيرت في `state/`.
+- **GATE**: `PASS` أو `FAIL` أو `REQUIRES_REVIEW`.
+- **NEXT**: الوكيل/المرحلة التالية.
+
+إذا فشل الناتج: لا تتقدم. سجّل التشخيص في `state/generation-log.md` عند التوليد، أو في سجل الحالة المناسب، وحدد متغير الإصلاح قبل إعادة المحاولة.

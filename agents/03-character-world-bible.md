@@ -244,3 +244,18 @@ Contrast ratio: [LOW/HIGH]. Texture: [FILM_GRAIN/CLEAN_DIGITAL]. Shot on
 - [ ] برومبتات توليد المراجع مكتوبة بلهجة نموذج الصور المختار
 - [ ] جدول سجل استمرارية فارغ جاهز لل填充
 - [ ] التحقق من أن عدد المراجع لا يتجاوز سقف النموذج المختار
+
+
+---
+
+## عقد التشغيل v1.1
+
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/agent-contract.md`. في نهاية كل تشغيل، أخرج:
+- **INPUT ARTIFACTS**: IDs + Versions التي استلمتها.
+- **OUTPUT ARTIFACTS**: IDs + Versions التي أنشأتها.
+- **VALIDATION**: اختبارات PASS/FAIL.
+- **STATE UPDATE**: الحقول التي تغيرت في `state/`.
+- **GATE**: `PASS` أو `FAIL` أو `REQUIRES_REVIEW`.
+- **NEXT**: الوكيل/المرحلة التالية.
+
+إذا فشل الناتج: لا تتقدم. سجّل التشخيص في `state/generation-log.md` عند التوليد، أو في سجل الحالة المناسب، وحدد متغير الإصلاح قبل إعادة المحاولة.
