@@ -1,174 +1,264 @@
-# AI Film Studio
+<div align="center">
 
-> **AI-powered end-to-end film production system.** Transform a one-line idea into a complete production package: concept, script, shot list, image & motion prompts (10-Layer A-J), audio plan, and assembly guide.
+# 🎬 AI Film Studio
 
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](CHANGELOG.md)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Standard](https://img.shields.io/badge/standard-Agent%20Skills%20Standard-orange.svg)](#)
+**استوديو إنتاج مرئي متكامل بالذكاء الاصطناعي — يعمل داخل أي وكيل ذكي**
 
-## What is it?
+*فيلم · إعلان · وثائقي · موشن جرافيك · سلسلة*
 
-AI Film Studio is a **production-system skill** for AI agents (Claude, GPT, Gemini, etc.) that simulates a complete film studio. It contains:
+<p>
+<img alt="Version" src="https://img.shields.io/badge/version-3.0.0-111827">
+<img alt="Skill" src="https://img.shields.io/badge/agent-skill-7c3aed">
+<img alt="Stages" src="https://img.shields.io/badge/stages-12%20%2B%205%20engines-059669">
+<img alt="Workflows" src="https://img.shields.io/badge/workflows-31-2563eb">
+<img alt="Style Locks" src="https://img.shields.io/badge/style%20locks-10-d97706">
+<img alt="Quality Gates" src="https://img.shields.io/badge/quality%20gates-12-db2777">
+<img alt="Verify" src="https://img.shields.io/badge/verify-9%2F9%20passing-16a34a">
+<img alt="License" src="https://img.shields.io/badge/license-MIT-059669">
+</p>
 
-- **31 specialist roles** (Creative Director, DP, Sound Designer, Editor, Colorist, Continuity Supervisor, etc.)
-- **12 production stages** (M0–M11) materialized as **31 workflows** (see `workflows/M*.md`)
-- **10-Layer Prompt Architecture (A–J)** for any image/video generation model
-- **8 Quality Gates** with hard gates at G4 (prompts) and G8 (master)
-- **5 production packages** as final deliverables
-- **Orchestration Runtime**: 10 executable routes (REPAIR، SINGLE_PROMPT، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT، SHOT_BUILD، SCENE_BUILD، FULL_PRODUCTION) — see `references/protocols/orchestration-runtime.md`
-- **Memory Conflict Resolution**: 6 conflict types (NoConflict، ShotOverride، SceneOverride، ProjectCanonical، UserApproved، Ambiguous) — see `references/knowledge/memory-conflict-contract.md`
+**صُمّم وبُني بواسطة [Waseem Alzobiri](https://github.com/zoih6)**
 
-## Quick Start
+</div>
 
-```bash
-# 1. Clone
-git clone https://github.com/zoih6/ai-film-studio.git
+---
 
-# 2. For an agent: read SKILL.md first
-# For humans: read this README + workflows/intent-router.md
+## ✨ ما هذه المهارة؟
 
-# 3. Run verification
-bash scripts/verify_all.sh
+**AI Film Studio** مهارة وكيل (Agent Skill) تحوّل فكرة بسيطة إلى **حزمة إنتاج كاملة**:
+مفهوم، سرد، جدول Beats، بطاقات لقطات، برومبتات صور وفيديو، صوت، وورقة مونتاج —
+جاهزة للتنفيذ على نماذج التوليد دون أن يسأل المنفّذ سؤالًا واحدًا.
+
+**ليست مولّد برومبتات.** هي **استوديو كامل**: 31 تخصصًا عبر 12 مرحلة، **5 محركات**،
+**10 عوالم بصرية بأقفال نصية حرفية**، و **12 بوابة جودة**.
+
+> **"البرومبت هو الخطوة رقم 10، وليس رقم 1."**
+
+---
+
+## 🆕 ما الجديد في v3.0.0؟
+
+دمج كامل لأربعة مستودعات سابقة في نظام واحد، مع **17 إضافة جديدة كليًا**.
+
+| الإضافة | الوصف |
+|---|---|
+| 🎨 **10 عوالم بصرية مقفولة** | `LOCK A–J` بأقفال نصية حرفية — تُنص ولا تُعاد صياغتها |
+| 🎬 **5 محركات متخصصة** | وثائقي · إعلان · هجين · سلسلة · تنفيذ بالجملة |
+| 🔍 **حزمة أدوات بحث** | بحث، تعدين مراجع، تحقق حقائق، ترند، مكتبة استعلامات |
+| 🛡️ **مرجع الدقة والأمان** | تدريج الثقة، ضبط المآسي، الحساسية الثقافية، الحقوق |
+| 📐 **10 مخططات إخراج جديدة** | Brief · Beat Table · Shot Card · Product Sheet · Edit Sheet · End Card · Thumbnail Pack · Delivery Pack · Series Bible · Prompts TXT |
+| ✅ **بوابات G9–G13** | سلامة السكربت · الـ Beats · أمانة المنتج · المنصة · السلسلة |
+| 🧪 **4 سكربتات فحص جديدة** | الأقفال · المحركات · الروابط · فاحص البرومبتات |
+| 📚 **مثالان حيان كاملان** | حلقة وثائقية + إعلان 15 ثانية |
+
+→ التفاصيل: [`docs/gap-analysis-v3.md`](docs/gap-analysis-v3.md) · [`docs/migration-v2-to-v3.md`](docs/migration-v2-to-v3.md)
+
+---
+
+## 🏗️ المعمارية
+
+```
+tier 1 — يُحمَّل دائمًا (≤ 8KB)
+  ├─ SKILL.md · README.md · CHANGELOG.md
+
+tier 2 — يُحمَّل عند بدء مشروع
+  ├─ workflows/intent-router.md      ← نقطة التوجيه
+  ├─ workflows/M0–M11/               ← 12 مرحلة / 31 workflow
+  ├─ workflows/engines/E1–E5/        ← 5 محركات متخصصة
+  └─ workflows/shortcuts/            ← 11 مسارًا سريعًا
+
+tier 3 — يُحمَّل عند الحاجة المتخصصة
+  ├─ styles/          ← 10 عوالم + أقفال حرفية + خواتيم + UVP
+  ├─ references/      ← protocols (10) · specs (~21) · knowledge (~10) · research (5)
+  ├─ schemas/         ← 23 مخطط إخراج
+  ├─ quality/         ← 12 بوابة + قوائم فحص
+  └─ examples/        ← 4 أمثلة حية
+
+scripts/               ← 9 أدوات فحص قابلة للتنفيذ
 ```
 
-## Repository Structure
+→ التفاصيل: [`docs/architecture.md`](docs/architecture.md)
 
-```
-ai-film-studio/
-├── SKILL.md                 ← entry point (agents read this first)
-├── README.md                ← you are here
-├── CHANGELOG.md
-├── LICENSE
-│
-├── workflows/               ← tier 2: how to execute (12 stages / 31 workflows)
-│   ├── intent-router.md     ← start here
-│   ├── M0-intake.md
-│   ├── M1a-creative-direction.md, M1b-concept-expansion.md, M1c-research-lab.md
-│   ├── M2-narrative.md
-│   ├── M3a-shot-design.md, M3b-shot-list.md
-│   ├── M4a-continuity.md, M4b-character-world.md, M4c-continuity-qc.md, M4d-transitions.md
-│   ├── M5a-graphics.md, M5b-text-motion.md
-│   ├── M6-audio.md, M6b-sound-design.md, M6c-dialogue-lipsync.md
-│   ├── M7a-prompt-architecture.md, M7b-image-prompts.md
-│   ├── M8a-motion-prompts.md, M8b-motion-direction.md, M8c-animation-ready.md, M8d-motion-graphics.md
-│   ├── M9a-executive-producer.md, M9b-quality-gates.md, M9c-preflight.md, M9d-localization.md
-│   ├── M10a-production-architecture.md, M10b-hybrid-assembly.md, M10c-edit-color.md
-│   ├── M11a-reference-analyst.md, M11b-visual-research.md
-│   └── shortcuts/           ← quick paths (single-prompt, image-gen, etc.)
-│
-├── references/protocols/    ← orchestration & state machine
-│   ├── production-state-machine.md   ← AUTHORITATIVE stage model (M0–M11)
-│   ├── orchestration-runtime.md      ← executable spec for 9 routes
-│   ├── agent-contract.md, decision-policy.md, output-protocol.md, interaction-flow.md
-│
-├── schemas/                 ← tier 3: data structures (output templates)
-│   ├── production-blueprint.md
-│   ├── image-prompts-package.md
-│   ├── motion-prompts-package.md
-│   ├── audio-package.md
-│   ├── assembly-guide.md
-│   └── state/               ← runtime state files
-│
-├── references/              ← tier 3: deep knowledge
-│   ├── protocols/           ← output protocol, decision policy, etc.
-│   ├── specs/               ← 10-Layer A-J, transitions, audio, models
-│   └── knowledge/           ← failure modes, memory, context assembly
-│
-├── quality/                 ← tier 3: 8 quality gates
-│   ├── quality-gates.md
-│   ├── checklist.md
-│   └── self-audit.md
-│
-├── examples/                ← 2 live end-to-end examples
-├── scripts/                 ← 5 verification scripts
-└── assets/                  ← static assets (placeholders)
-```
+---
 
-## Progressive Disclosure
+## 🎯 التوجيه السريع
 
-This skill follows the **Agent Skills Standard** with three loading tiers:
+| إذا كان طلبك... | المسار |
+|---|---|
+| برومبت واحد / صورة / تحريك صورة | `workflows/shortcuts/` |
+| ثامبنيل لفيديو | `workflows/shortcuts/thumbnail.md` |
+| **وثائقي / essay / قناة بدون وجه** | `workflows/engines/E1-documentary-engine.md` |
+| **إعلان منتج / حملة / brand film** | `workflows/engines/E2-commercial-engine.md` |
+| **إعلان بسرد وثائقي** | `workflows/engines/E3-hybrid-commercial.md` |
+| **سلسلة أو قناة كاملة** | `workflows/engines/E4-series-engine.md` |
+| **تنفيذ بالجملة** | `workflows/engines/E5-bulk-production-pipeline.md` |
+| مشهد متعدد اللقطات | `M0` → `M3` |
+| فيلم قصير كامل | `M0` → `M11` |
 
-| Tier | When loaded | Size | What |
-|---|---|---|---|
-| **1** | Always | ≤ 5KB | `SKILL.md` + `README.md` + `CHANGELOG.md` |
-| **2** | Project start | ~50KB | `workflows/` (intent-router + relevant M-stage) |
-| **3** | Specialized task | ~200KB | `references/` + `schemas/` + `quality/` |
+---
 
-The agent reads tier 1, uses `workflows/intent-router.md` to pick a path, then loads only the relevant tier 2/3 files.
+## 🎨 العوالم البصرية العشرة
 
-## Use Cases
+كل عالم = **قفل نصي يُنسخ حرفيًا** في كل برومبت. إعادة الصياغة تكسر الثبات بين 20 لقطة.
 
-| Use case | Path | Time |
+| القفل | العالم | الاستخدام |
 |---|---|---|
-| One prompt only | `workflows/shortcuts/single-prompt.md` | 2 min |
-| Single image | `workflows/shortcuts/image-generation.md` | 5 min |
-| Image to video | `workflows/shortcuts/image-to-video.md` | 5 min |
-| Lip-sync dialogue | `workflows/shortcuts/dialogue-lipsync.md` | 5 min |
-| Motion graphics | `workflows/shortcuts/motion-graphics.md` | 10 min |
-| Concept only | `workflows/shortcuts/concept-only.md` | 15 min |
-| Single scene (3-8 shots) | `workflows/M0` → M3 | 30 min |
-| Short film / ad (30-60s) | `workflows/M0` → M11 | 90 min |
+| **A** | Documentary Archive Collage | توقيع VOX — وثائقي، essay |
+| **B** | Commercial Craft Collage | **الافتراضي للمنتجات** |
+| **C** | Paper Noir Luxury | عطور، ساعات، فخامة |
+| **D** | Pop Cutout Playground | سناكس، مشروبات، شباب |
+| **E** | Miniature Tabletop Cinematic | تقنية، أجهزة، سيارات |
+| **F** | Photoreal Studio | واقعية كاملة بلا ورق |
+| **G** | Mixed Media Editorial | مجلات، أزياء، ثقافة |
+| **H** | Tactile Clay Diorama | طين/صلصال، سناكس، أطفال |
+| **I** | Flat Vector Explainer | **نمط VOX المسطح** — شروح، بيانات |
+| **J** | Arabic Calligraphic | هوية عربية معاصرة |
 
-## The 5 Output Packages
+→ `styles/index.md` لشجرة القرار · `styles/locks/` للأقفال الحرفية
 
-Every full project produces these 5 files:
+---
 
-1. **`schemas/production-blueprint.md`** — Concept, story, script, characters, locations
-2. **`schemas/image-prompts-package.md`** — All image prompts (10-Layer A-J)
-3. **`schemas/motion-prompts-package.md`** — All video prompts (with start/end frames)
-4. **`schemas/audio-package.md`** — Voice, music, SFX, foley, ambience + lip-sync plan
-5. **`schemas/assembly-guide.md`** — Step-by-step assembly in Premiere/DaVinci
+## 👥 المحركات الخمسة
 
-See `examples/energy-drink-ad.md` for a complete 30-second ad using all 5 packages.
+| المحرك | العقد | المخرج |
+|---|---|---|
+| **E1** Documentary | آلة حالات 9 خطوات، توقف بعد كل حالة | سكربت + Beats + prompts.txt + UVP + 3 ثامبنيل |
+| **E2** Commercial | 10 مراحل، طاقم 9 أدوار | حزمة إعلان كاملة (Brief → Edit Sheet) |
+| **E3** Hybrid | دمج VOX + Commercial | إعلان بسرد وثائقي وكولاج |
+| **E4** Series | خطة سلسلة + توقيع قناة مقفول | سلسلة متسقة |
+| **E5** Bulk | ملف txt + UVP + مونتاج | إرشاد تنفيذ |
 
-## Quality System
+---
 
-8 Quality Gates enforce standards:
+## 🔬 أدوات البحث (جديد)
 
-- **G0** — Intake clarity
-- **G1** — Idea quality
-- **G2** — Narrative quality
-- **G3** — Continuity quality
-- **G4** — **HARD GATE** — Prompt quality (10 layers A-J)
-- **G5** — Transition quality
-- **G6** — Text quality
-- **G7** — Audio quality
-- **G8** — **HARD GATE** — Master quality (all 5 files complete)
+| الأداة | الوظيفة |
+|---|---|
+| `references/research/search-playbook.md` | منهجية البحث وقرار «ابحث أم افترض» |
+| `references/research/reference-mining.md` | تعدين المراجع البصرية وحقوقها |
+| `references/research/fact-verification.md` | التحقق من الحقائق وتدريج الثقة |
+| `references/research/trend-research.md` | الترند والموسمية والمنافسون |
+| `references/research/query-library.md` | مكتبة استعلامات جاهزة |
 
-Any critical fail on G4 or G8 = **project blocked**. See `quality/quality-gates.md`.
+---
 
-## Models Supported
+## ✅ الجودة
 
-Tested with (see `references/specs/model-matrix.md` for full matrix):
+12 بوابة جودة · **بوابتان صلبتان (G4, G8)** تمنعان التسليم عند الفشل.
 
-- **Image:** bytedance/seedream-4, midjourney-v6, stability/sdxl, gemini-3-pro-image
-- **Video:** bytedance/seedance-2.0, runwayml/gen4, kling-2.1, veo-3, sora
-- **Audio:** ElevenLabs, Suno, Udio, Cartesia, Stability Audio
-- **Lip-sync:** Hedra, Omniverse Audio2Face, Veo 3 (native)
+| المجموعة | البوابات |
+|---|---|
+| **G0–G8** | الأساسية (العمود الفقري) — G4 و G8 Hard |
+| **G9–G13** | السكربت · الـ Beats · المنتج · المنصة · السلسلة |
 
-## Verification
+---
+
+## 🧪 التحقق
 
 ```bash
-# All checks
 bash scripts/verify_all.sh
-
-# Individual
-python3 scripts/verify_structure.py    # 75+ files, structure
-python3 scripts/verify_functional.py    # 30/30 functional checks
-python3 scripts/verify_motion.py        # 46/46 motion path checks
-python3 scripts/verify_example.py       # 29/29 example validation
 ```
 
-Latest run: **4/4 passed**.
+| # | الفحص | يفحص |
+|---|---|---|
+| 1 | `verify_structure.py` | البنية + YAML frontmatter |
+| 2 | `verify_functional.py` | 95 حالة وظيفية (4 fixtures) |
+| 3 | `verify_example.py` | 29 حالة أمثلة |
+| 4 | `verify_motion.py` | 46 حالة موشن جرافيك |
+| 5 | `verify_styles.py` | الأقفال العشرة + الخواتيم + UVP |
+| 6 | `verify_vox.py` | المحركات الخمسة + مراجع v3 |
+| 7 | `verify_links.py` | سلامة الروابط الداخلية |
+| 8 | `prompt_lint.py` | فحص أي برومبت قبل التسليم |
 
-## License
+**الحالة:** ✅ 9/9 ناجحة
 
-MIT — see [LICENSE](LICENSE).
+فحص برومبت واحد:
+```bash
+python3 scripts/prompt_lint.py path/to/prompt.txt
+```
 
-## Contributing
+---
 
-Issues and PRs welcome. See `CHANGELOG.md` for the evolution of design decisions.
+## 📦 التثبيت
 
-## Maintainer
+### Claude Code / Claude.ai
+```bash
+cp -r ai-film-studio ~/.claude/skills/
+```
 
-AI Film Studio Team · github.com/zoih6
+### أي وكيل يدعم Agent Skills Standard
+انسخ المجلد إلى مجلد المهارات، ثم ابدأ بطلب طبيعي:
+> «أريد إعلانًا لمنتج قهوة مختصة، 15 ثانية، Reels»
+
+---
+
+## 🌐 التوافق
+
+| | |
+|---|---|
+| **الوكلاء** | Claude (Sonnet/Opus) · GPT-4+ · Gemini Pro/Ultra — أي وكيل يدعم Agent Skills Standard |
+| **نماذج الصور** | Midjourney · Flux · Nano Banana · GPT Image · Ideogram · Imagen · Seedream |
+| **نماذج الفيديو** | Veo · Kling · Runway · Sora · Hailuo · Luma · Wan · Seedance |
+| **الصوت** | ElevenLabs (أو أي مولّد) |
+| **اللغات** | الشرح بلغة المستخدم · البرومبتات بالإنجليزية |
+
+---
+
+## 📖 الوثائق
+
+| الوثيقة | المحتوى |
+|---|---|
+| [`docs/architecture.md`](docs/architecture.md) | المعمارية الكاملة |
+| [`docs/gap-analysis-v3.md`](docs/gap-analysis-v3.md) | تحليل الفجوات بين النسخ السابقة و v3.0.0 |
+| [`docs/migration-v2-to-v3.md`](docs/migration-v2-to-v3.md) | دليل الترقية من v2.x |
+| [`docs/m8b-m8c-audit.md`](docs/m8b-m8c-audit.md) | تدقيق مرحلتي M8b و M8c |
+| [`CREDITS.md`](CREDITS.md) | الإسناد ونسب النظام |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | دليل المساهمة |
+
+---
+
+## 🧬 نسب النظام
+
+هذا المستودع هو النسخة النهائية الموحّدة لأربعة أنظمة سابقة من نفس المنشئ:
+
+| المستودع | ما أُخذ منه |
+|---|---|
+| **AI Film Studio v2.1.0** | العمود الفقري M0–M11 · 10-Layer Prompt Architecture · Quality Gates · Memory System |
+| **VOX Paper Engine** | محرك الوثائقيات · DNA الكتابة السردية · حساب الـ Beats · نظام الصوت · حمض الثامبنيل |
+| **VOX Commercial Director** | طاقم 9 أدوار · Big Idea · 8 عوالم بصرية · Product Reference · بوابات الجودة |
+| **VOX Commercial Director Skill v3.0.0** | Brief بـ 12 حقلًا · T1–T4 · منحنى الطاقة · End Card · مصفوفة A/B · Edit Sheet |
+
+---
+
+## 👤 الاعتماد
+
+<div align="center">
+
+**Designed & Built by**
+
+### Waseem Alzobiri
+
+*هندسة الأنظمة · هندسة التوجيهات · معمارية الـ Workflows*
+
+[![GitHub](https://img.shields.io/badge/GitHub-zoih6-181717?logo=github)](https://github.com/zoih6)
+
+</div>
+
+---
+
+## 📜 الترخيص
+
+**MIT** © 2026 Waseem Alzobiri
+
+عند إعادة النشر أو التفرّع، يُرجى الإبقاء على الإسناد.
+الأقفال النصية في `styles/locks/` **لا تُعدّل** — أنشئ قفلًا جديدًا بدل تعديل الموجود.
+
+---
+
+<div align="center">
+
+**AI Film Studio v3.0.0** · 9/9 verifications passing · MIT License
+
+*صُمّم وبُني بواسطة **Waseem Alzobiri***
+
+</div>

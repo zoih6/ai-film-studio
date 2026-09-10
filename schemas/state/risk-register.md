@@ -18,4 +18,4 @@ risks:
     status: "[mitigated / open / closed]"
 ```
 
-راجع `agents/30-executive-producer.md` للقالب الكامل.
+راجع `workflows/M9a-executive-producer.md` للقالب الكامل.

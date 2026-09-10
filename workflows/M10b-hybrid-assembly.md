@@ -47,7 +47,7 @@ Export: [master + platform variants]
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: IDs + Versions التي استلمتها.
 - **OUTPUT ARTIFACTS**: IDs + Versions التي أنشأتها.
 - **VALIDATION**: اختبارات PASS/FAIL.
@@ -59,4 +59,4 @@ Export: [master + platform variants]
 
 
 ## v1.3 Prompt Runtime Contract
-عند إنتاج مخرج تنفيذي، لا تسلّم Prompt نهائيًا مباشرة. ابنِ داخليًا Canonical Prompt Spec ثم مرره إلى `specs.md` و`specs.md` قبل التسليم. المستخدم يرى فقط النسخة المجمعة والجاهزة للنسخ.
+عند إنتاج مخرج تنفيذي، لا تسلّم Prompt نهائيًا مباشرة. ابنِ داخليًا Canonical Prompt Spec ثم مرره إلى `references/specs/` و`references/specs/` قبل التسليم. المستخدم يرى فقط النسخة المجمعة والجاهزة للنسخ.

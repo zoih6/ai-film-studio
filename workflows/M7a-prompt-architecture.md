@@ -418,12 +418,12 @@ no modern signage). Readable text: none in this frame.
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: Scene DNA + Shot DNA + Continuity Bible
 - **OUTPUT ARTIFACTS**: prompt_id + 10-layer prompt + model adapter
 - **VALIDATION**: G4 Prompt Quality (PASS/FAIL)
 - **STATE UPDATE**: `schemas/state/asset-registry.md` + `schemas/state/generation-log.md`
-- **GATE**: `PASS` أو `FAIL` (Hard Gate من `19-preflight-check.md`)
+- **GATE**: `PASS` أو `FAIL` (Hard Gate من `workflows/M9c-preflight.md`)
 - **NEXT**: 19-preflight-check ثم النموذج
 
 ---
@@ -436,4 +436,4 @@ no modern signage). Readable text: none in this frame.
 - ❌ لا تستخدم صفات مجردة (جميل، مؤثر، سينمائي) — حوّلها لطبقات E و F
 - ❌ لا تنسَ طبقة واحدة — كل طبقة تخدم قرارًا مختلفًا
 - ❌ لا تكتب الـ 10 طبقات بالعربية في prompt النموذج — إنجليزية دائمًا
-- ❌ لا تنسَ Prompt Compiler → `specs.md`
+- ❌ لا تنسَ Prompt Compiler → `references/specs/`

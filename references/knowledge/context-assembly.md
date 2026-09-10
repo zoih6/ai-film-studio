@@ -6,10 +6,10 @@
 ## Context Tiers
 ### Tier 0 — Always
 - `SKILL.md`
-- `protocols.md`
-- `protocols.md`
+- `references/protocols/`
+- `references/protocols/`
 - `workflows/intent-router.md`
-- `protocols.md`
+- `references/protocols/`
 
 ### Tier 1 — Task Specific
 حمّل فقط المرجعيات المطلوبة للمسار: prompt patterns، shot contract، text matrix، model matrix، إلخ.

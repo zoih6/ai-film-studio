@@ -102,7 +102,7 @@ selection:
 
 ## 5. Model Profiles (Source: model-matrix.md)
 
-> **لا تثق بأي مواصفة من الذاكرة.** ارجع دائمًا لـ `model-matrix.md`.
+> **لا تثق بأي مواصفة من الذاكرة.** ارجع دائمًا لـ `references/specs/model-matrix.md`.
 > اعتبر بيانات Preview قابلة للتغير.
 
 | Family | Model | output_type | audio | negative_prompts | first_frame | edit |
@@ -120,7 +120,7 @@ selection:
 | Audio (voice) | `elevenlabs`, `cartesia` | audio | n/a | n/a | n/a | n/a |
 | Audio (music) | `suno`, `udio` | audio | n/a | n/a | n/a | n/a |
 
-**لـ capabilities تفصيلية (aspects, sizes, durations, refs):** راجع `model-matrix.md`.
+**لـ capabilities تفصيلية (aspects, sizes, durations, refs):** راجع `references/specs/model-matrix.md`.
 
 ---
 

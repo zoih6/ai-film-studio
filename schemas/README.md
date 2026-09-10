@@ -23,20 +23,20 @@
 ### State Files (Runtime State)
 
 في `state/`:
-- `project-memory.md` — ذاكرة المشروع الدائمة
-- `continuity-bible.md` — قاموس الهوية البصرية
-- `frame-chain.md` — Start/End Frame Registry
-- `asset-registry.md` — كل الأصول المُنتجة
-- `decision-log.md` — كل القرارات المهمة
-- `risk-register.md` — المخاطر + mitigation
-- `quality-gates-log.md` — G0–G8 log
+- `references/knowledge/project-memory.md` — ذاكرة المشروع الدائمة
+- `schemas/state/continuity-bible.md` — قاموس الهوية البصرية
+- `schemas/state/frame-chain.md` — Start/End Frame Registry
+- `schemas/state/asset-registry.md` — كل الأصول المُنتجة
+- `schemas/state/decision-log.md` — كل القرارات المهمة
+- `schemas/state/risk-register.md` — المخاطر + mitigation
+- `schemas/state/quality-gates-log.md` — G0–G8 log
 - `production-brief.md` — موجز المشروع
 - `production-blueprint.md` — نسخة state من blueprint
-- `reference-library.md` — مرجعيات بصرية
-- `continuity-ledger.md` — سجل اتساق
-- `approval-log.md` — الموافقات
-- `generation-log.md` — محاولات التوليد
-- `session-checkpoint.md` — checkpoint للجلسات
+- `schemas/state/reference-library.md` — مرجعيات بصرية
+- `schemas/state/continuity-ledger.md` — سجل اتساق
+- `schemas/state/approval-log.md` — الموافقات
+- `schemas/state/generation-log.md` — محاولات التوليد
+- `schemas/state/session-checkpoint.md` — checkpoint للجلسات
 
 ## كيف تستخدم
 

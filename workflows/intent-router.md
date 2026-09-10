@@ -64,6 +64,41 @@ when_to_load: "دائمًا عند بداية أي مشروع جديد"
     → CONCEPT: workflows/shortcuts/concept-only.md
 ```
 
+## المحركات (Engines) — v3.0.0
+
+المحركات **طبقة تنظيم وتسليم** فوق M0–M11، لكل منها عقد تشغيل خاص.
+اختر المحرك أولًا إن كان الطلب يطابقه، ثم نفّذ مساره داخليًا.
+
+| المسار | المحرك | متى | M4c QC |
+|---|---|---|---|
+| **VOX_DOCUMENTARY** | `workflows/engines/E1-documentary-engine.md` | وثائقي · essay · قناة بدون وجه · كولاج ورقي (نمط VOX) | ❌ |
+| **COMMERCIAL** | `workflows/engines/E2-commercial-engine.md` | إعلان منتج · حملة · brand film · promo | ✅ |
+| **HYBRID** | `workflows/engines/E3-hybrid-commercial.md` | إعلان بسرد وثائقي/كولاج | ✅ |
+| **SERIES** | `workflows/engines/E4-series-engine.md` | سلسلة · قناة · موسم · تقويم محتوى | ✅ |
+| **BULK** | `workflows/engines/E5-bulk-production-pipeline.md` | تنفيذ بالجملة · كيف أنفّذ؟ | حسب الأصل |
+
+### شجرة قرار المحركات
+
+```
+هل هناك منتج مادي يجب أن يبقى قابلاً للتعرّف؟
+│
+├─ لا ──── هل المحتوى سردي وثائقي/تاريخي؟
+│           ├─ نعم ──► E1 (Documentary)
+│           └─ لا  ──► M0 → M11 (فيلم/موشن/سرد حر)
+│
+└─ نعم ─── هل تريد سردًا وثائقيًا أو كولاجًا أرشيفيًا؟
+            ├─ نعم ──► E3 (Hybrid)
+            └─ لا  ───► E2 (Commercial)
+
+هل تريد أكثر من عمل واحد؟      ──► E4 (Series) فوق أي محرك
+هل وصلت لمرحلة التنفيذ؟        ──► E5 (Bulk Pipeline)
+```
+
+**القاعدة:** المحرك يستدعي المراحل (M) ولا يستبدلها.
+→ الجدول الكامل: `references/protocols/engine-interop.md`
+
+---
+
 ## المسارات السريعة (Shortcuts)
 
 | الاختصار | المسار | متى | M4c QC |
@@ -77,6 +112,10 @@ when_to_load: "دائمًا عند بداية أي مشروع جديد"
 | SHOT_BUILD | M3a → M4a → M7b → M8a | لقطة واحدة في مشروع قائم | ✅ |
 | SCENE | M0 → M4c (QC) → M9c | مشهد (3-8 لقطات) | ✅ إلزامي |
 | FULL | M0 → M11 (بما فيه M4c) | فيلم/إعلان (30s-3min) | ✅ إلزامي |
+| **THUMBNAIL** | `workflows/shortcuts/thumbnail.md` | ثامبنيل/غلاف لفيديو | ❌ |
+| **SERIES** | `workflows/shortcuts/series.md` | تخطيط سلسلة أو قناة | ✅ |
+| **DOCUMENTARY** | `workflows/shortcuts/documentary.md` | حلقة وثائقية بموضوع جاهز | ❌ |
+| **PRODUCT_SHOT** | `workflows/shortcuts/product-shot.md` | مرجع منتج مقفول (IMG-00) | ❌ |
 
 **القاعدة:** M4c إلزامي في أي مسار متعدد اللقطات (SHOT_BUILD، SCENE، FULL).
 M4c اختياري في المسارات المستقلة (SINGLE، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT).

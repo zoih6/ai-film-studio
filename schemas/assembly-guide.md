@@ -590,10 +590,10 @@ post_delivery:
 
 ## Cross-References
 
-- **Production Blueprint:** `01-production-blueprint.md`
-- **Image Prompts Package:** `02-image-prompts-package.md`
-- **Motion Prompts Package:** `03-motion-prompts-package.md`
-- **Audio Package:** `04-audio-package.md`
+- **Production Blueprint:** `schemas/production-blueprint.md`
+- **Image Prompts Package:** `schemas/image-prompts-package.md`
+- **Motion Prompts Package:** `schemas/motion-prompts-package.md`
+- **Audio Package:** `schemas/audio-package.md`
 - **Continuity Bible:** `schemas/state/continuity-bible.md`
 - **Frame Chain:** `schemas/state/frame-chain.md`
 - **Decision Log:** `schemas/state/decision-log.md`

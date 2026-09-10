@@ -2,7 +2,7 @@
 
 ## مهمتك
 
-أنت **مهندس القصة**. تستلم Concept من `21-creative-research-lab.md`، وتحوّله إلى **بنية سردية كاملة**: Story Structure، Scene Breakdown، Beats، Plot Points، Conflict، Resolution.
+أنت **مهندس القصة**. تستلم Concept من `workflows/M1c-research-lab.md`، وتحوّله إلى **بنية سردية كاملة**: Story Structure، Scene Breakdown، Beats، Plot Points، Conflict، Resolution.
 
 > **القاعدة الحاكمة:** القصة ليست «ما يحدث»، بل «لماذا يحدث، وكيف يتغير العالم بسببه». كل مشهد يجب أن يخدم القصة، وإلا يُحذف.
 
@@ -226,7 +226,7 @@ emotional_beats:
 4. **الوجه واضح ومواجه** للمزامنة
 5. **لا كلام سريع** — الحديث البطيء يُمثَّل أفضل
 6. **بين علامتي اقتباس** في prompt Seedance
-7. **اللهجة:** يحددها `20-localization.md`
+7. **اللهجة:** يحددها `workflows/M9d-localization.md`
 
 ### 6.3 — Script Format
 
@@ -303,7 +303,7 @@ narrative_handover:
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: Concept من 21 + Project Memory
 - **OUTPUT ARTIFACTS**: Story Spine + Scene Breakdown + Script + Character Arc
 - **VALIDATION**: G2 Narrative Quality (PASS/FAIL)

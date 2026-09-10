@@ -384,7 +384,7 @@ transition_decision:
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: Shot Architecture من 24 + Frame Chain
 - **OUTPUT ARTIFACTS**: Transition Map + Implemented transitions
 - **VALIDATION**: G5 Transition Quality

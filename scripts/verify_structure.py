@@ -71,6 +71,52 @@ REQUIRED = [
     "references/knowledge/session-continuation.md",
     # tier 3: quality
     "quality/quality-gates.md", "quality/checklist.md", "quality/self-audit.md",
+    # ── v3.0.0: المحركات ──
+    "workflows/engines/README.md",
+    "workflows/engines/E1-documentary-engine.md",
+    "workflows/engines/E2-commercial-engine.md",
+    "workflows/engines/E3-hybrid-commercial.md",
+    "workflows/engines/E4-series-engine.md",
+    "workflows/engines/E5-bulk-production-pipeline.md",
+    # ── v3.0.0: مكتبة الأنماط ──
+    "styles/README.md", "styles/index.md", "styles/style-pack-template.md",
+    "styles/locks/README.md",
+    # ── v3.0.0: مراجع جديدة ──
+    "references/specs/beat-architecture.md",
+    "references/specs/idea-engine.md",
+    "references/specs/product-truth.md",
+    "references/specs/entity-ledger.md",
+    "references/specs/model-dialects.md",
+    "references/specs/thumbnail-dna.md",
+    "references/specs/platform-specs.md",
+    "references/specs/brief-spec.md",
+    "references/knowledge/narrative-writing-dna.md",
+    "references/knowledge/voice-system.md",
+    "references/knowledge/series-architecture.md",
+    "references/knowledge/truth-and-safety.md",
+    "references/protocols/discovery-protocol.md",
+    "references/protocols/style-lock-protocol.md",
+    "references/protocols/engine-interop.md",
+    "references/research/README.md",
+    "references/research/search-playbook.md",
+    "references/research/reference-mining.md",
+    "references/research/fact-verification.md",
+    "references/research/trend-research.md",
+    "references/research/query-library.md",
+    # ── v3.0.0: مخططات إخراج ──
+    "schemas/brief.md", "schemas/beat-table.md", "schemas/shot-card.md",
+    "schemas/product-sheet.md", "schemas/edit-sheet.md", "schemas/end-card.md",
+    "schemas/thumbnail-pack.md", "schemas/delivery-pack.md",
+    "schemas/series-bible.md", "schemas/prompts-txt.md",
+    # ── v3.0.0: جودة ──
+    "quality/gates-extended.md", "quality/pre-flight-checklist.md",
+    "quality/ten-second-test.md",
+    # ── v3.0.0: مسارات سريعة وأمثلة ووثائق ──
+    "workflows/shortcuts/thumbnail.md", "workflows/shortcuts/series.md",
+    "workflows/shortcuts/documentary.md", "workflows/shortcuts/product-shot.md",
+    "examples/paper-collage-documentary.md", "examples/commercial-15s-lock-b.md",
+    "docs/architecture.md", "docs/gap-analysis-v3.md", "docs/migration-v2-to-v3.md",
+    "CREDITS.md", "LICENSE", "CONTRIBUTING.md",
     # scripts
     "scripts/verify_structure.py", "scripts/verify_functional.py",
     "scripts/verify_motion.py", "scripts/verify_example.py", "scripts/verify_all.sh",
@@ -122,6 +168,9 @@ refs = set()
 for p in all_md:
     if '.git' in str(p): continue
     content = p.read_text(encoding="utf-8")
+    # ملفات التاريخ والتحليل المقارن تحمل واسمًا صريحًا يسمح بمراجع مستودعات سابقة
+    if "verify_links: allow-legacy" in content[:400]:
+        continue
     # مطابقة المسارات في backticks (الهيكل الجديد فقط)
     for r in re.findall(r"`((?:workflows|schemas|references/[a-z]+|quality|examples|scripts)/[^`]+?\.md)`", content):
         refs.add(r)

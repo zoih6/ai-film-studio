@@ -52,7 +52,7 @@
 - [ ] الطقس ثابت
 - [ ] خط النظر مسجّل
 
-### G5 — توافق النموذج (نقلا عن `specs.md`)
+### G5 — توافق النموذج (نقلا عن `references/specs/`)
 
 #### Nano Banana 2 (`gemini-3.1-flash-image`)
 - [ ] `aspect_ratio` ضمن: 1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9, 1:4, 4:1, 1:8, 8:1
@@ -223,7 +223,7 @@ ready_to_generate: false
 
 ## 6. عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: prompt ID + Model Target + Reference Set
 - **OUTPUT ARTIFACTS**: PASS/FAIL certificate + list of issues (إن وُجدت) + suggested fix
 - **VALIDATION**: Hard Gates passed/failed count

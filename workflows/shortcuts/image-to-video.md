@@ -69,6 +69,6 @@ duration: 5-15 min
 - ❌ تجاهل model-specific constraints
 
 ## Next Step
-- لإضافة صوت → `dialogue-lipsync.md` أو `M6-audio.md`
-- لتجميع في فيلم → `M0-intake.md` (مشروع كامل)
+- لإضافة صوت → `dialogue-lipsync.md` أو `workflows/M6-audio.md`
+- لتجميع في فيلم → `workflows/M0-intake.md` (مشروع كامل)
 - لقياس الجودة → `quality/checklist.md`

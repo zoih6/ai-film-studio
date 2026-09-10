@@ -264,7 +264,7 @@ SHOT_ID:        SC01_SH03
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: IDs + Versions التي استلمتها.
 - **OUTPUT ARTIFACTS**: IDs + Versions التي أنشأتها.
 - **VALIDATION**: اختبارات PASS/FAIL.

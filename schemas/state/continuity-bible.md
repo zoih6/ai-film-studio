@@ -1,7 +1,7 @@
 # state/continuity-bible.md
 
-> **هذا الملف يُملأ ويُحدَّث من قبل `25-continuity-supervisor.md` عبر دورة حياة المشروع.**
-> **القالب الكامل موجود في `specs.md`.**
+> **هذا الملف يُملأ ويُحدَّث من قبل `workflows/M4c-continuity-qc.md` عبر دورة حياة المشروع.**
+> **القالب الكامل موجود في `references/specs/`.**
 
 ---
 
@@ -320,12 +320,12 @@ changelog:
 
 ## 10. Cross-References
 
-- Production Blueprint: `01-production-blueprint.md`
+- Production Blueprint: `schemas/production-blueprint.md`
 - Frame Chain: `schemas/state/frame-chain.md`
-- Image Prompts: `02-image-prompts-package.md`
-- Motion Prompts: `03-motion-prompts-package.md`
-- Audio Package: `04-audio-package.md`
-- Assembly Guide: `05-assembly-guide.md`
+- Image Prompts: `schemas/image-prompts-package.md`
+- Motion Prompts: `schemas/motion-prompts-package.md`
+- Audio Package: `schemas/audio-package.md`
+- Assembly Guide: `schemas/assembly-guide.md`
 
 ---
 

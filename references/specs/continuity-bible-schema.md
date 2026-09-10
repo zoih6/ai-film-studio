@@ -2,13 +2,13 @@
 
 ## الهدف
 
-توثيق المخطط الكامل (Schema) لملف **Continuity Bible** الذي يبنيه `25-continuity-supervisor.md`. هذا الـ reference هو القاموس الرسمي لكل قسم، حقوله، وقواعده.
+توثيق المخطط الكامل (Schema) لملف **Continuity Bible** الذي يبنيه `workflows/M4c-continuity-qc.md`. هذا الـ reference هو القاموس الرسمي لكل قسم، حقوله، وقواعده.
 
 ---
 
 ## ما هي Continuity Bible؟
 
-**القاموس البصري والسردي للفيلم.** كل ما يجب أن يبقى ثابتًا بين المشاهد يُسجَّل هنا. تُستخدم كمرجع إلزامي لـ `22-prompt-architecture.md`.
+**القاموس البصري والسردي للفيلم.** كل ما يجب أن يبقى ثابتًا بين المشاهد يُسجَّل هنا. تُستخدم كمرجع إلزامي لـ `workflows/M7a-prompt-architecture.md`.
 
 ---
 
@@ -697,10 +697,10 @@ color_palette:
 ## 9. Cross-References
 
 - Frame Chain: `schemas/state/frame-chain.md`
-- Production Blueprint: `01-production-blueprint.md`
-- Image Prompts: `02-image-prompts-package.md`
-- Motion Prompts: `03-motion-prompts-package.md`
-- Audio Package: `04-audio-package.md`
+- Production Blueprint: `schemas/production-blueprint.md`
+- Image Prompts: `schemas/image-prompts-package.md`
+- Motion Prompts: `schemas/motion-prompts-package.md`
+- Audio Package: `schemas/audio-package.md`
 ```
 
 ---

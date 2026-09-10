@@ -11,7 +11,7 @@
 ## كيف تستخدمه
 
 1. املأ كل prompt عند M9
-2. كل prompt يجب أن يكون مرتبط بـ Image Source (من `02-image-prompts-package.md`)
+2. كل prompt يجب أن يكون مرتبط بـ Image Source (من `schemas/image-prompts-package.md`)
 3. مرّر كل prompt عبر `19-preflight-check` ثم `31-quality-gate` (G4)
 4. سجّل محاولات التوليد في `generated_assets`
 
@@ -501,13 +501,13 @@ workflow:
 
 ## Cross-References
 
-- **Production Blueprint:** `01-production-blueprint.md`
-- **Image Prompts Package:** `02-image-prompts-package.md` (مصدر الصور)
+- **Production Blueprint:** `schemas/production-blueprint.md`
+- **Image Prompts Package:** `schemas/image-prompts-package.md` (مصدر الصور)
 - **Continuity Bible:** `schemas/state/continuity-bible.md`
 - **Frame Chain:** `schemas/state/frame-chain.md`
 - **Asset Registry:** `schemas/state/asset-registry.md`
-- **Audio Package:** `04-audio-package.md` (للـ VO + lip-sync)
-- **Assembly Guide:** `05-assembly-guide.md`
+- **Audio Package:** `schemas/audio-package.md` (للـ VO + lip-sync)
+- **Assembly Guide:** `schemas/assembly-guide.md`
 ```
 
 ---

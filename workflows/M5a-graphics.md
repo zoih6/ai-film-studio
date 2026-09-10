@@ -11,7 +11,7 @@
 ## متى تُنفَّذ
 
 - **قبل** Prompt Architecture للحظات التي تحتوي نصًا
-- **مُدمجة** في `28-text-preservation-motion.md` (شريك)
+- **مُدمجة** في `workflows/M5b-text-motion.md` (شريك)
 - **مراجعة** عند أي نص جديد يُضاف
 
 ---
@@ -456,7 +456,7 @@ typography_handover:
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: Concept + Script + Continuity Bible
 - **OUTPUT ARTIFACTS**: Text Elements + Strategy per element + Reference images + Assembly Steps
 - **VALIDATION**: G6 Text Quality

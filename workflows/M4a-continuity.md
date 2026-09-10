@@ -20,7 +20,7 @@
 
 ### 1.1 — ما هي Continuity Bible؟
 
-هي **القاموس البصري** للفيلم. كل ما يجب أن يكون ثابتًا بين المشاهد يُسجَّل هنا. تُستخدم كمرجع إلزامي لـ `22-prompt-architecture.md`.
+هي **القاموس البصري** للفيلم. كل ما يجب أن يكون ثابتًا بين المشاهد يُسجَّل هنا. تُستخدم كمرجع إلزامي لـ `workflows/M7a-prompt-architecture.md`.
 
 ### 1.2 — الأقسام السبعة
 
@@ -507,7 +507,7 @@ continuity_handover:
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: Shot Architecture من 24
 - **OUTPUT ARTIFACTS**: Continuity Bible + Frame Chain + Color Palette + Anchors
 - **VALIDATION**: G3 Continuity Quality (الشطر الثاني)

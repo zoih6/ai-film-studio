@@ -721,11 +721,11 @@ inventory:
 
 ## Cross-References
 
-- **Production Blueprint:** `01-production-blueprint.md`
-- **Image Prompts Package:** `02-image-prompts-package.md`
-- **Motion Prompts Package:** `03-motion-prompts-package.md` (للـ lipsync)
-- **Assembly Guide:** `05-assembly-guide.md` (للـ mix النهائي)
-- **Script:** في `01-production-blueprint.md` section 6
+- **Production Blueprint:** `schemas/production-blueprint.md`
+- **Image Prompts Package:** `schemas/image-prompts-package.md`
+- **Motion Prompts Package:** `schemas/motion-prompts-package.md` (للـ lipsync)
+- **Assembly Guide:** `schemas/assembly-guide.md` (للـ mix النهائي)
+- **Script:** في `schemas/production-blueprint.md` section 6
 ```
 
 ---

@@ -139,7 +139,7 @@ identity/reference locks
 ## 7. Final Form
 
 الـ compiler يُخرج:
-- `compiled-prompt.md` (النص النهائي + metadata).
+- `compiled-prompt` (النص النهائي + metadata).
 - لا يُخرج schema الداخلي، routing، scoring، diagnostics ما لم يُطلب صراحة.
 
 ---
@@ -148,13 +148,13 @@ identity/reference locks
 
 | Workflow | يستدعي Compiler؟ | يمر على Quality Gate؟ |
 |---|---|---|
-| `M7a-prompt-architecture.md` | ✅ (per shot) | ✅ G4 |
-| `M7b-image-prompts.md` | ✅ (per image) | ✅ G4 |
-| `M8a-motion-prompts.md` | ✅ (per motion) | ✅ G4 |
-| `M8d-motion-graphics.md` | ✅ (per MG) | ✅ G4 + G-M1 (motion) |
-| `M6c-dialogue-lipsync.md` | ✅ (per shot) | ✅ G4 + G7 |
-| `M9c-preflight.md` | لا (يفحص ناتج Compiler) | ✅ G4 + G5 (model fit) |
-| `M9b-quality-gates.md` | لا (G4 hard gate) | ✅ G4 (final) |
+| `workflows/M7a-prompt-architecture.md` | ✅ (per shot) | ✅ G4 |
+| `workflows/M7b-image-prompts.md` | ✅ (per image) | ✅ G4 |
+| `workflows/M8a-motion-prompts.md` | ✅ (per motion) | ✅ G4 |
+| `workflows/M8d-motion-graphics.md` | ✅ (per MG) | ✅ G4 + G-M1 (motion) |
+| `workflows/M6c-dialogue-lipsync.md` | ✅ (per shot) | ✅ G4 + G7 |
+| `workflows/M9c-preflight.md` | لا (يفحص ناتج Compiler) | ✅ G4 + G5 (model fit) |
+| `workflows/M9b-quality-gates.md` | لا (G4 hard gate) | ✅ G4 (final) |
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## الهدف
 
-دليل مرجعي شامل لـ **شجرة قرار الصوت** التي يستخدمها `29-audio-decision-engine.md`. يغطي: متى نستخدم كل نوع، كيف ندمج الطبقات، Lip-Sync، Mixing، Mastering.
+دليل مرجعي شامل لـ **شجرة قرار الصوت** التي يستخدمها `references/specs/audio-decision-tree.md`. يغطي: متى نستخدم كل نوع، كيف ندمج الطبقات، Lip-Sync، Mixing، Mastering.
 
 ---
 

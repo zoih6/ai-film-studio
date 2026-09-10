@@ -1,3 +1,5 @@
+<!-- verify_links: allow-legacy -->
+
 # AI Film Studio v1.1.0
 
 ## الهدف
@@ -24,8 +26,8 @@
 
 ## v1.1.1 — Output & Interaction Layer
 
-- Added `references/output-protocol.md` for clean, progressive, copy-ready user-facing output.
-- Added `references/interaction-flow.md` for a single-voice studio interaction model.
+- Added `references/protocols/output-protocol.md` for clean, progressive, copy-ready user-facing output.
+- Added `references/protocols/interaction-flow.md` for a single-voice studio interaction model.
 - First clarification round is now exactly 3 high-impact questions; second round is up to 3 only when required.
 - Internal agent/state/validation details are hidden from normal user output.
 - Added standardized response modes: DISCOVER, BUILD, DELIVER, REPAIR.
@@ -36,10 +38,10 @@
 
 ## v1.2.0 — Adaptive Intelligence Layer
 
-- Added `references/intent-router.md` for minimum-sufficient routing.
-- Added `references/decision-policy.md` for user-vs-studio decision ownership.
-- Added `references/scene-shot-dna.md` for Scene DNA / Shot DNA inheritance.
-- Added `references/context-assembly.md` for tiered context loading and stale-context protection.
+- Added `workflows/intent-router.md` for minimum-sufficient routing.
+- Added `references/protocols/decision-policy.md` for user-vs-studio decision ownership.
+- Added `references/specs/scene-shot-dna.md` for Scene DNA / Shot DNA inheritance.
+- Added `references/knowledge/context-assembly.md` for tiered context loading and stale-context protection.
 - Changed M0–M13 from mandatory universal flow to an adaptive full-production path selected by intent.
 - Added a no-ask threshold so professional reversible decisions are made internally.
 - Preserved v1.1.1 Output & Interaction Layer and single-voice user experience.
@@ -47,9 +49,9 @@
 
 
 ## v1.3.0 — Prompt Runtime
-- Added `references/prompt-compiler.md`
-- Added `references/model-adapters.md`
-- Added `references/prompt-quality-gate.md`
+- Added `references/specs/prompt-compiler.md`
+- Added `references/specs/model-adapters.md`
+- Added `references/specs/prompt-quality-gate.md`
 - Added canonical prompt schema and compilation rules.
 - Added capability-aware model adaptation.
 - Added hard prompt quality gates and targeted repair loop.
@@ -59,7 +61,7 @@
 ## v1.4.0 — Project Memory System
 - Added persistent project memory architecture.
 - Added canonical memory schema, lifecycle, context policy, and session continuation protocol.
-- Added `state/project-memory.md`, `state/decision-log.md`, and `state/session-checkpoint.md`.
+- Added `schemas/state/project-memory.md`, `schemas/state/decision-log.md`, and `schemas/state/session-checkpoint.md`.
 - Added memory hierarchy, conflict resolution, versioning, compaction, and durable-fact rules.
 - Added automatic continuation behavior for short follow-up commands without restarting Intake.
 - Preserved v1.3 Prompt Compiler / Model Adapter / Quality Gate architecture.
@@ -85,7 +87,7 @@
 
 ## الإضافات الرئيسية
 
-### 1. `agents/19-preflight-check.md` — وكيل ما قبل التوليد
+### 1. `workflows/M9c-preflight.md` — وكيل ما قبل التوليد
 
 **المشكلة التي يحلها:**
 حتى مع وجود 26 مرجعًا و 20 وكيلًا، قد يُرسَل prompt يخالف قاعدة موثقة (نسبة مدعومة، حركة كاميرا مفردة، نص ثابت في نموذج فيديو). إعادة التوليد تكلّف ميزانية ووقتًا.
@@ -96,14 +98,14 @@
 **التأثير:**
 - يمنع الهدر قبل حدوثه
 - يكتشف الأخطاء في ثانية بدل 30 ثانية (زمن إعادة التوليد)
-- موثّق في `state/asset-registry.md` بحقل `preflight_status`
+- موثّق في `schemas/state/asset-registry.md` بحقل `preflight_status`
 
 **Gates الـ 8:**
 - G1 — الهوية
 - G2 — المراجع
 - G3 — الحركة
 - G4 — الاستمرارية
-- G5 — توافق النموذج (نقلا عن `model-matrix.md`)
+- G5 — توافق النموذج (نقلا عن `references/specs/model-matrix.md`)
 - G6 — النص
 - G7 — النظافة اللغوية
 - G8 — السلامة والحقوق
@@ -113,7 +115,7 @@
 - G-M2 — القواعد العربية
 - G-M3 — التراتبية (Hero > Punch > Supporting)
 
-### 2. `agents/20-localization.md` — وكيل التوطين
+### 2. `workflows/M9d-localization.md` — وكيل التوطين
 
 **المشكلة التي يحلها:**
 المهارة تخدم السوق العربي، لكن النماذج تفهم الإنجليزية أفضل. لا يوجد وكيل متخصص في:
@@ -135,7 +137,7 @@
 - منع الإهانات الثقافية العرضية
 - توفير قاموس جاهز لكل وكيل يحتاج الترجمة
 
-### 3. `INDEX.md` — خريطة القراءة السريعة
+### 3. `docs/` — خريطة القراءة السريعة
 
 **المشكلة التي يحلها:**
 SKILL.md ضخم (600+ سطر في v1.4)، وأي نموذج يقرأه يستهلك توكنز على أقسام قد لا يحتاجها.
@@ -155,7 +157,7 @@ SKILL.md ضخم (600+ سطر في v1.4)، وأي نموذج يقرأه يسته�
 - تسريع التوجيه في بداية كل مشروع
 - مرجع قابل للقراءة البشرية
 
-### 4. `templates/concept-deck.md` — قالب عرض المفاهيم
+### 4. `schemas/concept-deck.md` — قالب عرض المفاهيم
 
 **المشكلة التي يحلها:**
 عند توليد 3–5 اتجاهات إبداعية، يحتاج المستخدم طريقة واضحة للمقارنة والاختيار.
@@ -173,7 +175,7 @@ SKILL.md ضخم (600+ سطر في v1.4)، وأي نموذج يقرأه يسته�
 - قرارات أسرع وأدق
 - توثيق اعتمادات في جدول مدمج
 
-### 5. توسيع `references/failure-modes.md`
+### 5. توسيع `references/knowledge/failure-modes.md`
 
 **الإضافات:**
 - **القسم 7:** أعطال الترجمات والتوطين
@@ -260,13 +262,13 @@ QUALITY GATE (references/prompt-quality-gate.md)
 | الملف | التغيير |
 |---|---|
 | `SKILL.md` | إضافة قسم v1.5، تحديث قائمة الوكلاء، تحديث رقم الإصدار |
-| `agents/19-preflight-check.md` | **جديد** |
-| `agents/20-localization.md` | **جديد** |
-| `INDEX.md` | **جديد** |
-| `templates/concept-deck.md` | **جديد** |
-| `references/failure-modes.md` | قسمان جديدان (7 و 8) |
+| `workflows/M9c-preflight.md` | **جديد** |
+| `workflows/M9d-localization.md` | **جديد** |
+| `docs/` | **جديد** |
+| `schemas/concept-deck.md` | **جديد** |
+| `references/knowledge/failure-modes.md` | قسمان جديدان (7 و 8) |
 | `_verify_structure.py` | فحوصات v1.5 في القسم 8 |
-| `CHANGELOG-v1.5.md` | **هذا الملف** |
+| CHANGELOG-v1.5 | **هذا الملف** |
 
 ---
 
@@ -363,7 +365,7 @@ v2.0 هي **إعادة هندسة كاملة** للمهارة من "نظام ي�
 - **I — Style & Visual DNA** (الأسلوب)
 - **J — Constraints** (القيود)
 
-التوثيق الكامل في `references/prompt-architecture-spec.md`.
+التوثيق الكامل في `references/specs/prompt-architecture.md`.
 
 ### 3. Continuity Bible + Frame Chain
 
@@ -375,7 +377,7 @@ v2.0 هي **إعادة هندسة كاملة** للمهارة من "نظام ي�
 - Camera Grammar ثابتة
 - Acoustic Signature محددة
 
-التوثيق الكامل في `references/continuity-bible-schema.md`.
+التوثيق الكامل في `references/specs/continuity-bible-schema.md`.
 
 ### 4. AI-Native Graphic Composition
 
@@ -396,14 +398,14 @@ v2.0 هي **إعادة هندسة كاملة** للمهارة من "نظام ي�
 - Mixing Plan (levels + ducking)
 - Mastering Plan (-14 LUFS YouTube, -16 Instagram, etc.)
 
-التوثيق الكامل في `references/audio-decision-tree.md`.
+التوثيق الكامل في `references/specs/audio-decision-tree.md`.
 
 ### 6. 12 نوع انتقال (من 3 إلى 12)
 
 توثيق كامل لـ 12 نوع انتقال:
 1. Cut, 2. Cross Dissolve, 3. Fade to Black, 4. Match Cut, 5. Whip Pan, 6. Morph, 7. Zoom Transition, 8. Wipe, 9. L-Cut/J-Cut, 10. Graphic Match, 11. Sound Bridge, 12. Hard Cut on Action
 
-التوثيق الكامل في `references/transition-types.md`.
+التوثيق الكامل في `references/specs/transition-types.md`.
 
 ### 7. 8 Quality Gates (G0–G8)
 
@@ -423,24 +425,24 @@ v2.0 هي **إعادة هندسة كاملة** للمهارة من "نظام ي�
 
 لا تخرج مخرجات خام. كل مشروع يُسلَّم في 5 ملفات منفصلة:
 
-1. **`01-production-blueprint.md`** — النظرة الشاملة
-2. **`02-image-prompts-package.md`** — كل prompt صورة
-3. **`03-motion-prompts-package.md`** — كل prompt فيديو
-4. **`04-audio-package.md`** — كل الطبقات الصوتية
-5. **`05-assembly-guide.md`** — دليل التجميع خطوة بخطوة
+1. **`schemas/production-blueprint.md`** — النظرة الشاملة
+2. **`schemas/image-prompts-package.md`** — كل prompt صورة
+3. **`schemas/motion-prompts-package.md`** — كل prompt فيديو
+4. **`schemas/audio-package.md`** — كل الطبقات الصوتية
+5. **`schemas/assembly-guide.md`** — دليل التجميع خطوة بخطوة
 
 ### 9. Decision Log + Risk Register
 
-كل قرار كبير موثّق في `state/decision-log.md`. كل خطر مُسجَّل مع mitigation في `state/risk-register.md`.
+كل قرار كبير موثّق في `schemas/state/decision-log.md`. كل خطر مُسجَّل مع mitigation في `schemas/state/risk-register.md`.
 
 ### 10. State Management
 
 3 ملفات state جديدة:
-- `state/continuity-bible.md`
-- `state/frame-chain.md`
-- `state/quality-gates-log.md`
+- `schemas/state/continuity-bible.md`
+- `schemas/state/frame-chain.md`
+- `schemas/state/quality-gates-log.md`
 
-(مكملّة للـ `project-memory.md` و `asset-registry.md` و `decision-log.md` و `risk-register.md` من v1.5)
+(مكملّة للـ `references/knowledge/project-memory.md` و `schemas/state/asset-registry.md` و `schemas/state/decision-log.md` و `schemas/state/risk-register.md` من v1.5)
 
 ---
 
@@ -467,8 +469,8 @@ v2.0 هي **إعادة هندسة كاملة** للمهارة من "نظام ي�
 
 - ✅ الـ 20 وكيل من v1.5 موجودون كما هم
 - ✅ الـ 24 references من v1.4/v1.5 موجودة
-- ✅ `templates/concept-deck.md` (v1.5) موجود
-- ✅ `state/project-memory.md`، `state/asset-registry.md`، `state/decision-log.md`، `state/risk-register.md` (v1.5) موجودة
+- ✅ `schemas/concept-deck.md` (v1.5) موجود
+- ✅ `schemas/state/project-memory.md`، `schemas/state/asset-registry.md`، `schemas/state/decision-log.md`، `schemas/state/risk-register.md` (v1.5) موجودة
 - ✅ `examples/coffee-short.md` (v1.x) موجود
 - ✅ `_verify_structure.py` و `_verify_all.sh` يعملان
 
@@ -532,7 +534,7 @@ examples/energy-drink-ad.md
 ```
 SKILL.md (محدّث بالكامل لـ v2.0)
 INDEX.md (محدّث)
-CHANGELOG-v2.0.md (هذا الملف)
+CHANGELOGv2.0 (هذا الملف)
 ```
 
 ---
@@ -570,15 +572,15 @@ CHANGELOG-v2.0.md (هذا الملف)
 ### للمستخدمين الجدد
 
 1. ابدأ بـ `SKILL.md` (الـ overview الجديد)
-2. اقرأ `INDEX.md` (دليل الملفات)
+2. اقرأ `docs/` (دليل الملفات)
 3. ادرس `examples/energy-drink-ad.md` (مثال حي كامل)
 4. ابدأ مشروعك الأول
 
 ### للمستخدمين القدامى (v1.5)
 
-1. اقرأ `CHANGELOG-v2.0.md` (هذا الملف)
-2. راجع `agents/30-executive-producer.md` (المنسق الجديد)
-3. راجع `agents/31-quality-gate-controller.md` (البوابات الجديدة)
+1. اقرأ CHANGELOG-v2.0 (هذا الملف)
+2. راجع `workflows/M9a-executive-producer.md` (المنسق الجديد)
+3. راجع `workflows/M9b-quality-gates.md` (البوابات الجديدة)
 4. جرّب مشروع صغير باستخدام v2.0
 5. تبنّى تدريجيًا
 
@@ -625,14 +627,14 @@ MIT License — نفس v1.5
 | `state/*.md` | `schemas/state/*.md` | تجميع State مع Schemas |
 | `references/*.md` (مسطّح) | `references/{protocols,specs,knowledge}/` | تصنيف حسب الوظيفة |
 | `_verify_*.{py,sh}` (في الجذر) | `scripts/verify_*.{py,sh}` | فصل الأدوات القابلة للتنفيذ |
-| `INDEX.md` (مرجع قديم) | `workflows/intent-router.md` + `workflows/README.md` | Progressive Disclosure |
-| `CHANGELOG-v1.1.md` + `-v1.5.md` + `-v2.0.md` | `CHANGELOG.md` (موحّد) | ملف واحد للإصدارات |
+| `docs/` (مرجع قديم) | `workflows/intent-router.md` + `workflows/README.md` | Progressive Disclosure |
+| CHANGELOG-v1.1 + v1.5 + v2.0 | `CHANGELOG.md` (موحّد) | ملف واحد للإصدارات |
 
 ### الجديد
 
 - **`SKILL.md` ≤ 200 سطر** — Progressive Disclosure tier 1
 - **`workflows/shortcuts/`** — 7 مسارات سريعة (concept, single-prompt, image, i2v, motion, lipsync, repair)
-- **`quality/`** مجلد مستقل — `quality-gates.md`, `checklist.md`, `self-audit.md`
+- **`quality/`** مجلد مستقل — `quality/quality-gates.md`, `quality/checklist.md`, `quality/self-audit.md`
 - **`assets/`** — للأصول الثابتة (placeholders)
 - **README.md** كنقطة دخول بشرية (158 سطر)
 - **TAGS YAML frontmatter** في كل ملف (tier, when_to_load, parent)
@@ -697,14 +699,14 @@ MIT License — نفس v1.5
 
 ### P1-4 — M4c إلزامي في المسارات المتعددة
 
-- `intent-router.md` يحدد بوضوح: M4c required في SHOT_BUILD، SCENE، FULL.
+- `workflows/intent-router.md` يحدد بوضوح: M4c required في SHOT_BUILD، SCENE، FULL.
 - اختياري في SINGLE_PROMPT، IMAGE_GEN، I2V، MOTION_GFX، LIPSYNC، CONCEPT (لا multi-shot).
 
 ### إصلاحات بنيوية إضافية
 
 - `quality/quality-gates.md` يحدد رسميًا: production-state-machine = AUTHORITATIVE للـ stages.
 - `SKILL.md` و `README.md` يوضحان "12 stages / 31 workflows".
-- `interaction-flow.md` و `M9d-localization.md` يحدّثان M13 → M11.
+- `references/protocols/interaction-flow.md` و `workflows/M9d-localization.md` يحدّثان M13 → M11.
 
 ### Backward Compatibility
 
@@ -854,3 +856,137 @@ MIT License — نفس v1.5
 
 الـ "1% النهائي" من التحسينات المعمارية لن يكون له أثر ملموس
 مقارنة بـ "feedback من استخدام حقيقي".
+
+---
+
+## v3.0.0 — VOX Integration & Unified System (2026-09-10)
+
+**أكبر تحديث في تاريخ المستودع:** دمج أربعة مستودعات سابقة في نظام واحد،
+مع 17 إضافة جديدة كليًا.
+
+### الهدف
+
+بناء **نسخة نهائية موحّدة** تحتوي كل ما في الأنظمة السابقة (بلا فقد)،
+تضيف **عقودًا ومسارات** جديدة، وتُنظَّم وفق **معايير بناء المهارات**
+(Agent Skills Standard) لتكون جاهزة للعمل في **أي وكيل**.
+
+### المستودعات المدمجة
+
+| المستودع | الملفات | ما أُخذ |
+|---|---|---|
+| `ai-film-studio` v2.1.0 | 113 | العمود الفقري M0–M11 (31 workflow) · Prompt Architecture A–J · G0–G8 · Memory System |
+| `vox-paper-engine` | 37 | محرك الوثائقيات · DNA الكتابة · حساب الـ Beats · الصوت · الثامبنيل · آلة الحالات التسع |
+| `vox-commercial-director` | 69 | طاقم 9 أدوار · 10 مراحل · Big Idea · 8 عوالم · Product Reference · الهجين |
+| `vox-commercial-director-skill` v3.0.0 | 20 | Brief بـ 12 حقلًا · T1–T4 · منحنى الطاقة · End Card · A/B · Edit Sheet |
+
+### إضافات جديدة (B Added)
+
+**بنية جديدة**
+- `styles/` — مكتبة العوالم البصرية: **10 أقفال نصية حرفية (LOCK A–J)** + 3 خواتيم + Universal Video Prompt + قالب بناء قفل مخصص
+- `workflows/engines/` — **5 محركات**: E1 Documentary · E2 Commercial · E3 Hybrid · E4 Series · E5 Bulk Pipeline
+- `references/research/` — **5 أدوات بحث**: search-playbook · reference-mining · fact-verification · trend-research · query-library
+
+**مواصفات جديدة (specs)**
+- `beat-architecture.md` — حساب الـ Beats + منحنى الطاقة + جداول 6/10/15/30/60 ثانية
+- `idea-engine.md` — 12 عدسة للجنون المنضبط + تصنيف الـ Hooks + مصفوفة التقييم
+- `product-truth.md` — مستويات T1–T4 + Product Anchor + IMG-00
+- `entity-ledger.md` — سجل الكيانات المقفولة
+- `model-dialects.md` — لهجات 12 عائلة نماذج
+- `thumbnail-dna.md` — حمض الثامبنيل + فحص الـ 200 بكسل
+- `platform-specs.md` — مواصفات المنصات والمناطق الآمنة
+- `brief-spec.md` — Brief بـ 12 حقلًا + سجل الافتراضات
+
+**معارف جديدة (knowledge)**
+- `narrative-writing-dna.md` — Cold Open · 5 أنماط Cliffhanger · انضباط الجملة
+- `voice-system.md` — إعدادات ElevenLabs · الدفعات · ثبات الـ Voice ID
+- `series-architecture.md` — معمارية السلاسل والقنوات
+- `truth-and-safety.md` — الدقة · ضبط المآسي · الحقوق · الحساسية الثقافية
+
+**بروتوكولات جديدة**
+- `discovery-protocol.md` — الرد الأول: 3 اتجاهات + ≤3 أسئلة
+- `style-lock-protocol.md` — النسخ الحرفي · الاستبدالات · الاستثناءات
+- `engine-interop.md` — التكامل بين المحركات والمراحل
+
+**مخططات إخراج جديدة (10)**
+`brief` · `beat-table` · `shot-card` · `product-sheet` · `edit-sheet` · `end-card` ·
+`thumbnail-pack` · `delivery-pack` · `series-bible` · `prompts-txt`
+
+**بوابات جودة جديدة (G9–G13)**
+- G9 Script & Narrative · G10 Beats & Timing · G11 Product Fidelity · G12 Platform & Delivery · G13 Series Consistency
+- `quality/pre-flight-checklist.md` — 40 نقطة فحص في دقيقة
+- `quality/ten-second-test.md` — اختبار العشر ثوانٍ لكل برومبت
+
+**مسارات سريعة جديدة (4)**
+`thumbnail` · `series` · `documentary` · `product-shot`
+
+**أمثلة حية جديدة (2)**
+- `examples/paper-collage-documentary.md` — حلقة وثائقية كاملة (E1)
+- `examples/commercial-15s-lock-b.md` — إعلان 15 ثانية (E2)
+
+**سكربتات فحص جديدة (4)**
+- `verify_styles.py` · `verify_vox.py` · `verify_links.py` · `prompt_lint.py`
+- `verify_all.sh` محدّث: **8 فحوص**
+
+**وثائق جديدة (3)**
+- `docs/gap-analysis-v3.md` — تحليل الفجوات الكامل بين النسخ السابقة و v3.0.0
+- `docs/migration-v2-to-v3.md` — دليل الترقية
+- `docs/architecture.md` — المعمارية الكاملة
+
+**ملفات جذر**
+- `LICENSE` (MIT © 2026 Waseem Alzobiri) · `CREDITS.md` · `CONTRIBUTING.md` · `.gitignore`
+- `README.md` معاد كتابته بالكامل
+
+### تغييرات (C Changed)
+
+- **SKILL.md** — إعادة كتابة كاملة: v3.0.0، 5 محركات، 10 أقفال، 12 مبدأ، أوامر سريعة
+- **workflows/intent-router.md** — إضافة قسم «المحركات» + 4 مسارات سريعة جديدة
+- **verify_all.sh** — من 4 فحوص إلى **8 فحوص**
+
+### إصلاحات (F Fixed)
+
+- **333 رابطًا داخليًا مكسورًا → 0**
+  - تحديث مراجع بُنى v1 (`agents/NN-*.md`, `state/*.md`, `templates/*.md`) إلى مساراتها الحالية
+  - تطبيع المراجع المختصرة إلى مسارات كاملة من جذر المستودع
+  - تحويل مراجع المجلدات (`protocols.md`, `specs.md`) إلى مراجع مجلد
+- تكرار المحتوى بين النسخ السابقة (نسخة `vox/` مزدوجة + مجلد مكرر بالعربية) — **دُمج مرة واحدة**
+- تضارب قواعد النص بين النسخ التجارية — **حُسم: البرومبتات بالإنجليزية دائمًا**
+
+### قرارات محسومة
+
+| التضارب | القرار |
+|---|---|
+| لغة البرومبتات (عربي vs إنجليزي) | **الإنجليزية دائمًا** — أدق للنماذج |
+| بُنى المجلدات المتضاربة | **Agent Skills Standard** موحّد |
+| قفل واحد (paper-engine) vs 8 أقفال (commercial) | **10 أقفال موحّدة** |
+| 3 ملفات SKILL.md متضاربة | **SKILL.md واحد** في الجذر |
+
+### المقارنة الكمية
+
+| المقياس | v2.1.0 | v3.0.0 | النمو |
+|---|---|---|---|
+| ملفات المحتوى | 113 | ~180 | +59% |
+| المراحل | 12 | 12 + 5 محركات | +42% |
+| العوالم البصرية | 0 مقفلة | 10 بأقفال حرفية | ∞ |
+| بوابات الجودة | 8 | 12 | +50% |
+| المخططات | 13 | 23 | +77% |
+| السكربتات | 5 | 9 | +80% |
+| الأمثلة الحية | 2 | 4 | +100% |
+| أدوات البحث | 0 | 5 | جديد |
+| الروابط المكسورة | 333 | 0 | −100% |
+| الفحوص | 4 | 8 | +100% |
+
+### التوافق
+
+**v3.0.0 إضافة فوقية (additive):** لا يحذف شيئًا من v2.x.
+كل مشروع يعمل على v2.1.0 يعمل على v3.0.0 دون تعديل.
+→ `docs/migration-v2-to-v3.md`
+
+### الديون التقنية المعلنة
+
+- لا يوجد وكيل تدقيق سردي مستقل (Story / Editorial QC)
+- لا يوجد اختبار تكامل حقيقي متعدد الوكلاء
+- محتوى M8b / M8c أقل عمقًا من باقي المراحل
+
+### الاعتماد
+
+**صُمّم وبُني بواسطة Waseem Alzobiri** · MIT

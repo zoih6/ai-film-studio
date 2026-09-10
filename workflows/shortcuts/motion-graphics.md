@@ -76,6 +76,6 @@ duration: 10-20 min
 - ❌ تجاهل safe areas
 
 ## Next Step
-- للدمج في فيلم → `M0-intake.md` (مشروع كامل)
-- لإضافة صوت → `M6-audio.md`
+- للدمج في فيلم → `workflows/M0-intake.md` (مشروع كامل)
+- لإضافة صوت → `workflows/M6-audio.md`
 - لقياس الجودة → `quality/checklist.md`

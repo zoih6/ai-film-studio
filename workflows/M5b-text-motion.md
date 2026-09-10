@@ -399,7 +399,7 @@ text_preservation_plan:
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: Text Plan من 27
 - **OUTPUT ARTIFACTS**: Text Preservation Plan + Prompt Patterns + Assembly Steps
 - **VALIDATION**: G6 Text Quality (الشطر الثاني)

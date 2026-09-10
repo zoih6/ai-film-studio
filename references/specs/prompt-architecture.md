@@ -2,7 +2,7 @@
 
 ## الهدف
 
-توثيق تفصيلي لـ **10 طبقات A-J** التي يبني عليها `22-prompt-architecture.md` كل prompt. هذا الـ reference هو **القاموس المرجعي** لأي prompt يُكتب في المنظومة.
+توثيق تفصيلي لـ **10 طبقات A-J** التي يبني عليها `workflows/M7a-prompt-architecture.md` كل prompt. هذا الـ reference هو **القاموس المرجعي** لأي prompt يُكتب في المنظومة.
 
 ---
 

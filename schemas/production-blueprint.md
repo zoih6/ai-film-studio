@@ -13,7 +13,7 @@
 1. املأ كل قسم عند إنجاز المرحلة المقابلة
 2. اربط الأقسام ببعضها (cross-references)
 3. لا تترك حقول فارغة (إذا غير قابل للتطبيق، اكتب "N/A" مع السبب)
-4. احفظ في `schemas/state/production-blueprint.md` (نسخة محدثة) + `deliverables/01-production-blueprint.md` (نسخة نهائية)
+4. احفظ في `schemas/state/production-blueprint.md` (نسخة محدثة) + `schemas/production-blueprint.md` (نسخة نهائية)
 
 ---
 
@@ -309,7 +309,7 @@ audio_strategy:
   target_platform: "..."
 ```
 
-> **ملاحظة:** التفاصيل الكاملة في `04-audio-package.md`.
+> **ملاحظة:** التفاصيل الكاملة في `schemas/audio-package.md`.
 
 ---
 
@@ -403,10 +403,10 @@ approvals:
 - **Decision Log:** `schemas/state/decision-log.md`
 - **Risk Register:** `schemas/state/risk-register.md`
 - **Quality Gates Log:** `schemas/state/quality-gates-log.md`
-- **Image Prompts:** `02-image-prompts-package.md`
-- **Motion Prompts:** `03-motion-prompts-package.md`
-- **Audio Package:** `04-audio-package.md`
-- **Assembly Guide:** `05-assembly-guide.md`
+- **Image Prompts:** `schemas/image-prompts-package.md`
+- **Motion Prompts:** `schemas/motion-prompts-package.md`
+- **Audio Package:** `schemas/audio-package.md`
+- **Assembly Guide:** `schemas/assembly-guide.md`
 ```
 
 ---

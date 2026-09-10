@@ -547,4 +547,4 @@ commit:
 4. **G-APPROVAL واحد إلزامي** في FULL_PRODUCTION بعد M4c وقبل M5.
 5. **G4 و G8 hard gates** — لا يتجاوزان.
 6. **Backward compat**: v1.x paths تعمل كما هي (LLM يفسر القديم).
-7. **Source of truth**: `production-state-machine.md` (المراحل)، `prompt-architecture.md` (10 طبقات)، `model-matrix.md` (النماذج).
+7. **Source of truth**: `production-state-machine.md` (المراحل)، `references/specs/prompt-architecture.md` (10 طبقات)، `references/specs/model-matrix.md` (النماذج).

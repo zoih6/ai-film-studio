@@ -45,7 +45,7 @@ duration: 10-15 min
 - **User Approval:** مطلوب قبل أي مرحلة لاحقة
 
 ## Output
-- ملف واحد: `concept-deck.md` (≤ 200 سطر)
+- ملف واحد: `schemas/concept-deck.md` (≤ 200 سطر)
 - محدث في: `schemas/state/decision-log.md`
 
 ## Next Step

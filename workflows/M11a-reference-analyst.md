@@ -155,7 +155,7 @@
 ## من Style DNA إلى التنفيذ
 
 ### قرار النموذج
-- النصوص: [GPT Image 2 / After Effects text layers — انظر `11-motion-graphics.md`]
+- النصوص: [GPT Image 2 / After Effects text layers — انظر `workflows/M8d-motion-graphics.md`]
 - الخلفيات: [Nano Banana 2]
 - التحريك: [أداة تركيب / توليد فيديو]
 
@@ -291,7 +291,7 @@
 | الإضاءة | ❌ | **ناقص** — المرجعيات رسومية لا فوتوغرافية |
 | الحركة | ❌ | **مُستدل فقط** — لا مرجع حركي |
 
-**توصية:** بحث مكمّل لمحوري الإضاءة والحركة عبر `09-visual-research.md`.
+**توصية:** بحث مكمّل لمحوري الإضاءة والحركة عبر `workflows/M11b-visual-research.md`.
 
 ## 9. التناقضات المكتشفة
 - [إن وُجدت]
@@ -340,7 +340,7 @@
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: IDs + Versions التي استلمتها.
 - **OUTPUT ARTIFACTS**: IDs + Versions التي أنشأتها.
 - **VALIDATION**: اختبارات PASS/FAIL.

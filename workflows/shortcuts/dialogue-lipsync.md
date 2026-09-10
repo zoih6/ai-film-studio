@@ -69,6 +69,6 @@ duration: 5-10 min
 - ❌ تجاهل الـ fallback
 
 ## Next Step
-- لإضافة موسيقى/sfx → `M6-audio.md`
-- للدمج في فيلم → `M0-intake.md`
+- لإضافة موسيقى/sfx → `workflows/M6-audio.md`
+- للدمج في فيلم → `workflows/M0-intake.md`
 - للقياس → `quality/checklist.md`

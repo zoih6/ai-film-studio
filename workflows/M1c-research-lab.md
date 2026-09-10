@@ -88,7 +88,7 @@ understanding:
 - أين الفجوة التي يمكن أن يملأها عملنا؟
 
 ### 2.5 — Cultural & Web Research
-- حساسيات ثقافية (يغطّيها `20-localization.md`، لكن هنا أعمق)
+- حساسيات ثقافية (يغطّيها `workflows/M9d-localization.md`، لكن هنا أعمق)
 - اتجاهات السوشيال في السوق المستهدف
 - أحدث تطورات النماذج (لضمان جدوى التنفيذ)
 
@@ -211,7 +211,7 @@ brainstorming:
 
 ## المرحلة 5 — تسليم المخرج لـ Narrative Architect
 
-عند اختيار اتجاه واحد، انقله إلى `agents/23-narrative-architect.md` مع:
+عند اختيار اتجاه واحد، انقله إلى `workflows/M2-narrative.md` مع:
 
 ```yaml
 concept_handover:
@@ -264,7 +264,7 @@ concept_handover:
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: طلب المستخدم + Project Memory
 - **OUTPUT ARTIFACTS**: concept_handover + research_pack + Concept Deck
 - **VALIDATION**: G1 Idea Quality (PASS/FAIL)

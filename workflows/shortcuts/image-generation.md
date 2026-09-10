@@ -60,5 +60,5 @@ duration: 5-10 min
 
 ## Next Step
 - لتحريك → `image-to-video.md`
-- لمزيد من اللقطات → `M0-intake.md` (مشروع كامل)
+- لمزيد من اللقطات → `workflows/M0-intake.md` (مشروع كامل)
 - لقياس الجودة → `quality/checklist.md`

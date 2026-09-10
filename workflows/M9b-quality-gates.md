@@ -726,7 +726,7 @@ action:
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: مخرجات المرحلة المعنية
 - **OUTPUT ARTIFACTS**: Quality Gate Report + decision
 - **VALIDATION**: ذاتي (G1–G8)

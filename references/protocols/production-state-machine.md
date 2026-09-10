@@ -20,18 +20,18 @@ when_to_load: "عند بدء مشروع، عند شك في رقم مرحلة، �
 
 | المرحلة | الاسم | Workflows | الوصف |
 |---|---|---|---|
-| **M0** | Intake | `M0-intake.md` | استقبال الطلب + تحليل ثلاثي + 3 أسئلة |
-| **M1** | Research + Concept | `M1a-creative-direction.md`، `M1b-concept-expansion.md`، `M1c-research-lab.md` | البحث + توسعة الفكرة + Concept Deck |
-| **M2** | Narrative Architecture | `M2-narrative.md` | البنية السردية + المشاهد + السكريبت + Character Arc |
-| **M3** | Shot Architecture | `M3a-shot-design.md`، `M3b-shot-list.md` | هندسة اللقطات + Shot List + Blocking + Edit Handles |
-| **M4** | Continuity + Transitions | `M4a-continuity.md`، `M4b-character-world.md`، `M4c-continuity-qc.md`، `M4d-transitions.md` | Continuity Bible + Frame Chain + Character/World Bible + QC + Transitions Map |
-| **M5** | Graphics + Text | `M5a-graphics.md`، `M5b-text-motion.md` | استراتيجية النص + Typography + Text Preservation |
-| **M6** | Audio | `M6-audio.md`، `M6b-sound-design.md`، `M6c-dialogue-lipsync.md` | الطبقات الصوتية + Sound Design + Lip-Sync |
-| **M7** | Image Prompts | `M7a-prompt-architecture.md`، `M7b-image-prompts.md` | 10 طبقات A-J + Image Prompts Package |
-| **M8** | Motion Prompts | `M8a-motion-prompts.md`، `M8b-motion-direction.md`، `M8c-animation-ready.md`، `M8d-motion-graphics.md` | Motion Prompts Package + Motion Direction + Animation Ready + Motion Graphics |
-| **M9** | Quality + Orchestration | `M9a-executive-producer.md`، `M9b-quality-gates.md`، `M9c-preflight.md`، `M9d-localization.md` | Executive Producer + 8 Quality Gates + Pre-flight + Localization |
-| **M10** | Pre-Production Review | `M10a-production-architecture.md`، `M10b-hybrid-assembly.md`، `M10c-edit-color.md` | مراجعة ما قبل الإنتاج + Assembly Hybrid + Edit/Color |
-| **M11** | Final Delivery | `M11a-reference-analyst.md`، `M11b-visual-research.md` | تحليل المراجع + البحث البصري + تسليم الحزم الخمس |
+| **M0** | Intake | `workflows/M0-intake.md` | استقبال الطلب + تحليل ثلاثي + 3 أسئلة |
+| **M1** | Research + Concept | `workflows/M1a-creative-direction.md`، `workflows/M1b-concept-expansion.md`، `workflows/M1c-research-lab.md` | البحث + توسعة الفكرة + Concept Deck |
+| **M2** | Narrative Architecture | `workflows/M2-narrative.md` | البنية السردية + المشاهد + السكريبت + Character Arc |
+| **M3** | Shot Architecture | `workflows/M3a-shot-design.md`، `workflows/M3b-shot-list.md` | هندسة اللقطات + Shot List + Blocking + Edit Handles |
+| **M4** | Continuity + Transitions | `workflows/M4a-continuity.md`، `workflows/M4b-character-world.md`، `workflows/M4c-continuity-qc.md`، `workflows/M4d-transitions.md` | Continuity Bible + Frame Chain + Character/World Bible + QC + Transitions Map |
+| **M5** | Graphics + Text | `workflows/M5a-graphics.md`، `workflows/M5b-text-motion.md` | استراتيجية النص + Typography + Text Preservation |
+| **M6** | Audio | `workflows/M6-audio.md`، `workflows/M6b-sound-design.md`، `workflows/M6c-dialogue-lipsync.md` | الطبقات الصوتية + Sound Design + Lip-Sync |
+| **M7** | Image Prompts | `workflows/M7a-prompt-architecture.md`، `workflows/M7b-image-prompts.md` | 10 طبقات A-J + Image Prompts Package |
+| **M8** | Motion Prompts | `workflows/M8a-motion-prompts.md`، `workflows/M8b-motion-direction.md`، `workflows/M8c-animation-ready.md`، `workflows/M8d-motion-graphics.md` | Motion Prompts Package + Motion Direction + Animation Ready + Motion Graphics |
+| **M9** | Quality + Orchestration | `workflows/M9a-executive-producer.md`، `workflows/M9b-quality-gates.md`، `workflows/M9c-preflight.md`، `workflows/M9d-localization.md` | Executive Producer + 8 Quality Gates + Pre-flight + Localization |
+| **M10** | Pre-Production Review | `workflows/M10a-production-architecture.md`، `workflows/M10b-hybrid-assembly.md`، `workflows/M10c-edit-color.md` | مراجعة ما قبل الإنتاج + Assembly Hybrid + Edit/Color |
+| **M11** | Final Delivery | `workflows/M11a-reference-analyst.md`، `workflows/M11b-visual-research.md` | تحليل المراجع + البحث البصري + تسليم الحزم الخمس |
 
 **إجمالي:** 12 مرحلة × 31 workflow.
 

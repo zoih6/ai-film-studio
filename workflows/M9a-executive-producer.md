@@ -343,7 +343,7 @@ M11:
 
 ## 5 Output Files (الحزم الخمس)
 
-### 1. Production Blueprint (`01-production-blueprint.md`)
+### 1. Production Blueprint (`schemas/production-blueprint.md`)
 
 **الهدف:** النظرة الشاملة للمشروع.
 
@@ -421,7 +421,7 @@ production_blueprint:
     estimated_total_time: "..."
 ```
 
-### 2. Image Prompts Package (`02-image-prompts-package.md`)
+### 2. Image Prompts Package (`schemas/image-prompts-package.md`)
 
 **الهدف:** كل prompt صورة جاهز للتوليد.
 
@@ -466,7 +466,7 @@ image_prompts_package:
     - ...
 ```
 
-### 3. Motion Prompts Package (`03-motion-prompts-package.md`)
+### 3. Motion Prompts Package (`schemas/motion-prompts-package.md`)
 
 **الهدف:** كل prompt فيديو جاهز للتوليد.
 
@@ -512,7 +512,7 @@ motion_prompts_package:
     - ...
 ```
 
-### 4. Audio Package (`04-audio-package.md`)
+### 4. Audio Package (`schemas/audio-package.md`)
 
 **الهدف:** كل الطبقات الصوتية + استراتيجية التوليد.
 
@@ -576,7 +576,7 @@ audio_package:
     - "Export"
 ```
 
-### 5. Assembly Guide (`05-assembly-guide.md`)
+### 5. Assembly Guide (`schemas/assembly-guide.md`)
 
 **الهدف:** دليل التجميع النهائي خطوة بخطوة.
 
@@ -742,11 +742,11 @@ final_delivery:
     # تسليم نهائي — [اسم المشروع]
     
     ## المخرجات (5 ملفات)
-    1. `01-production-blueprint.md` — النظرة الشاملة
-    2. `02-image-prompts-package.md` — [N] prompt صورة
-    3. `03-motion-prompts-package.md` — [N] prompt فيديو
-    4. `04-audio-package.md` — [N] طبقة صوتية
-    5. `05-assembly-guide.md` — دليل التجميع
+    1. `schemas/production-blueprint.md` — النظرة الشاملة
+    2. `schemas/image-prompts-package.md` — [N] prompt صورة
+    3. `schemas/motion-prompts-package.md` — [N] prompt فيديو
+    4. `schemas/audio-package.md` — [N] طبقة صوتية
+    5. `schemas/assembly-guide.md` — دليل التجميع
     
     ## ملخص المشروع
     - المدة: [Xs]
@@ -757,10 +757,10 @@ final_delivery:
     - نماذج رئيسية: [...]
     
     ## الخطوة التالية
-    1. ولّد الصور من `02-image-prompts-package.md`
-    2. ولّد الفيديو من `03-motion-prompts-package.md`
-    3. ولّد الصوت من `04-audio-package.md`
-    4. اتبع `05-assembly-guide.md` للتجميع
+    1. ولّد الصور من `schemas/image-prompts-package.md`
+    2. ولّد الفيديو من `schemas/motion-prompts-package.md`
+    3. ولّد الصوت من `schemas/audio-package.md`
+    4. اتبع `schemas/assembly-guide.md` للتجميع
     
     ## المخاطر المُدارة
     - [..., ..., ...]
@@ -779,7 +779,7 @@ final_delivery:
 
 ## عقد التشغيل v1.1
 
-نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `protocols.md`. في نهاية كل تشغيل، أخرج:
+نفّذ هذا الوكيل كوحدة قابلة للتتبع وفق `references/protocols/`. في نهاية كل تشغيل، أخرج:
 - **INPUT ARTIFACTS**: كل مخرجات الوكلاء 21-29
 - **OUTPUT ARTIFACTS**: 5 Output Files + Decision Log + Risk Register
 - **VALIDATION**: G8 Master Quality

@@ -13,9 +13,9 @@
 
 1. لا توجد إشارات إلى `M12` أو `M13` أو `M14` في أي ملف في المستودع (ماعدا CHANGELOG التاريخي).
 2. `references/protocols/production-state-machine.md` هو المرجع **الوحيد** لتعريف المراحل والـ gates.
-3. كل من `M9a-executive-producer.md` و `SKILL.md` و `README.md` و `intent-router.md` يستخدم نفس تعريف M2/M3/M11.
+3. كل من `workflows/M9a-executive-producer.md` و `SKILL.md` و `README.md` و `workflows/intent-router.md` يستخدم نفس تعريف M2/M3/M11.
 4. وجود ملف `references/protocols/orchestration-runtime.md` صريح وقابل للتنفيذ، يغطي 9 مسارات.
-5. `M4c-continuity-qc.md` إلزامي في كل مسار `SCENE_BUILD` و `FULL_PRODUCTION`، اختياري في `IMAGE_GENERATION` و `SINGLE_PROMPT`.
+5. `workflows/M4c-continuity-qc.md` إلزامي في كل مسار `SCENE_BUILD` و `FULL_PRODUCTION`، اختياري في `IMAGE_GENERATION` و `SINGLE_PROMPT`.
 
 ## Tech Stack
 
@@ -48,7 +48,7 @@ git add -A && git commit -m "v2.0.2: unify stage model + orchestration runtime" 
 | `workflows/M9a-executive-producer.md` | تصحيح M3=Narrative → M2=Narrative، M3=Shot Architecture، M11=Final Assembly. محاذاة pipeline الكامل (YAML، 5 Output Files، Decision Log، Risk Register) مع workflow filesystem. |
 | `SKILL.md` | قسم "12 stages / 31 workflows" واضح. جدول المراحل الـ12 يطابق الواقع. |
 | `README.md` | نفس الشيء + قسم "12 stages / 31 workflows" في Repository Structure. |
-| `quality/quality-gates.md` | تحديد رسمي: `production-state-machine.md` هو authoritative للـ stages، `M9b-quality-gates.md` للتفاصيل. شرح اختلاف عدد الـ gates (8 vs 14) كـ "8 gates للـ end-to-end، 14 gates للـ per-stage". |
+| `quality/quality-gates.md` | تحديد رسمي: `references/protocols/production-state-machine.md` هو authoritative للـ stages، `workflows/M9b-quality-gates.md` للتفاصيل. شرح اختلاف عدد الـ gates (8 vs 14) كـ "8 gates للـ end-to-end، 14 gates للـ per-stage". |
 | `workflows/intent-router.md` | تحديث M3 (M3a-shot-design.md)، M11 (M11a/M11b). إضافة M4c required في SCENE/FULL routes. |
 | `workflows/README.md` | خريطة substage → stage (31 → 12). |
 | `references/protocols/interaction-flow.md` | M0–M13 → M0–M11 في المخططين النصيين. |
@@ -90,7 +90,7 @@ git add -A && git commit -m "v2.0.2: unify stage model + orchestration runtime" 
 - لا تضيف Story/Editorial QC.
 - لا تعيد كتابة `verify_functional.py`.
 - لا تحدث `M8b` أو `M8c`.
-- لا تحدث `prompt-compiler.md` أو `model-adapters.md`.
+- لا تحدث `references/specs/prompt-compiler.md` أو `references/specs/model-adapters.md`.
 
 ## Open Questions
 

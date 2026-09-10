@@ -540,12 +540,12 @@ workflow:
 
 ## Cross-References
 
-- **Production Blueprint:** `01-production-blueprint.md`
+- **Production Blueprint:** `schemas/production-blueprint.md`
 - **Continuity Bible:** `schemas/state/continuity-bible.md`
 - **Frame Chain:** `schemas/state/frame-chain.md`
 - **Asset Registry:** `schemas/state/asset-registry.md`
-- **Motion Prompts:** `03-motion-prompts-package.md` (تستخدم هذه الصور كـ input)
-- **Assembly Guide:** `05-assembly-guide.md`
+- **Motion Prompts:** `schemas/motion-prompts-package.md` (تستخدم هذه الصور كـ input)
+- **Assembly Guide:** `schemas/assembly-guide.md`
 ```
 
 ---

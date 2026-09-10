@@ -1,7 +1,7 @@
 # state/quality-gates-log.md
 
 > **سجل بوابات الجودة: G0–G8 لكل مشروع.**
-> **يُملأ ويُحدَّث من قبل `31-quality-gate-controller.md` و `30-executive-producer.md`.**
+> **يُملأ ويُحدَّث من قبل `workflows/M9b-quality-gates.md` و `workflows/M9a-executive-producer.md`.**
 
 ---
 
@@ -516,7 +516,7 @@ audit_trail:
 
 ## Cross-References
 
-- Production Blueprint: `01-production-blueprint.md`
+- Production Blueprint: `schemas/production-blueprint.md`
 - Continuity Bible: `schemas/state/continuity-bible.md`
 - Frame Chain: `schemas/state/frame-chain.md`
 - Risk Register: `schemas/state/risk-register.md`
