@@ -20,7 +20,7 @@ def require(path: str) -> pathlib.Path:
 skill = require("SKILL.md")
 install = require("INSTALL.md")
 agents = require("AGENTS.md")
-for path in [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json", ".codex-plugin/plugin.json", ".agents/plugins/marketplace.json"]:
+for path in ["plugin.json", ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json", ".codex-plugin/plugin.json", ".agents/plugins/marketplace.json"]:
     target = require(path)
     if target.exists():
         try:
@@ -54,6 +54,14 @@ if install.exists():
     ]:
         if required not in text:
             errors.append(f"INSTALL.md missing: {required}")
+
+manifest = ROOT / "plugin.json"
+if manifest.exists():
+    data = json.loads(manifest.read_text(encoding="utf-8"))
+    if data.get("skill") != "SKILL.md":
+        errors.append("plugin.json must point to SKILL.md")
+    if data.get("entryPoint") != "workflows/intent-router.md":
+        errors.append("plugin.json must point to workflows/intent-router.md")
 
 if agents.exists() and "SKILL.md" not in agents.read_text(encoding="utf-8"):
     errors.append("AGENTS.md does not identify the skill source of truth")

@@ -1,0 +1,22 @@
+{
+  "name": "ai-film-studio",
+  "version": "3.0.0",
+  "description": "AI Film Studio: a structured agent skill for film, commercial, documentary, motion-graphics, and series production.",
+  "author": {
+    "name": "Waseem Alzobiri",
+    "url": "https://github.com/zoih6"
+  },
+  "homepage": "https://github.com/zoih6/ai-film-studio",
+  "repository": "https://github.com/zoih6/ai-film-studio",
+  "license": "MIT",
+  "keywords": [
+    "ai-film",
+    "video-production",
+    "agent-skill",
+    "plugin",
+    "workflows"
+  ],
+  "skill": "SKILL.md",
+  "entryPoint": "workflows/intent-router.md",
+  "install": "https://github.com/zoih6/ai-film-studio"
+}

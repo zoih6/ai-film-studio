@@ -110,7 +110,7 @@ tier 3 — يُحمَّل عند الحاجة المتخصصة
 |---|---|---|---|
 | **E1** | `workflows/engines/E1-documentary-engine.md` | آلة حالات 9 خطوات، توقف بعد كل حالة | وثائقي / essay / faceless |
 | **E2** | `workflows/engines/E2-commercial-engine.md` | 10 مراحل، طاقم 9 أدوار | إعلان منتج / حملة |
-| **E3** | `workflows/engines/E3-hybrid-commercial.md` | دمج VOX + Commercial | إعلان بسرد وثائقي |
+| **E3** | `workflows/engines/E3-hybrid-commercial.md` | أسلوب هجين وثائقي وتجاري | إعلان بسرد وثائقي |
 | **E4** | `workflows/engines/E4-series-engine.md` | خطة سلسلة + توقيع قناة مقفول | قناة / موسم / مجموعة حلقات |
 | **E5** | `workflows/engines/E5-bulk-production-pipeline.md` | ملف txt + Universal Video Prompt | توليد بالجملة |
 
@@ -197,6 +197,3 @@ bash    scripts/verify_all.sh           # الكل (9 فحوص)
 - **التصميم والبناء:** Waseem Alzobiri
 - **التوافق:** Claude Sonnet/Opus, GPT-4+, Gemini Pro/Ultra — أي وكيل يدعم Agent Skills Standard
 - **الحالة:** Production-ready
-- **دمج:** AI Film Studio v2.1.0 + VOX Paper Engine + VOX Commercial Director v3.0.0
-
-راجع `CHANGELOG.md` و `docs/gap-analysis-v3.md` لتفاصيل الدمج.
