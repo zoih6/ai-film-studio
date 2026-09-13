@@ -171,6 +171,20 @@ tier 3 — يُحمَّل عند الحاجة المتخصصة
 | حل تضارب الذاكرة | `references/knowledge/memory-conflict-contract.md` |
 | أنماط الفشل | `references/knowledge/failure-modes.md` |
 
+## عقد التشغيل والتفاعل
+
+للاستخدام الاحترافي داخل الوكلاء، طبّق هذا التسلسل قبل التوليد:
+
+1. **استخرج النية** في `schemas/generation-intent.schema.json`، وحدد نوع المشروع ونطاقه والقيود ووضع الموافقة.
+2. **وجّه بأقل مسار كافٍ** عبر `workflows/intent-router.md`؛ لا تشغّل M0–M11 لطلب prompt أو لقطة واحدة.
+3. **خطط قبل البرومبت**: ثبّت الـBrief والـBeats والهوية البصرية وسجل الكيانات والاستمرارية وبطاقات اللقطات.
+4. **اختر المزود صراحةً** عبر `workflows/provider-routing.md` وسجل القدرة والنسخة والدليل والبدائل؛ اعتبر القدرة المجهولة غير مدعومة.
+5. **سلّم عبر عقود قابلة للتتبع** في `schemas/project-manifest.schema.json` و`schemas/artifact-record.schema.json` مع IDs وتبعيات وحالة ومصدر.
+6. **أصلح أول فشل فقط**: أعد تشغيل البوابة المتأثرة وما بعدها، ولا تعِد توليد مخرجات معتمدة بلا سبب مسجل.
+7. **صنّف النتيجة بصدق**: `candidate` أو `qualified` أو `not-yet-verified`؛ نجاح فحص المستندات لا يثبت صلاحية الوسائط ما لم تُفحص فعليًا.
+
+التفاصيل التشغيلية: `references/protocols/agent-protocol.md` · سجل المزودين: `references/provider-registry.yaml`.
+
 ## أوامر سريعة
 
 ```bash

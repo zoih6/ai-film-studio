@@ -22,6 +22,7 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 - **تعليمات التثبيت للمضيفين:** [`INSTALL.md`](INSTALL.md)
 - **تعليمات الوكلاء والمساهمين:** [`AGENTS.md`](AGENTS.md)
 - **دليل الـPlugin:** [`plugin.json`](plugin.json)
+- **مصفوفة الدعم والقيود:** [`docs/support-matrix.md`](docs/support-matrix.md)
 
 ## ماذا تقدم المهارة؟
 
@@ -56,6 +57,10 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 | `quality/` | بوابات الجودة وقوائم الفحص |
 | `examples/` | أمثلة إنتاجية قابلة للقراءة |
 | `scripts/` | أدوات التحقق والفحص |
+| `schemas/` | عقود النية والحالة والمزودين والمخرجات |
+| `references/protocols/agent-protocol.md` | بروتوكول تفاعل الوكيل والتعافي من الأخطاء |
+| `workflows/provider-routing.md` | اختيار المزود والبدائل وتسجيل القرار |
+| `docs/research/` | ملاحظات البحث ومبررات التطوير |
 | `.claude-plugin/` | تعريف Claude Code والـmarketplace |
 | `.codex-plugin/` و `.agents/` | تعريف Codex والـmarketplace |
 | `skills/` و `.cursor/` | مسارات توافق Agent Skills وCursor |
@@ -71,6 +76,14 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 - إنتاج بالجملة: `workflows/engines/E5-bulk-production-pipeline.md`
 - مهمة صغيرة أو Prompt واحد: `workflows/shortcuts/`
 - مشروع كامل: `M0` إلى `M11`
+
+## عقد التشغيل الاحترافي
+
+للمشاريع القابلة للتتبع، ابدأ بإنشاء `generation-intent` ثم اربطه بـ`project-manifest` وسجلات المخرجات. يسجل النظام نوع المشروع، نطاق العمل، الـIDs، التبعيات، الأقفال، المصدر، المزود المختار، والنتيجة (`candidate` أو `qualified` أو `not-yet-verified`).
+
+لا تعتبر المهارة أي قدرة خارجية مثبتة تلقائيًا: يجب أن يكون المزود موثقًا في سجل القدرات، ويجب تسجيل البديل وسبب الاختيار. كما أن نجاح الفحوص البنيوية لا يثبت صلاحية ملف فيديو أو الصوت أو الاستمرارية البصرية ما لم تُنفذ تلك الفحوص فعليًا.
+
+→ البروتوكول الكامل: [`references/protocols/agent-protocol.md`](references/protocols/agent-protocol.md) · [`docs/research/2026-09-14-system-upgrade.md`](docs/research/2026-09-14-system-upgrade.md)
 
 ## التحقق
 

@@ -14,7 +14,8 @@ This repository is **AI Film Studio**, a reusable agent skill and plugin for pla
 
 - `SKILL.md` is the canonical skill instruction file.
 - `workflows/intent-router.md` is the canonical routing entry point.
-- `skills/ai-film-studio/SKILL.md` and `.cursor/skills/ai-film-studio/SKILL.md` are compatibility entry points to the root skill; keep both synchronized with the canonical file and validate them with `scripts/verify_package.py`.
+- `skills/ai-film-studio/` is a self-contained portable package. Its `SKILL.md` and resource directories mirror the canonical root package; keep them synchronized and validate them with `scripts/verify_package.py`.
+- `.cursor/skills/ai-film-studio/SKILL.md` is a readable compatibility copy; keep it byte-for-byte identical to the canonical file.
 - Plugin manifests describe packaging only. Do not duplicate behavior in manifests.
 - `README.md` and `INSTALL.md` are the user-facing installation contract.
 
@@ -27,10 +28,12 @@ This repository is **AI Film Studio**, a reusable agent skill and plugin for pla
 | Production workflows | `workflows/` | M0–M11 stages, engines, and shortcuts |
 | Domain references | `references/` | Protocols, specifications, research, and knowledge |
 | Output contracts | `schemas/` | Structured deliverable schemas and templates |
+| Operational contracts | `schemas/` and `references/protocols/` | Intent, project state, provenance, provider capability, and agent handoffs |
 | Visual systems | `styles/` | Style index, locks, and visual identity rules |
 | Quality | `quality/` and `scripts/` | Gates, checklists, and deterministic verification |
 | Plugin metadata | `.claude-plugin/`, `.codex-plugin/`, `.agents/plugins/` | Host-specific discovery and marketplace metadata |
 | Compatibility links | `skills/`, `.cursor/skills/` | Standard skill import paths |
+| Support claims | `docs/support-matrix.md` | Host status, package entry points, and known limitations |
 
 ## Safe change rules
 
@@ -40,6 +43,8 @@ This repository is **AI Film Studio**, a reusable agent skill and plugin for pla
 - Do not commit credentials, API keys, generated renders, local project state, or private media.
 - Prefer adding a new style lock over editing an existing lock; existing locks are compatibility contracts.
 - Use relative links so the repository remains forkable and works from any clone.
+- Treat provider/model facts as time-sensitive: require a verification date and source URL; never store credentials in the registry.
+- Do not claim media-level validation, rendering, collaboration, or provider execution unless the relevant runtime integration was actually tested.
 
 ## Verification
 

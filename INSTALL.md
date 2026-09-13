@@ -51,6 +51,8 @@ The standard compatibility entry point is:
 skills/ai-film-studio/SKILL.md
 ```
 
+The directory `skills/ai-film-studio/` is self-contained and includes the workflows, references, schemas, styles, quality checks, examples, scripts, and assets referenced by its skill file. Hosts that install one skill directory should copy this directory as a whole, not only the Markdown file.
+
 After installation, use a request such as:
 
 ```text
