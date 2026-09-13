@@ -1,1 +1,199 @@
-../../../SKILL.md
+---
+name: ai-film-studio
+description: |
+  AI Film Studio v3.0.0 — نظام إنتاج مرئي متكامل بالذكاء الاصطناعي (فيلم + إعلان + وثائقي + موشن).
+  يحوّل فكرة بسيطة إلى حزمة إنتاج كاملة: Concept + Script + Shot List + Beats + Prompts (10-Layer A-J)
+  + Audio + Edit Sheet + Delivery Pack.
+  يحتوي: 12 مرحلة إنتاج (M0–M11 / 31 workflow)، 5 محركات متخصصة (E1–E5)، 10 عوالم بصرية بأقفال نصية
+  حرفية (LOCK A–J)، 12 بوابة جودة، أدوات بحث وتحقق، وذاكرة مشروع مع حلّ تضارب بـ 6 أنواع.
+  يُستخدم للأفلام القصيرة، الإعلانات، Brand Films، الوثائقيات، فيديوهات الـ essay، الموشن جرافيك،
+  الشورتس، والقنوات بدون وجه (faceless channels).
+version: 3.0.0
+license: MIT
+author: Waseem Alzobiri
+homepage: https://github.com/zoih6/ai-film-studio
+triggers:
+  - "فيديو إعلاني", "إعلان ذكاء اصطناعي", "فيلم قصير", "برومبت فيديو", "موشن جرافيك", "وثائقي"
+  - "كولاج ورقي", "paper collage", "documentary", "قناة بدون وجه", "faceless channel", "سلسلة"
+  - "AI film", "video prompt", "brand film", "commercial", "short film", "motion graphics"
+  - "shot list", "video generation", "AI cinema", "thumbnail", "storyboard", "product video"
+  - "إعلان منتج", "حملة", "brand film", "promo", "launch video", "TikTok ad", "Reels ad"
+inputs:
+  - "فكرة أو طلب (عربي/إنجليزي) — سطر واحد يكفي"
+  - "نوع المشروع (فيلم، إعلان، وثائقي، essay، موشن، سلسلة)"
+  - "المنصة المستهدفة (YouTube, TikTok, Instagram, TV, CTV)"
+  - "المدة، اللغة، اللهجة، النسبة، النموذج المفضل (اختياري)"
+outputs:
+  - "حزمة إنتاج: Blueprint + Beat Table + Shot Cards + Image Prompts + Motion Prompts + Audio + Edit Sheet"
+  - "حزمة إعلانية: Brief + Big Idea + Product Anchor (IMG-00) + End Card + مصفوفة A/B + مواصفات التصدير"
+  - "حزمة وثائقية: سكربت سردي + جدول Beats + ملف prompts.txt + Universal Video Prompt + 3 ثامبنيلات"
+  - "Style DNA مقفول + Entity Ledger + Continuity Bible + Quality Gates log"
+when_to_use: "أي مشروع فيديو يحتاج برومبتات احترافية، اتساق بصري، إيقاع محسوب، تخطيط صوتي، ودليل تجميع."
+entry_point: "workflows/intent-router.md"
+---
+
+# AI Film Studio v3.0.0
+
+> **نقطة الدخول.** اقرأ هذا الملف، ثم اذهب إلى `workflows/intent-router.md` فورًا.
+
+## الفلسفة
+
+> **"كلما كان المستخدم أقل خبرة، يجب أن تكون المهارة أكثر قدرة على تعويض هذه الخبرة داخليًا."**
+>
+> **"البرومبت هو الخطوة رقم 10، وليس رقم 1."**
+
+المهارة تُحاكي **استوديو إنتاج حقيقي**: 31 تخصصًا عبر 12 مرحلة (M0–M11)، **5 محركات متخصصة**،
+**10 عوالم بصرية بأقفال نصية حرفية**، و **12 بوابة جودة**.
+
+## التوجيه السريع (اختر واحدًا)
+
+| إذا كان طلبك... | المسار | الوقت |
+|---|---|---|
+| برومبت واحد / صورة / تحريك صورة / لبسِنك | `workflows/shortcuts/` | 2–15 د |
+| ثامبنيل لفيديو | `workflows/shortcuts/thumbnail.md` | 5 د |
+| **وثائقي / فيديو essay / قناة بدون وجه** | `workflows/engines/E1-documentary-engine.md` | 20–45 د |
+| **إعلان منتج / حملة / brand film** | `workflows/engines/E2-commercial-engine.md` | 15–40 د |
+| **إعلان بأسلوب وثائقي/كولاج** (هجين) | `workflows/engines/E3-hybrid-commercial.md` | 25–50 د |
+| **سلسلة أو قناة كاملة** | `workflows/engines/E4-series-engine.md` | per episode |
+| **توليد صور بالجملة + تجميع** | `workflows/engines/E5-bulk-production-pipeline.md` | 10 د |
+| مشهد متعدد اللقطات | `M0-intake` → `M3` (`M4c` إلزامي) | 30 د |
+| فيلم قصير / فيلم سردي كامل | `M0-intake` → `M11` | 90 د |
+
+## بنية المستودع (Progressive Disclosure)
+
+```
+tier 1 — يُحمَّل دائمًا (≤ 8KB)
+  ├─ SKILL.md / README.md / CHANGELOG.md
+
+tier 2 — يُحمَّل عند بدء مشروع
+  ├─ workflows/intent-router.md     ← نقطة التوجيه
+  ├─ workflows/M0..M11/             ← 12 مرحلة / 31 workflow (العمود الفقري)
+  ├─ workflows/engines/E1..E5/      ← 5 محركات متخصصة (وثائقي، إعلان، هجين، سلسلة، جملة)
+  └─ workflows/shortcuts/           ← 11 مسارًا سريعًا
+
+tier 3 — يُحمَّل عند الحاجة المتخصصة
+  ├─ styles/                        ← 10 عوالم بصرية + أقفال حرفية (LOCK A–J)
+  ├─ references/protocols/          ← 10 بروتوكولات تشغيل
+  ├─ references/specs/              ← 21 مواصفة تقنية
+  ├─ references/knowledge/          ← 10 معارف متخصصة
+  ├─ references/research/           ← 5 أدوات بحث وتحقق
+  ├─ schemas/                       ← 23 هيكل بيانات / قالب مخرج
+  ├─ quality/                       ← 12 بوابة جودة + قوائم فحص
+  ├─ examples/                      ← 4 أمثلة حية كاملة
+  └─ scripts/                       ← 9 أدوات فحص قابلة للتنفيذ
+```
+
+**قاعدة التحميل:** لا تُحمَّل tier 2/3 إلا بعد أن يُحدد `workflows/intent-router.md` المسار.
+
+## العمود الفقري — 12 مرحلة / 31 workflow
+
+| المرحلة | الاسم | الـ Workflows | الجودة |
+|---|---|---|---|
+| **M0** | Intake | `M0-intake` | G0 |
+| **M1** | Research + Concept | `M1a` `M1b` `M1c` | G1 |
+| **M2** | Narrative | `M2-narrative` | G2 |
+| **M3** | Shot Architecture | `M3a` `M3b` | G3.1 |
+| **M4** | Continuity + Transitions | `M4a` `M4b` `M4c` `M4d` | G3.2, G5 |
+| **M5** | Graphics + Text | `M5a` `M5b` | G6 |
+| **M6** | Audio | `M6` `M6b` `M6c` | G7 |
+| **M7** | Image Prompts | `M7a` `M7b` | **G4 (Hard)** |
+| **M8** | Motion Prompts | `M8a` `M8b` `M8c` `M8d` | **G4 (Hard)** |
+| **M9** | Quality + Orchestration | `M9a` `M9b` `M9c` `M9d` | **G4, G8 (Hard)** |
+| **M10** | Pre-Production Review | `M10a` `M10b` `M10c` | **G8 (Hard)** |
+| **M11** | Final Delivery | `M11a` `M11b` | Final |
+
+## المحركات الخمسة (Engines)
+
+المحركات **لا تستبدل** M0–M11 — هي **طبقات تنظيم وتسليم** فوقها، لكل منها عقد تشغيل خاص:
+
+| المحرك | الملف | العقد | متى |
+|---|---|---|---|
+| **E1** | `workflows/engines/E1-documentary-engine.md` | آلة حالات 9 خطوات، توقف بعد كل حالة | وثائقي / essay / faceless |
+| **E2** | `workflows/engines/E2-commercial-engine.md` | 10 مراحل، طاقم 9 أدوار | إعلان منتج / حملة |
+| **E3** | `workflows/engines/E3-hybrid-commercial.md` | أسلوب هجين وثائقي وتجاري | إعلان بسرد وثائقي |
+| **E4** | `workflows/engines/E4-series-engine.md` | خطة سلسلة + توقيع قناة مقفول | قناة / موسم / مجموعة حلقات |
+| **E5** | `workflows/engines/E5-bulk-production-pipeline.md` | ملف txt + Universal Video Prompt | توليد بالجملة |
+
+> المصدر المنهجي للمراحل: `references/protocols/production-state-machine.md`
+> الـ Orchestration Executable Spec: `references/protocols/orchestration-runtime.md`
+> التكامل بين المحركات والمراحل: `references/protocols/engine-interop.md`
+
+## العوالم البصرية (Style Locks) — 10 أقفال
+
+كل عالم = **قفل نصي يُنسخ حرفيًا** في كل برومبت. إعادة الصياغة تكسر الثبات بين 20 لقطة.
+
+| القفل | العالم | الاستخدام |
+|---|---|---|
+| **A** | Documentary Archive Collage | توقيع VOX — وثائقي، essay |
+| **B** | Commercial Craft Collage | **الافتراضي للمنتجات** |
+| **C** | Paper Noir Luxury | عطور، ساعات، فخامة |
+| **D** | Pop Cutout Playground | سناكس، مشروبات، شباب |
+| **E** | Miniature Tabletop Cinematic | تقنية، أجهزة، سيارات |
+| **F** | Photoreal Studio | واقعية كاملة بلا ورق |
+| **G** | Mixed Media Editorial | مجلات، أزياء، ثقافة |
+| **H** | Tactile Clay Diorama | طين/صلصال، سناكس، أطفال |
+| **I** | Flat Vector Explainer | **VOX المسطح**: infographic، بيانات، شرح |
+| **J** | Arabic Calligraphic | هوية عربية، خط، تراث |
+
+→ `styles/index.md` لقرار الاختيار · `styles/locks/*.txt` للأقفال الحرفية
+→ بروتوكول الأقفال: `references/protocols/style-lock-protocol.md`
+
+## المبادئ المؤسِّسة (12 مبدأ)
+
+1. **الفكرة قبل الجمال** — لا تكتب برومبتًا قبل تثبيت الفكرة والوعد.
+2. **جودة الـ Prompt أهم من الاختصار** — لا تختصر لتوفير الوقت.
+3. **Identity String حرفي** — لا تُعد صياغة صفات الشخصية/المنتج أبدًا.
+4. **المنتج مقدّس** — الشكل والنسب واللون والشعار لا تتغير في أي ظهور.
+5. **Frame Chain إلزامي** — `SC(N+1)_START = SC(N)_END` بصريًا.
+6. **النص في الفيديو = Single Locked Visual Plane** — طبقة واحدة محكومة.
+7. **الصوت يصلح الصورة** — خطط للصوت مبكرًا، لا في النهاية.
+8. **كل ثانية تُدفع ثمنها** — Beat بلا وظيفة يُحذف حتى لو كان جميلًا.
+9. **الصمت قبل الذروة** — التباين هو ما يجعل الذروة ذروة.
+10. **الحقيقة مقدسة** — لا اختراع أسماء أو تواريخ أو أرقام أو ادعاءات.
+11. **Hard Gates (G4, G8) لا تُتجاوز** — أي FAIL يحجب التسليم.
+12. **التفكير داخلي دائمًا** — المستخدم يرى المخرجات النظيفة فقط.
+
+## المرجعيات الحرجة
+
+| الحاجة | الملف |
+|---|---|
+| 10 طبقات Prompt Architecture (A–J) | `references/specs/prompt-architecture.md` |
+| حساب الـ Beats ومنحنى الطاقة | `references/specs/beat-architecture.md` |
+| لهجات النماذج (12 عائلة) | `references/specs/model-dialects.md` |
+| مستويات حقيقة المنتج (T1–T4) | `references/specs/product-truth.md` |
+| سجل الكيانات (Entity Ledger) | `references/specs/entity-ledger.md` |
+| حمض الثامبنيل | `references/specs/thumbnail-dna.md` |
+| مواصفات المنصات والمناطق الآمنة | `references/specs/platform-specs.md` |
+| محرك الأفكار (12 عدسة جنون) | `references/specs/idea-engine.md` |
+| DNA الكتابة السردية | `references/knowledge/narrative-writing-dna.md` |
+| نظام التعليق الصوتي | `references/knowledge/voice-system.md` |
+| أدوات البحث والتحقق | `references/research/` |
+| حل تضارب الذاكرة | `references/knowledge/memory-conflict-contract.md` |
+| أنماط الفشل | `references/knowledge/failure-modes.md` |
+
+## أوامر سريعة
+
+```bash
+python3 scripts/verify_structure.py     # البنية + YAML (tier 1)
+python3 scripts/verify_styles.py        # سلامة الأقفال النصية العشرة
+python3 scripts/verify_vox.py           # المحركات الخمسة + المسارات الجديدة
+python3 scripts/verify_functional.py    # 95/95 وظيفي (3 أنواع + 4 fixtures)
+python3 scripts/verify_motion.py        # 46/46 مسار الموشن جرافيك
+python3 scripts/verify_example.py       # 29/29 الأمثلة الحية
+python3 scripts/prompt_lint.py          # فحص أي برومبت قبل التسليم
+bash    scripts/verify_all.sh           # الكل (9 فحوص)
+```
+
+## متى لا تستخدم هذه المهارة
+
+- ❌ صورة ثابتة بسيطة (استخدم image generation مباشرة)
+- ❌ ترجمة/صياغة نصوص بحتة
+- ❌ سؤال تقني عن نموذج (ارجع لـ `references/specs/model-matrix.md`)
+- ❌ مشروع يحتاج أكثر من ساعة حوسبة بدون automation
+
+## الاعتماد والتوافق
+
+- **License:** MIT · **Version:** 3.0.0
+- **التصميم والبناء:** Waseem Alzobiri
+- **التوافق:** Claude Sonnet/Opus, GPT-4+, Gemini Pro/Ultra — أي وكيل يدعم Agent Skills Standard
+- **الحالة:** Production-ready

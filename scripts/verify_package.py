@@ -35,15 +35,14 @@ if skill.exists():
     if "workflows/intent-router.md" not in text:
         errors.append("SKILL.md does not point to workflows/intent-router.md")
 
-for path, expected in [
-    ("skills/ai-film-studio/SKILL.md", "../../SKILL.md"),
-    (".cursor/skills/ai-film-studio/SKILL.md", "../../../SKILL.md"),
-]:
-    target = ROOT / path
-    if not target.is_symlink():
-        errors.append(f"compatibility entry point is not a symlink: {path}")
-    elif target.readlink().as_posix() != expected:
-        errors.append(f"wrong symlink target: {path} -> {target.readlink()}")
+if skill.exists():
+    canonical = skill.read_text(encoding="utf-8")
+    for path in ["skills/ai-film-studio/SKILL.md", ".cursor/skills/ai-film-studio/SKILL.md"]:
+        target = ROOT / path
+        if not target.is_file():
+            errors.append(f"missing readable compatibility skill: {path}")
+        elif target.read_text(encoding="utf-8") != canonical:
+            errors.append(f"compatibility skill differs from SKILL.md: {path}")
 
 if install.exists():
     text = install.read_text(encoding="utf-8")
