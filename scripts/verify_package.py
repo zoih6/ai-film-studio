@@ -21,6 +21,13 @@ def require(path: str) -> pathlib.Path:
 skill = require("SKILL.md")
 install = require("INSTALL.md")
 agents = require("AGENTS.md")
+for path in [
+    "references/protocols/user-facing-production-flow.md",
+    "schemas/storyboard.md",
+    "schemas/frame-prompt-contract.md",
+    "scripts/verify_output_contract.py",
+]:
+    require(path)
 for path in ["plugin.json", ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json", ".codex-plugin/plugin.json", ".agents/plugins/marketplace.json"]:
     target = require(path)
     if target.exists():

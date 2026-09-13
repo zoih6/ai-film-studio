@@ -53,4 +53,4 @@ Fallback: [cutaway / off-screen / re-record]
 
 
 ## v1.3 Prompt Runtime Contract
-عند إنتاج مخرج تنفيذي، لا تسلّم Prompt نهائيًا مباشرة. ابنِ داخليًا Canonical Prompt Spec ثم مرره إلى `references/specs/` و`references/specs/` قبل التسليم. المستخدم يرى فقط النسخة المجمعة والجاهزة للنسخ.
+عند إنتاج مخرج تنفيذي، لا تسلّم أجزاء Prompt منفصلة. ابنِ داخليًا Canonical Prompt Spec ثم طبّق `schemas/frame-prompt-contract.md` و`references/protocols/output-protocol.md`. المستخدم يرى **Prompt صوت/أداء واحدًا كاملًا ومستقلًا** عند الحاجة، مع إبقاء النص الحرفي منفصلًا وواضحًا.

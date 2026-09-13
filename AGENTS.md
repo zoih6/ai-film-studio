@@ -18,6 +18,8 @@ This repository is **AI Film Studio**, a reusable agent skill and plugin for pla
 - `.cursor/skills/ai-film-studio/SKILL.md` is a readable compatibility copy; keep it byte-for-byte identical to the canonical file.
 - Plugin manifests describe packaging only. Do not duplicate behavior in manifests.
 - `README.md` and `INSTALL.md` are the user-facing installation contract.
+- `references/protocols/user-facing-production-flow.md` is the highest-level user-facing behavior contract. Keep it above individual workflow details.
+- `schemas/storyboard.md` and `schemas/frame-prompt-contract.md` define the visible sequence: Storyboard first, then one complete copy-ready prompt per frame/shot.
 
 ## Repository map
 
@@ -45,6 +47,8 @@ This repository is **AI Film Studio**, a reusable agent skill and plugin for pla
 - Use relative links so the repository remains forkable and works from any clone.
 - Treat provider/model facts as time-sensitive: require a verification date and source URL; never store credentials in the registry.
 - Do not claim media-level validation, rendering, collaboration, or provider execution unless the relevant runtime integration was actually tested.
+- Keep internal research, rejected directions, stage names, artifact logs, and prompt fragments out of normal user-facing output.
+- Do not change the one-prompt-per-frame rule into a multi-part template; users must never assemble prompts manually.
 
 ## Verification
 
@@ -52,6 +56,7 @@ Run the smallest relevant checks, then the complete suite for release changes:
 
 ```bash
 python3 scripts/verify_package.py
+python3 scripts/verify_output_contract.py
 bash scripts/verify_all.sh
 python3 scripts/verify_links.py
 

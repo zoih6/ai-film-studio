@@ -59,6 +59,9 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 | `scripts/` | أدوات التحقق والفحص |
 | `schemas/` | عقود النية والحالة والمزودين والمخرجات |
 | `references/protocols/agent-protocol.md` | بروتوكول تفاعل الوكيل والتعافي من الأخطاء |
+| `references/protocols/user-facing-production-flow.md` | طبقة تنظيم ما يراه المستخدم وتسلسل التسليم |
+| `schemas/storyboard.md` | عقد الـStoryboard قبل البرومبتات |
+| `schemas/frame-prompt-contract.md` | Prompt كامل واحد لكل فريم أو لقطة |
 | `workflows/provider-routing.md` | اختيار المزود والبدائل وتسجيل القرار |
 | `docs/research/` | ملاحظات البحث ومبررات التطوير |
 | `.claude-plugin/` | تعريف Claude Code والـmarketplace |
@@ -84,6 +87,12 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 لا تعتبر المهارة أي قدرة خارجية مثبتة تلقائيًا: يجب أن يكون المزود موثقًا في سجل القدرات، ويجب تسجيل البديل وسبب الاختيار. كما أن نجاح الفحوص البنيوية لا يثبت صلاحية ملف فيديو أو الصوت أو الاستمرارية البصرية ما لم تُنفذ تلك الفحوص فعليًا.
 
 → البروتوكول الكامل: [`references/protocols/agent-protocol.md`](references/protocols/agent-protocol.md) · [`docs/research/2026-09-14-system-upgrade.md`](docs/research/2026-09-14-system-upgrade.md)
+
+## تجربة المستخدم للمبتدئ
+
+تعمل المهارة بطبقتين: تعقيد الإنتاج يبقى داخليًا، بينما يظهر للمستخدم مخرج قصير ومنظم. التسلسل الافتراضي هو: فهم الطلب والأسئلة الضرورية فقط، ثم الرؤية المقترحة، ثم الـStoryboard، ثم Prompt صورة كامل واحد لكل فريم، ثم اختيار استخدام نموذج خارجي أو التوليد داخل المنصة، ثم Prompt تحريك كامل واحد لكل لقطة، ثم السكربت والصوت عند الحاجة.
+
+لا تعرض المهارة نتائج البحث الخام أو الاتجاهات المرفوضة أو أسماء الوكلاء أو أجزاء Prompt تحتاج إلى تجميع، ولا تنتج نسخ A/B/C إلا بطلب صريح. كل Prompt يظهر في كتلة واحدة قابلة للنسخ.
 
 ## التحقق
 

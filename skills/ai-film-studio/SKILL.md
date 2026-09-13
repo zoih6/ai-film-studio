@@ -173,6 +173,8 @@ tier 3 — يُحمَّل عند الحاجة المتخصصة
 
 ## عقد التشغيل والتفاعل
 
+**طبقة الإخراج العليا إلزامية:** `references/protocols/user-facing-production-flow.md` هي المرجع الحاكم لما يراه المستخدم، وتعلو على تفاصيل الوكلاء والمراحل.
+
 للاستخدام الاحترافي داخل الوكلاء، طبّق هذا التسلسل قبل التوليد:
 
 1. **استخرج النية** في `schemas/generation-intent.schema.json`، وحدد نوع المشروع ونطاقه والقيود ووضع الموافقة.
@@ -183,7 +185,9 @@ tier 3 — يُحمَّل عند الحاجة المتخصصة
 6. **أصلح أول فشل فقط**: أعد تشغيل البوابة المتأثرة وما بعدها، ولا تعِد توليد مخرجات معتمدة بلا سبب مسجل.
 7. **صنّف النتيجة بصدق**: `candidate` أو `qualified` أو `not-yet-verified`؛ نجاح فحص المستندات لا يثبت صلاحية الوسائط ما لم تُفحص فعليًا.
 
-التفاصيل التشغيلية: `references/protocols/agent-protocol.md` · سجل المزودين: `references/provider-registry.yaml`.
+**ترتيب الإخراج للمشاريع متعددة المشاهد:** فهم مختصر وأسئلة ضرورية → رؤية مختصرة → Storyboard → اعتماد → **Prompt كامل واحد لكل فريم** → اختيار التوليد الخارجي/داخل المنصة → **Prompt كامل واحد لكل لقطة** → الصوت والسكريبت عند الحاجة.
+
+التفاصيل التشغيلية: `references/protocols/agent-protocol.md` · تدفق المستخدم: `references/protocols/user-facing-production-flow.md` · عقد الـStoryboard: `schemas/storyboard.md` · عقد الفريم: `schemas/frame-prompt-contract.md` · سجل المزودين: `references/provider-registry.yaml`.
 
 ## أوامر سريعة
 

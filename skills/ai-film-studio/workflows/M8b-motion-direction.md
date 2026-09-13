@@ -67,4 +67,4 @@ Failure fallback: [simpler action or edit solution]
 
 
 ## v1.3 Prompt Runtime Contract
-عند إنتاج مخرج تنفيذي، لا تسلّم Prompt نهائيًا مباشرة. ابنِ داخليًا Canonical Prompt Spec ثم مرره إلى `references/specs/` و`references/specs/` قبل التسليم. المستخدم يرى فقط النسخة المجمعة والجاهزة للنسخ.
+عند إنتاج مخرج تنفيذي، لا تسلّم أجزاء Prompt منفصلة. ابنِ داخليًا Canonical Prompt Spec ثم طبّق `schemas/frame-prompt-contract.md` و`references/protocols/output-protocol.md`. المستخدم يرى **Prompt تحريكًا واحدًا كاملًا ومستقلًا لكل لقطة**، جاهزًا للنسخ، ويحتوي أدوار الفريمات والمدة والحركة والاستمرارية والقيود.

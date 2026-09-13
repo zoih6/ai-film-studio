@@ -122,7 +122,7 @@ M4c اختياري في المسارات المستقلة (SINGLE، IMAGE_GEN، 
 
 ## الأسئلة التشخيصية (إذا غامض)
 
-اسأل **سؤال واحد فقط** من هذه القائمة لتضييق المسار:
+بعد التصنيف الداخلي، ارجع إلى `references/protocols/user-facing-production-flow.md`. اسأل فقط ما يمنع البدء، في رسالة واحدة، وبحد أقصى **3 أسئلة** مع خيارات وافتراضات مهنية. لا تعرض اسم المسار للمستخدم.
 
 1. **ما المخرج النهائي؟**
    - برومبت / صورة / فيديو / صوت / كل شيء
@@ -139,7 +139,17 @@ M4c اختياري في المسارات المستقلة (SINGLE، IMAGE_GEN، 
 5. **ما المنصة؟**
    - TikTok/Reels (9:16, < 30s) / YouTube (16:9, any) / TV (16:9/4K)
 
-**قاعدة:** لا تسأل أكثر من 3 أسئلة قبل البدء. بعد 3 أسئلة، اختر المسار الأقرب وابدأ.
+**قاعدة:** إذا كانت المعلومات كافية فلا تسأل. إذا كانت ناقصة فاجمع حتى 3 أسئلة ضرورية في رسالة واحدة، ثم اختر المسار الأقرب وابدأ. لا تطلب من المستخدم صياغة Prompt أو استعمال مصطلحات تقنية.
+
+## طبقة الإخراج العليا
+
+بعد تحديد المسار، طبّق دائمًا:
+
+1. `references/protocols/user-facing-production-flow.md`
+2. `references/protocols/output-protocol.md`
+3. `references/protocols/interaction-flow.md`
+
+في المشاريع متعددة المشاهد: **الرؤية المختصرة → Storyboard → اعتماد → Prompt كامل واحد لكل فريم → اختيار التوليد الخارجي/داخل المنصة → Prompt كامل واحد لكل لقطة**. لا تعرض البحث الخام أو الأجزاء الداخلية أو Prompts تحتاج إلى تركيب.
 
 ## Mermaid — خريطة المسار
 
@@ -161,7 +171,7 @@ flowchart TD
 | ✅ افعل | ❌ لا تفعل |
 |---|---|
 | اختر المسار الأدنى | لا تشغّل M0–M11 لمشروع بسيط |
-| اسأل سؤالاً واحداً | لا تسأل 5 أسئلة قبل البدء |
+| اجمع حتى 3 أسئلة ضرورية في رسالة واحدة | لا تسأل أسئلة متتابعة منخفضة القيمة |
 | استخدم shortcuts/ إن أمكن | لا تخترع workflow جديد |
 | احترم state القائم | لا تهمل project-memory.md |
 | وثّق في decision-log | لا تنسَ سجل القرارات |
@@ -173,7 +183,7 @@ flowchart TD
 ```
 1. اقرأ workflows/M0-intake.md → املأ intake_brief
 2. اعرض على المستخدم → "هل هذا صحيح؟"
-3. انتظر موافقة → ثم حدّد المسار
+3. طبّق تدفق `user-facing-production-flow` → ثم حدّد المسار
 ```
 
 ## Next Step
@@ -181,5 +191,6 @@ flowchart TD
 بعد تحديد المسار:
 - **Shortcuts** → ارجع لـ `SKILL.md` § Quick Start
 - **M0+** → ابدأ بـ `workflows/M0-intake.md`
+- **كل المسارات** → طبّق `references/protocols/user-facing-production-flow.md` و`references/protocols/output-protocol.md`
 - **REPAIR** → اقرأ `references/knowledge/failure-modes.md`
 - **SCENE / FULL / SHOT_BUILD** → اقرأ `references/protocols/orchestration-runtime.md` (الـ executable spec للترتيب الكامل، load_context، validate، commit)
