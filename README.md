@@ -181,6 +181,17 @@ python3 scripts/prompt_lint.py path/to/prompt.txt
 
 ## 📦 التثبيت
 
+### التثبيت كرابط Plugin / Skill
+
+أرسل هذا الرابط إلى وكيل يدعم تثبيت المهارات أو الإضافات، مع التوجيه التالي:
+
+```text
+Install the AI Film Studio skill/plugin from https://github.com/zoih6/ai-film-studio.
+Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical behavior, and start at workflows/intent-router.md.
+```
+
+→ دليل التثبيت الكامل لكل مضيف: [`INSTALL.md`](INSTALL.md)
+
 ### Claude Code / Claude.ai
 ```bash
 cp -r ai-film-studio ~/.claude/skills/
@@ -189,6 +200,8 @@ cp -r ai-film-studio ~/.claude/skills/
 ### أي وكيل يدعم Agent Skills Standard
 انسخ المجلد إلى مجلد المهارات، ثم ابدأ بطلب طبيعي:
 > «أريد إعلانًا لمنتج قهوة مختصة، 15 ثانية، Reels»
+
+المسار القياسي هو `SKILL.md` في الجذر، ويتوفر أيضًا عبر `skills/ai-film-studio/SKILL.md`.
 
 ---
 

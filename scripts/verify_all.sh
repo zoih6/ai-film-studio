@@ -10,7 +10,7 @@ cd "$(dirname "$0")" || exit 1
 rc=0
 passed=0
 failed=0
-TOTAL=8
+TOTAL=9
 n=0
 
 run_check () {
@@ -29,6 +29,8 @@ run_check () {
         rc=1
     fi
 }
+
+run_check "فحص حزمة المهارة والـ Plugin"          verify_package.py
 
 echo
 echo "╔═══════════════════════════════════════════╗"

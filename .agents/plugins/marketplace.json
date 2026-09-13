@@ -1,0 +1,21 @@
+{
+  "name": "ai-film-studio",
+  "interface": {
+    "displayName": "AI Film Studio"
+  },
+  "plugins": [
+    {
+      "name": "ai-film-studio",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/zoih6/ai-film-studio.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Creative Production"
+    }
+  ]
+}

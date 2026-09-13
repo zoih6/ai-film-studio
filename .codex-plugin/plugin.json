@@ -1,0 +1,38 @@
+{
+  "name": "ai-film-studio",
+  "version": "3.0.0",
+  "description": "Structured AI film and video production for Codex: route a brief through workflows, schemas, style locks, and quality gates.",
+  "author": {
+    "name": "Waseem Alzobiri",
+    "url": "https://github.com/zoih6"
+  },
+  "homepage": "https://github.com/zoih6/ai-film-studio",
+  "repository": "https://github.com/zoih6/ai-film-studio",
+  "license": "MIT",
+  "keywords": [
+    "ai-film",
+    "video-production",
+    "agent-skill",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AI Film Studio",
+    "shortDescription": "Production-ready AI video planning",
+    "longDescription": "Create complete AI video production packages from brief to delivery using 12 stages, specialized engines, visual locks, schemas, and quality gates.",
+    "developerName": "Waseem Alzobiri",
+    "category": "Creative Production",
+    "capabilities": [
+      "Instructions",
+      "Workflows",
+      "Templates"
+    ],
+    "websiteURL": "https://github.com/zoih6/ai-film-studio",
+    "defaultPrompt": [
+      "Use AI Film Studio for this task.",
+      "Start at workflows/intent-router.md.",
+      "Keep style locks and hard quality gates intact."
+    ],
+    "brandColor": "#7C3AED"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "ai-film-studio",
+  "version": "3.0.0",
+  "description": "Production-grade AI film, commercial, documentary, motion-graphics, and series planning through a structured 12-stage workflow with quality gates.",
+  "author": {
+    "name": "Waseem Alzobiri",
+    "url": "https://github.com/zoih6"
+  },
+  "homepage": "https://github.com/zoih6/ai-film-studio",
+  "repository": "https://github.com/zoih6/ai-film-studio",
+  "license": "MIT",
+  "keywords": [
+    "ai-film",
+    "video-production",
+    "commercials",
+    "documentary",
+    "motion-graphics",
+    "agent-skill",
+    "workflows"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AI Film Studio",
+    "shortDescription": "Structured AI video production from idea to delivery pack",
+    "longDescription": "Turn a brief into a production-ready package with concept, narrative, beats, shot cards, image and motion prompts, audio planning, edit sheets, delivery specifications, and quality gates.",
+    "developerName": "Waseem Alzobiri",
+    "category": "Creative Production",
+    "capabilities": [
+      "Instructions",
+      "Workflows",
+      "Templates"
+    ],
+    "websiteURL": "https://github.com/zoih6/ai-film-studio",
+    "defaultPrompt": [
+      "Use AI Film Studio for this task.",
+      "Route the request through workflows/intent-router.md before producing prompts.",
+      "Deliver a production-ready package and run the applicable quality gates."
+    ],
+    "brandColor": "#7C3AED"
+  }
+}

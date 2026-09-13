@@ -1,0 +1,16 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
+  "name": "ai-film-studio",
+  "description": "Structured AI film and video production from brief to delivery pack.",
+  "owner": {
+    "name": "Waseem Alzobiri"
+  },
+  "plugins": [
+    {
+      "name": "ai-film-studio",
+      "description": "AI film, commercial, documentary, motion-graphics, and series production workflows with schemas and quality gates.",
+      "source": "./",
+      "category": "creative-production"
+    }
+  ]
+}
