@@ -24,7 +24,7 @@ frame = read("schemas/frame-prompt-contract.md")
 storyboard = read("schemas/storyboard.md")
 
 for name, text, required in [
-    ("user-facing flow", flow, ["ONLY-NECESSARY QUESTIONS", "VISION SUMMARY", "ONE COMPLETE IMAGE PROMPT PER FRAME", "GENERATION CHOICE: EXTERNAL OR IN-PLATFORM", "ONE COMPLETE MOTION PROMPT PER SHOT"]),
+    ("user-facing flow", flow, ["ONLY-NECESSARY QUESTIONS", "VISION SUMMARY", "REFERENCE PACK (CAST / LOCATIONS / PROPS / STYLE)", "ONE COMPLETE IMAGE PROMPT PER FRAME", "GENERATION CHOICE: EXTERNAL OR IN-PLATFORM", "ONE COMPLETE MOTION PROMPT PER SHOT"]),
     ("frame contract", frame, ["exactly one copy-ready prompt block", "add to the previous prompt", "one complete motion prompt"]),
     ("storyboard contract", storyboard, ["frame_id", "image_prompt_status", "لا تعرض Prompt الصورة في جدول الـStoryboard"]),
     ("router", router, ["user-facing-production-flow.md"]),

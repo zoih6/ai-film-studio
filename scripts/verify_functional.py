@@ -87,10 +87,10 @@ for f in REQUIRED_FILES:
 
 # count workflows
 workflows = sorted((ROOT / "workflows").glob("M*.md"))
-if len(workflows) == 31:
-    ok(f"عدد الـ workflows = 31 (12 مرحلة / 31 workflow)")
+if len(workflows) == 32:
+    ok(f"عدد الـ workflows = 32 (12 مرحلة / 32 workflow)")
 else:
-    fail(f"عدد الـ workflows = {len(workflows)} (متوقع 31)")
+    fail(f"عدد الـ workflows = {len(workflows)} (متوقع 32)")
 
 # ══════════════════════════════════════════════════════════════
 # 2. ROUTE / CONTRACT VALIDATION

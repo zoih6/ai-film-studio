@@ -340,6 +340,7 @@ load_context:
 
 run:
   ordered_workflows:
+    - "M4e-reference-orchestration.md (إن كان المرجع/الكيان جديدًا؛ وإلا حمّل manifest القائم)"
     - "M3a-shot-design.md (shot card فقط)"
     - "M4a-continuity.md (تحديث bible)"
     - "M4c-continuity-qc.md (MANDATORY — تحقق أن اللقطة لا تكسر chain)"
@@ -393,6 +394,7 @@ load_context:
 run:
   ordered_workflows:
     - "M0-intake.md (محدود — context refresh فقط)"
+    - "M4e-reference-orchestration.md (CAST/ENTITIES ثم anchors ثم shot_reference_map)"
     - "M1c-research-lab.md (concept refresh إن لزم)"
     - "M2-narrative.md (scene في story)"
     - "M3a-shot-design.md + M3b-shot-list.md"
@@ -460,6 +462,8 @@ run:
     - "G-APPROVAL (Concept Deck)"
     - "M2-narrative.md"
     - "G-APPROVAL (Script — إن وُجد حوار)"
+    - "M4e-reference-orchestration.md (CAST/ENTITIES ثم anchors ثم shot_reference_map)"
+    - "G-APPROVAL (Reference Pack)"
     - "M3a-shot-design.md + M3b-shot-list.md"
     - "M4a-continuity.md + M4b-character-world.md + M4c-continuity-qc.md (MANDATORY)"
     - "M4d-transitions.md"
@@ -498,6 +502,7 @@ validate:
     - "أي G4 fail → REJECT prompt"
     - "أي G8 fail → REJECT project"
     - "M4c غير منفَّذ → REJECT scene"
+    - "مرجع متكرر بلا anchor_id أو @image بلا role → REJECT scene/project"
   repair_route: "FAIL → DIAGNOSE → REPAIR → REVALIDATE → PASS"
 
 commit:
@@ -544,7 +549,7 @@ commit:
 1. **M4c إلزامي** في SHOT_BUILD، SCENE_BUILD، FULL_PRODUCTION.
 2. **M4c اختياري** في SINGLE_PROMPT، IMAGE_GENERATION، IMAGE_TO_VIDEO، MOTION_GRAPHICS، DIALOGUE_LIPSYNC، CONCEPT_ONLY (لا يوجد multi-shot).
 3. **M9c preflight إلزامي** قبل أي generation فعلي.
-4. **G-APPROVAL واحد إلزامي** في FULL_PRODUCTION بعد M4c وقبل M5.
+    4. **G-APPROVAL لحزمة المرجعيات إلزامي** في SCENE_BUILD وFULL_PRODUCTION قبل M3؛ وG-APPROVAL آخر بعد M4c وقبل M5 في FULL_PRODUCTION.
 5. **G4 و G8 hard gates** — لا يتجاوزان.
 6. **Backward compat**: v1.x paths تعمل كما هي (LLM يفسر القديم).
 7. **Source of truth**: `production-state-machine.md` (المراحل)، `references/specs/prompt-architecture.md` (10 طبقات)، `references/specs/model-matrix.md` (النماذج).

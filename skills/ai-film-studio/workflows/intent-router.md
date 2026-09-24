@@ -50,11 +50,11 @@ when_to_load: "دائمًا عند بداية أي مشروع جديد"
    → SHOT_BUILD: workflows/M3a-shot-design.md → M8a-motion-prompts.md (يشمل M4c QC)
     
 7. طلب مشهد متعدد اللقطات
-   → SCENE_BUILD: workflows/M0-intake.md → M3a → M4a → **M4c (QC إلزامي)** → M9c
+   → SCENE_BUILD: workflows/M0-intake.md → **M4e-reference-orchestration.md (مراجع إلزامية)** → M3a → M4a → **M4c (QC إلزامي)** → M9c
    → الرجوع لـ `references/protocols/orchestration-runtime.md` للترتيب الكامل
     
 8. طلب فيلم/إعلان متعدد المشاهد
-   → FULL_PRODUCTION: workflows/M0-intake.md → M11
+   → FULL_PRODUCTION: workflows/M0-intake.md → **M4e-reference-orchestration.md (مراجع إلزامية)** → M11
    → كل المراحل M0–M11 + **M4c إلزامي** + G-APPROVAL × 3
 
 9. طلب "اكتب برومبت" دون نطاق واضح
@@ -149,7 +149,7 @@ M4c اختياري في المسارات المستقلة (SINGLE، IMAGE_GEN، 
 2. `references/protocols/output-protocol.md`
 3. `references/protocols/interaction-flow.md`
 
-في المشاريع متعددة المشاهد: **الرؤية المختصرة → Storyboard → اعتماد → Prompt كامل واحد لكل فريم → اختيار التوليد الخارجي/داخل المنصة → Prompt كامل واحد لكل لقطة**. لا تعرض البحث الخام أو الأجزاء الداخلية أو Prompts تحتاج إلى تركيب.
+في المشاريع متعددة المشاهد: **الرؤية المختصرة → حزمة المرجعيات واعتمادها → Storyboard → اعتماد → Prompt كامل واحد لكل فريم → اختيار التوليد الخارجي/داخل المنصة → Prompt كامل واحد لكل لقطة**. لا تعرض البحث الخام أو الأجزاء الداخلية أو Prompts تحتاج إلى تركيب.
 
 ## Mermaid — خريطة المسار
 
