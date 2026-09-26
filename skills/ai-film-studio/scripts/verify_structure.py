@@ -28,7 +28,7 @@ REQUIRED = [
     "workflows/M2-narrative.md", "workflows/M3a-shot-design.md",
     "workflows/M3b-shot-list.md", "workflows/M4a-continuity.md",
     "workflows/M4b-character-world.md", "workflows/M4c-continuity-qc.md",
-    "workflows/M4d-transitions.md", "workflows/M5a-graphics.md",
+    "workflows/M4d-transitions.md", "workflows/M4e-reference-orchestration.md", "workflows/M5a-graphics.md",
     "workflows/M5b-text-motion.md", "workflows/M6-audio.md",
     "workflows/M6b-sound-design.md", "workflows/M6c-dialogue-lipsync.md",
     "workflows/M7a-prompt-architecture.md", "workflows/M7b-image-prompts.md",
@@ -120,6 +120,7 @@ REQUIRED = [
     # scripts
     "scripts/verify_structure.py", "scripts/verify_functional.py",
     "scripts/verify_motion.py", "scripts/verify_example.py", "scripts/verify_all.sh",
+    "scripts/prompt_compiler.py", "scripts/test_prompt_compiler.py",
     # examples
     "examples/coffee-short.md", "examples/energy-drink-ad.md",
 ]

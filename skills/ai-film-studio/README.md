@@ -44,6 +44,7 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 4. حمّل فقط المراجع والمخططات المطلوبة للمسار؛ لا تُحمّل المستودع كاملًا في كل طلب.
 5. في أي مشروع متعدد اللقطات، أنشئ حزمة المرجعيات عبر `workflows/M4e-reference-orchestration.md`: شخصيات، ملابس، أماكن، دعائم، وأسلوب، ثم اقفل النسخ واربط كل `@image` بدور واضح.
 6. ثبّت الـStyle Lock والـEntity Ledger والـContinuity قبل كتابة prompts النهائية.
+7. مرّر `reference_manifest` وبيانات اللقطات إلى `scripts/prompt_compiler.py` ليولّد `@ImageN` وتوجيهات الكاميرا حسب النموذج.
 6. مرّر الناتج عبر بوابات الجودة المناسبة قبل التسليم.
 
 ## خريطة المستودع
@@ -97,6 +98,15 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 لا تعرض المهارة نتائج البحث الخام أو الاتجاهات المرفوضة أو أسماء الوكلاء أو أجزاء Prompt تحتاج إلى تجميع، ولا تنتج نسخ A/B/C إلا بطلب صريح. كل Prompt يظهر في كتلة واحدة قابلة للنسخ.
 
 ## التحقق
+
+لتوليد حزمة فعلية من fixture:
+
+```bash
+python3 scripts/prompt_compiler.py examples/compiler-fixture.json \
+  --output /tmp/compiled.json --markdown /tmp/compiled-prompts.md
+```
+
+ويُختبر المولد عبر `python3 scripts/test_prompt_compiler.py`.
 
 شغّل الفحص الكامل من جذر المستودع:
 

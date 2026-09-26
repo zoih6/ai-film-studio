@@ -1,14 +1,14 @@
 ---
 name: ai-film-studio
 description: |
-  AI Film Studio v3.0.0 — نظام إنتاج مرئي متكامل بالذكاء الاصطناعي (فيلم + إعلان + وثائقي + موشن).
+  AI Film Studio v3.2.0 — نظام إنتاج مرئي متكامل بالذكاء الاصطناعي (فيلم + إعلان + وثائقي + موشن).
   يحوّل فكرة بسيطة إلى حزمة إنتاج كاملة: Concept + Script + Shot List + Beats + Prompts (10-Layer A-J)
   + Audio + Edit Sheet + Delivery Pack.
-  يحتوي: 12 مرحلة إنتاج (M0–M11 / 31 workflow)، 5 محركات متخصصة (E1–E5)، 10 عوالم بصرية بأقفال نصية
+  يحتوي: 12 مرحلة إنتاج (M0–M11 / 32 workflow)، 5 محركات متخصصة (E1–E5)، 10 عوالم بصرية بأقفال نصية
   حرفية (LOCK A–J)، 12 بوابة جودة، أدوات بحث وتحقق، وذاكرة مشروع مع حلّ تضارب بـ 6 أنواع.
   يُستخدم للأفلام القصيرة، الإعلانات، Brand Films، الوثائقيات، فيديوهات الـ essay، الموشن جرافيك،
   الشورتس، والقنوات بدون وجه (faceless channels).
-version: 3.0.0
+version: 3.2.0
 license: MIT
 author: Waseem Alzobiri
 homepage: https://github.com/zoih6/ai-film-studio
@@ -67,7 +67,7 @@ tier 1 — يُحمَّل دائمًا (≤ 8KB)
 
 tier 2 — يُحمَّل عند بدء مشروع
   ├─ workflows/intent-router.md     ← نقطة التوجيه
-  ├─ workflows/M0..M11/             ← 12 مرحلة / 31 workflow (العمود الفقري)
+  ├─ workflows/M0..M11/             ← 12 مرحلة / 32 workflow (العمود الفقري)
   ├─ workflows/engines/E1..E5/      ← 5 محركات متخصصة (وثائقي، إعلان، هجين، سلسلة، جملة)
   └─ workflows/shortcuts/           ← 11 مسارًا سريعًا
 
@@ -80,12 +80,12 @@ tier 3 — يُحمَّل عند الحاجة المتخصصة
   ├─ schemas/                       ← 23 هيكل بيانات / قالب مخرج
   ├─ quality/                       ← 12 بوابة جودة + قوائم فحص
   ├─ examples/                      ← 4 أمثلة حية كاملة
-  └─ scripts/                       ← 9 أدوات فحص قابلة للتنفيذ
+  └─ scripts/                       ← أدوات فحص + Prompt Compiler قابلة للتنفيذ
 ```
 
 **قاعدة التحميل:** لا تُحمَّل tier 2/3 إلا بعد أن يُحدد `workflows/intent-router.md` المسار.
 
-## العمود الفقري — 12 مرحلة / 31 workflow
+## العمود الفقري — 12 مرحلة / 32 workflow
 
 | المرحلة | الاسم | الـ Workflows | الجودة |
 |---|---|---|---|
@@ -158,6 +158,7 @@ tier 3 — يُحمَّل عند الحاجة المتخصصة
 
 | الحاجة | الملف |
 |---|---|
+| Prompt Compiler التنفيذي وخريطة `@ImageN` | `scripts/prompt_compiler.py` + `schemas/prompt-compiler-input.schema.json` |
 | 10 طبقات Prompt Architecture (A–J) | `references/specs/prompt-architecture.md` |
 | حساب الـ Beats ومنحنى الطاقة | `references/specs/beat-architecture.md` |
 | لهجات النماذج (12 عائلة) | `references/specs/model-dialects.md` |

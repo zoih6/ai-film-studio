@@ -9,7 +9,7 @@ tier: 3
 when_to_load: "قبل توليد أي prompt (image أو video). يستدعيه M7a-prompt-architecture بعد M3a و M4."
 ---
 
-# Prompt Compiler — AI Film Studio v2.1.0
+# Prompt Compiler — AI Film Studio v3.1.0
 
 > **الإصدار 2.1.0:** مواءمة مع Stage Model الموحّد (M0–M11). لم يتغير السلوك
 > الأساسي؛ التغيير فقط في الواجهة (Interface): MODEL ADAPTER صار يسبق COMPILER
@@ -171,3 +171,34 @@ identity/reference locks
 - **الواجهة (Interface):** ربط صريح بـ 5 workflows تستدعيه.
 - **Stage references:** الإشارة إلى M2/M3a/M4a (لا M1/M2/M3 v1.x).
 - **Source of Truth:** production-state-machine.md هو المرجع.
+
+---
+
+## 11. التنفيذ الفعلي
+
+يوجد الآن Compiler حتمي قابل للتشغيل:
+
+```bash
+python3 scripts/prompt_compiler.py \
+  examples/compiler-fixture.json \
+  --output /tmp/compiled.json \
+  --markdown /tmp/compiled-prompts.md
+```
+
+مدخلاته هي `reference_manifest` و`shots` وفق `schemas/prompt-compiler-input.schema.json`. لكل لقطة يقوم التنفيذ بـ:
+
+1. التحقق من أن كل `anchor_id` موجود ومعتمد وله `approved_asset`.
+2. ترتيب المراجع حسب الدور وتوليد `@Image1`, `@Image2`, ... تلقائيًا.
+3. إنشاء `reference_map` يربط كل خانة بالـanchor والملف والدور.
+4. ترجمة حركة الكاميرا من قاموس موحّد إلى لهجة Seedance أو Omni أو Veo.
+5. توليد Timeline إذا لم تكن موجودة، مع فعل رئيسي واحد وحركة كاميرا واحدة.
+6. رفض القيود غير المدعومة، مثل جمع first/last frame مع مراجع صور أخرى في Seedance.
+7. إخراج JSON قابل للمعالجة وMarkdown قابل للنسخ.
+
+الاختبار الحتمي:
+
+```bash
+python3 scripts/test_prompt_compiler.py
+```
+
+لا يُسمح بإضافة Adapter جديد اعتمادًا على التخمين؛ يجب أولًا إضافة profile موثّق في `scripts/prompt_compiler.py` و`references/specs/model-matrix.md`.

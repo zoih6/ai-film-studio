@@ -14,6 +14,8 @@
 | `verify_vox.py` | **v3** — المحركات الخمسة + مراجع v3 | ~1s |
 | `verify_links.py` | **v3** — سلامة الروابط الداخلية | ~1s |
 | `prompt_lint.py` | **v3** — فاحص البرومبتات (اختبار العشر ثوانٍ) | ~1s |
+| `prompt_compiler.py` | يحول Canonical Shot Spec إلى Prompts جاهزة حسب النموذج مع `@ImageN` تلقائيًا | <1s |
+| `test_prompt_compiler.py` | اختبارات المحولات والمرجعيات وتعارضات الإطارات | <1s |
 | `verify_all.sh` | يشغّل الكل (8 فحوص) | ~30s |
 
 ## الاستخدام
@@ -34,6 +36,8 @@ python3 scripts/verify_vox.py                 # المحركات والتكام�
 python3 scripts/verify_links.py               # الروابط الداخلية
 python3 scripts/prompt_lint.py prompt.txt     # فحص برومبت واحد
 python3 scripts/prompt_lint.py --selftest     # اختبار ذاتي
+python3 scripts/prompt_compiler.py examples/compiler-fixture.json --markdown /tmp/compiled.md
+python3 scripts/test_prompt_compiler.py
 ```
 
 ## فاحص البرومبتات (v3.0.0)
@@ -56,7 +60,17 @@ python3 scripts/prompt_lint.py --selftest     # اختبار ذاتي
 > ومن عدّ بنود الـ Negative — لأنها أصول ثابتة لا جزء من صياغة البرومبت.
 
 
-## آخر نتيجة (v3.0.0)
+## Prompt Compiler التنفيذي
+
+يقرأ `reference_manifest` و`shots`، يختار المراجع المقفلة تلقائيًا، يوزع `@ImageN`، ويحوّل قاموس الكاميرا إلى صيغة Seedance أو Omni أو Veo. مدخلاته موثقة في `schemas/prompt-compiler-input.schema.json`.
+
+```bash
+python3 scripts/prompt_compiler.py examples/compiler-fixture.json \
+  --output /tmp/compiled.json --markdown /tmp/compiled-prompts.md
+python3 scripts/test_prompt_compiler.py
+```
+
+## آخر نتيجة (v3.2.0)
 
 ```
 1/8  الفحص البنيوي (structure + YAML)          ✅ 151 ملفًا مطلوبًا

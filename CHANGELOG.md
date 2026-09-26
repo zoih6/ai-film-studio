@@ -10,6 +10,14 @@
 - Added automated validation through `scripts/verify_reference_orchestration.py` and integrated it into `verify_all.sh`.
 - Updated the user-facing sequence: vision → reference pack approval/lock → storyboard → image prompts → motion prompts.
 
+## 3.2.0 — Executable Prompt Compiler
+
+- Added `scripts/prompt_compiler.py` for deterministic JSON-to-prompt compilation.
+- Added automatic `@ImageN` assignment from locked reference anchors and model-specific reference roles.
+- Added camera-direction adapters for Seedance 2.0, Gemini Omni Flash, Veo 3, and natural-language fallbacks.
+- Added provider validation for reference limits, video duration, and Seedance first/last-frame conflicts.
+- Added `schemas/prompt-compiler-input.schema.json`, `examples/compiler-fixture.json`, and compiler tests.
+
 ## الهدف
 تحويل AI Film Studio من منهج إنتاج متعدد الوكلاء إلى إطار تشغيل قابل للتتبع، مع الحفاظ على الوكلاء الحالية.
 
