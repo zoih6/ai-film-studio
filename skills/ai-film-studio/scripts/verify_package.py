@@ -25,7 +25,9 @@ for path in [
     "references/protocols/user-facing-production-flow.md",
     "schemas/storyboard.md",
     "schemas/frame-prompt-contract.md",
+    "schemas/prompt-compiler-input.schema.json",
     "scripts/verify_output_contract.py",
+    "scripts/prompt_compiler.py",
 ]:
     require(path)
 for path in ["plugin.json", ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json", ".codex-plugin/plugin.json", ".agents/plugins/marketplace.json"]:
@@ -60,8 +62,8 @@ for directory in required_dirs:
     if not portable_dir.is_dir():
         errors.append(f"portable skill is missing resource directory: {directory}")
         continue
-    source_files = sorted(p.relative_to(source_dir) for p in source_dir.rglob("*") if p.is_file())
-    portable_files = sorted(p.relative_to(portable_dir) for p in portable_dir.rglob("*") if p.is_file())
+    source_files = sorted(p.relative_to(source_dir) for p in source_dir.rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc")
+    portable_files = sorted(p.relative_to(portable_dir) for p in portable_dir.rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc")
     if source_files != portable_files:
         errors.append(f"portable resource listing differs: {directory}")
     for relative in source_files:

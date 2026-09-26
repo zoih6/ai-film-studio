@@ -10,7 +10,7 @@ cd "$(dirname "$0")" || exit 1
 rc=0
 passed=0
 failed=0
-TOTAL=10
+TOTAL=12
 n=0
 
 run_check () {
@@ -47,6 +47,8 @@ run_check "المحركات والتكامل (E1–E5)"          verify_vox.py
 run_check "سلامة الروابط الداخلية"             verify_links.py
 run_check "فاحص البرومبتات (اختبار ذاتي)"      prompt_lint.py --selftest
 run_check "عقد الإخراج والتفاعل للمستخدم"        verify_output_contract.py
+run_check "عقد تنسيق المرجعيات ووسوم @image"      verify_reference_orchestration.py
+run_check "اختبار Prompt Compiler والمحوّلات"        test_prompt_compiler.py
 
 echo
 echo "═══════════════════════════════════════════"
