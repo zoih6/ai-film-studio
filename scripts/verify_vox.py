@@ -189,9 +189,9 @@ def main() -> int:
     print(f"  {'✓' if ok else '✗'} CREDITS.md")
 
     skill = read(ROOT / "SKILL.md")
-    ok = "3.0.0" in skill and "Waseem Alzobiri" in skill
-    check(ok, "SKILL.md بالإصدار 3.0.0 وبإسناد المنشئ")
-    print(f"  {'✓' if ok else '✗'} SKILL.md v3.0.0")
+    ok = "3.2.0" in skill and "Waseem Alzobiri" in skill
+    check(ok, "SKILL.md بالإصدار 3.2.0 وبإسناد المنشئ")
+    print(f"  {'✓' if ok else '✗'} SKILL.md v3.2.0")
 
     # النتيجة
     passed = sum(1 for ok, _ in results if ok)

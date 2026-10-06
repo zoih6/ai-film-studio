@@ -4,7 +4,7 @@
 
 > **الفكرة أولًا، والبرومبت لاحقًا.** لا تبدأ المهارة بكتابة prompt قبل تثبيت الفكرة، المنتج، السرد، الإيقاع، الاستمرارية، ومتطلبات المنصة.
 
-[![Version](https://img.shields.io/badge/version-3.0.0-111827)](SKILL.md)
+[![Version](https://img.shields.io/badge/version-3.2.0-111827)](SKILL.md)
 [![Skill](https://img.shields.io/badge/format-Agent%20Skill-7c3aed)](SKILL.md)
 [![License](https://img.shields.io/badge/license-MIT-059669)](LICENSE)
 

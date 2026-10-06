@@ -8,31 +8,10 @@ description: |
   حرفية (LOCK A–J)، 12 بوابة جودة، أدوات بحث وتحقق، وذاكرة مشروع مع حلّ تضارب بـ 6 أنواع.
   يُستخدم للأفلام القصيرة، الإعلانات، Brand Films، الوثائقيات، فيديوهات الـ essay، الموشن جرافيك،
   الشورتس، والقنوات بدون وجه (faceless channels).
-version: 3.2.0
 license: MIT
-author: Waseem Alzobiri
-homepage: https://github.com/zoih6/ai-film-studio
-triggers:
-  - "فيديو إعلاني", "إعلان ذكاء اصطناعي", "فيلم قصير", "برومبت فيديو", "موشن جرافيك", "وثائقي"
-  - "كولاج ورقي", "paper collage", "documentary", "قناة بدون وجه", "faceless channel", "سلسلة"
-  - "AI film", "video prompt", "brand film", "commercial", "short film", "motion graphics"
-  - "shot list", "video generation", "AI cinema", "thumbnail", "storyboard", "product video"
-  - "إعلان منتج", "حملة", "brand film", "promo", "launch video", "TikTok ad", "Reels ad"
-inputs:
-  - "فكرة أو طلب (عربي/إنجليزي) — سطر واحد يكفي"
-  - "نوع المشروع (فيلم، إعلان، وثائقي، essay، موشن، سلسلة)"
-  - "المنصة المستهدفة (YouTube, TikTok, Instagram, TV, CTV)"
-  - "المدة، اللغة، اللهجة، النسبة، النموذج المفضل (اختياري)"
-outputs:
-  - "حزمة إنتاج: Blueprint + Beat Table + Shot Cards + Image Prompts + Motion Prompts + Audio + Edit Sheet"
-  - "حزمة إعلانية: Brief + Big Idea + Product Anchor (IMG-00) + End Card + مصفوفة A/B + مواصفات التصدير"
-  - "حزمة وثائقية: سكربت سردي + جدول Beats + ملف prompts.txt + Universal Video Prompt + 3 ثامبنيلات"
-  - "Style DNA مقفول + Entity Ledger + Continuity Bible + Quality Gates log"
-when_to_use: "أي مشروع فيديو يحتاج برومبتات احترافية، اتساق بصري، إيقاع محسوب، تخطيط صوتي، ودليل تجميع."
-entry_point: "workflows/intent-router.md"
 ---
 
-# AI Film Studio v3.0.0
+# AI Film Studio v3.2.0
 
 > **نقطة الدخول.** اقرأ هذا الملف، ثم اذهب إلى `workflows/intent-router.md` فورًا.
 
@@ -213,7 +192,7 @@ bash    scripts/verify_all.sh           # الكل (9 فحوص)
 
 ## الاعتماد والتوافق
 
-- **License:** MIT · **Version:** 3.0.0
+- **License:** MIT · **Version:** 3.2.0
 - **التصميم والبناء:** Waseem Alzobiri
 - **التوافق:** Claude Sonnet/Opus, GPT-4+, Gemini Pro/Ultra — أي وكيل يدعم Agent Skills Standard
 - **الحالة:** Production-ready

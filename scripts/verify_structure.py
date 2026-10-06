@@ -141,19 +141,27 @@ if not m:
     fail("SKILL.md لا يبدأ بـ YAML frontmatter")
 else:
     fm = m.group(1)
-    for field in ["name:", "description:", "version:"]:
+    for field in ["name:", "description:"]:
         if field not in fm:
             fail(f"حقل مفقود في frontmatter: {field}")
         else:
             ok(f"حقل {field.rstrip(':')} موجود")
     name = re.search(r"^name:\s*(.+)$", fm, re.M)
-    desc = re.search(r"^description:\s*(.+)$", fm, re.M)
+    desc = re.search(r"^description:\s*(.*)$", fm, re.M)
     if name and name.group(1).strip() != "ai-film-studio":
         warn(f"اسم المهارة '{name.group(1).strip()}' لا يطابق اسم المجلد")
-    if desc and len(desc.group(1)) < 100:
+    desc_len = 0
+    if desc:
+        desc_value = desc.group(1).strip()
+        if desc_value in {"|", ">"}:
+            desc_body = re.split(r"^[A-Za-z_][\w-]*:", fm[desc.end():], maxsplit=1, flags=re.M)[0]
+            desc_len = len(desc_body.strip())
+        else:
+            desc_len = len(desc_value)
+    if desc and desc_len < 100:
         warn("الوصف قصير — قد لا يُفعَّل التوجيه التلقائي بشكل موثوق")
     else:
-        ok(f"طول الوصف {len(desc.group(1))} حرفًا (كافٍ للتوجيه)")
+        ok(f"طول الوصف {desc_len} حرفًا (كافٍ للتوجيه)")
 
 # فحص أن SKILL.md ≤ 200 سطر (Progressive Disclosure)
 sk_lines = sk.count("\n")

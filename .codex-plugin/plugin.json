@@ -1,6 +1,6 @@
 {
   "name": "ai-film-studio",
-  "version": "3.0.0",
+  "version": "3.2.0",
   "description": "Structured AI film and video production for Codex: route a brief through workflows, schemas, style locks, and quality gates.",
   "author": {
     "name": "Waseem Alzobiri",
