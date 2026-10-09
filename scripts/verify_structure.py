@@ -104,7 +104,7 @@ REQUIRED = [
     "references/research/trend-research.md",
     "references/research/query-library.md",
     # ── v3.0.0: مخططات إخراج ──
-    "schemas/brief.md", "schemas/beat-table.md", "schemas/shot-card.md",
+    "schemas/brief.md", "schemas/beat-table.md", "schemas/shot-card.md", "schemas/production-sheet.md",
     "schemas/product-sheet.md", "schemas/edit-sheet.md", "schemas/end-card.md",
     "schemas/thumbnail-pack.md", "schemas/delivery-pack.md",
     "schemas/series-bible.md", "schemas/prompts-txt.md",
@@ -112,6 +112,7 @@ REQUIRED = [
     "quality/gates-extended.md", "quality/pre-flight-checklist.md",
     "quality/ten-second-test.md",
     # ── v3.0.0: مسارات سريعة وأمثلة ووثائق ──
+    "workflows/adaptive-production-sheet.md",
     "workflows/shortcuts/thumbnail.md", "workflows/shortcuts/series.md",
     "workflows/shortcuts/documentary.md", "workflows/shortcuts/product-shot.md",
     "examples/paper-collage-documentary.md", "examples/commercial-15s-lock-b.md",
@@ -120,7 +121,7 @@ REQUIRED = [
     # scripts
     "scripts/verify_structure.py", "scripts/verify_functional.py",
     "scripts/verify_motion.py", "scripts/verify_example.py", "scripts/verify_all.sh",
-    "scripts/prompt_compiler.py", "scripts/test_prompt_compiler.py",
+    "scripts/prompt_compiler.py", "scripts/test_prompt_compiler.py", "scripts/verify_production_sheet.py",
     # examples
     "examples/coffee-short.md", "examples/energy-drink-ad.md",
 ]

@@ -42,10 +42,11 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 2. حدّد نوع المشروع، المنصة، المدة، اللغة، النبرة، ونموذج التوليد إن كان معروفًا.
 3. اختر المسار المناسب: Shortcut، Engine، أو المسار الكامل `M0 → M11`.
 4. حمّل فقط المراجع والمخططات المطلوبة للمسار؛ لا تُحمّل المستودع كاملًا في كل طلب.
-5. في أي مشروع متعدد اللقطات، أنشئ حزمة المرجعيات عبر `workflows/M4e-reference-orchestration.md`: شخصيات، ملابس، أماكن، دعائم، وأسلوب، ثم اقفل النسخ واربط كل `@image` بدور واضح.
-6. ثبّت الـStyle Lock والـEntity Ledger والـContinuity قبل كتابة prompts النهائية.
-7. مرّر `reference_manifest` وبيانات اللقطات إلى `scripts/prompt_compiler.py` ليولّد `@ImageN` وتوجيهات الكاميرا حسب النموذج.
-6. مرّر الناتج عبر بوابات الجودة المناسبة قبل التسليم.
+5. في أي مشروع فيديو، أنشئ أولًا `workflows/adaptive-production-sheet.md`: ورقة مشاهد ولقطات تتكيف مع نوع الطلب ومدته، وتُصدّر إلى CSV/Google Sheets.
+6. في أي مشروع متعدد اللقطات، أنشئ حزمة المرجعيات عبر `workflows/M4e-reference-orchestration.md`: شخصيات، ملابس، أماكن، دعائم، وأسلوب، ثم اقفل النسخ واربط كل `@image` بدور واضح.
+7. ثبّت الـStyle Lock والـEntity Ledger والـContinuity قبل كتابة prompts النهائية.
+8. مرّر `reference_manifest` وبيانات اللقطات إلى `scripts/prompt_compiler.py` ليولّد `@ImageN` وتوجيهات الكاميرا حسب النموذج.
+9. مرّر الناتج عبر بوابات الجودة المناسبة قبل التسليم.
 
 ## خريطة المستودع
 
@@ -62,6 +63,8 @@ Read the repository's AGENTS.md for instructions, use SKILL.md as the canonical 
 | `schemas/` | عقود النية والحالة والمزودين والمخرجات |
 | `references/protocols/agent-protocol.md` | بروتوكول تفاعل الوكيل والتعافي من الأخطاء |
 | `references/protocols/user-facing-production-flow.md` | طبقة تنظيم ما يراه المستخدم وتسلسل التسليم |
+| `schemas/production-sheet.md` | عقد ورقة المشاهد واللقطات المتكيفة والقابلة للتصدير |
+| `workflows/adaptive-production-sheet.md` | طريقة بناء الشيت حسب النوع والمدة قبل الـStoryboard |
 | `schemas/storyboard.md` | عقد الـStoryboard قبل البرومبتات |
 | `workflows/M4e-reference-orchestration.md` | حزمة المراجع، anchors، وخريطة `@image` قبل الـStoryboard |
 | `schemas/frame-prompt-contract.md` | Prompt كامل واحد لكل فريم أو لقطة |

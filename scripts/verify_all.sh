@@ -10,7 +10,7 @@ cd "$(dirname "$0")" || exit 1
 rc=0
 passed=0
 failed=0
-TOTAL=12
+TOTAL=13
 n=0
 
 run_check () {
@@ -49,6 +49,7 @@ run_check "فاحص البرومبتات (اختبار ذاتي)"      prompt_li
 run_check "عقد الإخراج والتفاعل للمستخدم"        verify_output_contract.py
 run_check "عقد تنسيق المرجعيات ووسوم @image"      verify_reference_orchestration.py
 run_check "اختبار Prompt Compiler والمحوّلات"        test_prompt_compiler.py
+run_check "عقد ورقة الإنتاج المتكيفة (مدة/لقطات/CSV)" verify_production_sheet.py
 
 echo
 echo "═══════════════════════════════════════════"

@@ -1,6 +1,12 @@
 <!-- verify_links: allow-legacy -->
 
 # AI Film Studio v1.1.0
+## Unreleased — Adaptive Production Sheet
+- Added `workflows/adaptive-production-sheet.md` to adapt scene/shot planning to request type, platform, model, and exact duration.
+- Added `schemas/production-sheet.md` with timing, continuity, reference, audio, acceptance, and CSV-export contracts.
+- Added a 10-second example and `scripts/verify_production_sheet.py`; integrated the validator into `scripts/verify_all.sh`.
+- Updated the Web PRD and file structure so the future Workspace exposes an editable Production Sheet before Storyboard and Prompts.
+
 
 ## 3.1.0 — Reference & Prompt Orchestration
 

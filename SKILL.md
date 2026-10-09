@@ -160,13 +160,13 @@ tier 3 — يُحمَّل عند الحاجة المتخصصة
 
 1. **استخرج النية** في `schemas/generation-intent.schema.json`، وحدد نوع المشروع ونطاقه والقيود ووضع الموافقة.
 2. **وجّه بأقل مسار كافٍ** عبر `workflows/intent-router.md`؛ لا تشغّل M0–M11 لطلب prompt أو لقطة واحدة.
-3. **خطط قبل البرومبت**: ثبّت الـBrief والـBeats، ثم نفّذ `workflows/M4e-reference-orchestration.md` لبناء الـanchors و`shot_reference_map`، ثم الهوية البصرية وسجل الكيانات والاستمرارية وبطاقات اللقطات.
+3. **خطط قبل البرومبت**: ثبّت الـBrief والـBeats، ثم أنشئ `workflows/adaptive-production-sheet.md` بورقة مشاهد/لقطات متكيفة مع المدة والنوع، ثم نفّذ `workflows/M4e-reference-orchestration.md` لبناء الـanchors و`shot_reference_map`، ثم الهوية البصرية وسجل الكيانات والاستمرارية وبطاقات اللقطات.
 4. **اختر المزود صراحةً** عبر `workflows/provider-routing.md` وسجل القدرة والنسخة والدليل والبدائل؛ اعتبر القدرة المجهولة غير مدعومة.
 5. **سلّم عبر عقود قابلة للتتبع** في `schemas/project-manifest.schema.json` و`schemas/artifact-record.schema.json` مع IDs وتبعيات وحالة ومصدر.
 6. **أصلح أول فشل فقط**: أعد تشغيل البوابة المتأثرة وما بعدها، ولا تعِد توليد مخرجات معتمدة بلا سبب مسجل.
 7. **صنّف النتيجة بصدق**: `candidate` أو `qualified` أو `not-yet-verified`؛ نجاح فحص المستندات لا يثبت صلاحية الوسائط ما لم تُفحص فعليًا.
 
-**ترتيب الإخراج للمشاريع متعددة المشاهد:** فهم مختصر وأسئلة ضرورية → رؤية مختصرة → **حزمة المرجعيات واعتمادها/قفلها** → Storyboard → اعتماد → **Prompt كامل واحد لكل فريم مع خريطة `@image`** → اختيار التوليد الخارجي/داخل المنصة → **Prompt كامل واحد لكل لقطة** → الصوت والسكريبت عند الحاجة.
+**ترتيب الإخراج للمشاريع متعددة المشاهد:** فهم مختصر وأسئلة ضرورية → رؤية مختصرة → **ورقة إنتاج متكيفة مع المدة والنوع قابلة للتصدير CSV** → **حزمة المرجعيات واعتمادها/قفلها** → Storyboard → اعتماد → **Prompt كامل واحد لكل فريم مع خريطة `@image`** → اختيار التوليد الخارجي/داخل المنصة → **Prompt كامل واحد لكل لقطة** → الصوت والسكريبت عند الحاجة.
 
 التفاصيل التشغيلية: `references/protocols/agent-protocol.md` · تدفق المستخدم: `references/protocols/user-facing-production-flow.md` · عقد الـStoryboard: `schemas/storyboard.md` · عقد الفريم: `schemas/frame-prompt-contract.md` · سجل المزودين: `references/provider-registry.yaml`.
 

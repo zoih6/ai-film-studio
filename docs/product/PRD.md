@@ -43,7 +43,7 @@ AI Film Studio Web هو منصة إبداعية تجعل المستخدم يكت
 
 1. إنشاء مشروع فيديو جديد خلال دقائق.
 2. جمع الحد الأدنى من المعلومات الضرورية فقط.
-3. إنتاج Brief وConcept وStoryboard منظم.
+3. إنتاج Brief وConcept و**ورقة إنتاج متكيفة** وStoryboard منظم.
 4. إنتاج Prompt كامل واحد لكل Frame/Shot، دون أجزاء تحتاج إلى تجميع.
 5. الحفاظ على Style Lock وEntity Ledger وContinuity عبر جميع المخرجات.
 6. السماح بتعديل وإعادة توليد مرحلة واحدة دون فقدان بقية المشروع.
@@ -173,6 +173,13 @@ AI Film Studio Web هو منصة إبداعية تجعل المستخدم يكت
 - الحقول: projectType، platform، duration، aspectRatio، language، tone، targetAudience، preferredModel، visualStyle، notes.
 - لا يفرض أسئلة غير ضرورية.
 - يعرض القيم المستنتجة مع إمكانية تعديلها.
+
+### FR-02.5 — ورقة الإنتاج المتكيفة
+- بعد الـBrief وقبل الـStoryboard، ينشئ النظام ورقة مشاهد ولقطات متكيفة مع نوع الطلب والمنصة والمدة والنموذج.
+- في فيديو مدته 10 ثوانٍ، يجب أن تنتج الورقة حتى لو كانت لقطة واحدة، مع توزيع زمني يساوي 10.0 ثوانٍ بلا فجوات أو تداخل.
+- كل صف يحوي `scene_id`, `shot_id`, `time_in`, `time_out`, `duration_seconds`, `story_role`, `visual_action`, `reference_ids`, `audio_plan`, `continuity_locks`, `model`, و`status`.
+- يعرض النظام سبب اختيار عدد اللقطات، ويتيح تحرير الجدول وتصديره CSV للاستيراد إلى Google Sheets/Excel.
+- عند تغيير المدة أو النوع، ينشئ النظام نسخة جديدة ويعيد حساب اللقطات المتأثرة بدل الكتابة فوق النسخة المعتمدة.
 
 ### FR-03 — Intent Routing
 - يختار المسار الأصغر الكافي.

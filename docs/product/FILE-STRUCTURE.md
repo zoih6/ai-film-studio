@@ -43,6 +43,7 @@ ai-film-studio/
 │       │   │   ├── BriefStage.tsx
 │       │   │   ├── ConceptStage.tsx
 │       │   │   ├── BeatsStage.tsx
+│       │   │   ├── ProductionSheetStage.tsx          # Adaptive sheet + CSV export
 │       │   │   ├── StoryboardStage.tsx
 │       │   │   ├── ShotCardsStage.tsx
 │       │   │   ├── ImagePromptsStage.tsx
@@ -59,6 +60,7 @@ ai-film-studio/
 │       │   │   ├── provider.ts                   # AIProvider interface
 │       │   │   ├── gemini-provider.ts            # Gemini adapter
 │       │   │   ├── prompts.ts                    # System/task prompt builders
+│       │   │   ├── productionSheet.ts             # Duration/type adaptation + validation
 │       │   │   ├── context-loader.ts             # Progressive reference loading
 │       │   │   ├── output-parser.ts              # JSON parse + repair policy
 │       │   │   └── generation-pipeline.ts        # Stage orchestration
@@ -165,6 +167,7 @@ intake
   -> narrative
   -> beats
   -> style-and-entities
+  -> production-sheet
   -> storyboard
   -> shot-cards
   -> image-prompts
