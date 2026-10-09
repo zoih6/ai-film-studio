@@ -79,7 +79,7 @@ REQUIRED = [
     "workflows/engines/E4-series-engine.md",
     "workflows/engines/E5-bulk-production-pipeline.md",
     # ── v3.0.0: مكتبة الأنماط ──
-    "styles/README.md", "styles/index.md", "styles/style-pack-template.md",
+    "styles/README.md", "styles/index.md", "styles/style-pack-template.md", "styles/oversized-ink-editorial.md",
     "styles/locks/README.md",
     # ── v3.0.0: مراجع جديدة ──
     "references/specs/beat-architecture.md",
@@ -121,7 +121,7 @@ REQUIRED = [
     # scripts
     "scripts/verify_structure.py", "scripts/verify_functional.py",
     "scripts/verify_motion.py", "scripts/verify_example.py", "scripts/verify_all.sh",
-    "scripts/prompt_compiler.py", "scripts/test_prompt_compiler.py", "scripts/verify_production_sheet.py",
+    "scripts/prompt_compiler.py", "scripts/test_prompt_compiler.py", "scripts/verify_production_sheet.py", "scripts/verify_style_k.py",
     # examples
     "examples/coffee-short.md", "examples/energy-drink-ad.md",
 ]

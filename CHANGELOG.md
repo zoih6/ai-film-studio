@@ -2,6 +2,8 @@
 
 # AI Film Studio v1.1.0
 ## Unreleased — Adaptive Production Sheet
+- Added `LOCK-K-oversized-ink-editorial.txt` and a product-safe guide for bold 9:16 editorial posters with oversized shapes, hot/cobalt palette, and fine print grain.
+- Added a dedicated closer and validator; the lock is registered in the style index and prompt protocol.
 - Added `workflows/adaptive-production-sheet.md` to adapt scene/shot planning to request type, platform, model, and exact duration.
 - Added `schemas/production-sheet.md` with timing, continuity, reference, audio, acceptance, and CSV-export contracts.
 - Added a 10-second example and `scripts/verify_production_sheet.py`; integrated the validator into `scripts/verify_all.sh`.

@@ -10,7 +10,7 @@ cd "$(dirname "$0")" || exit 1
 rc=0
 passed=0
 failed=0
-TOTAL=13
+TOTAL=14
 n=0
 
 run_check () {
@@ -50,6 +50,7 @@ run_check "عقد الإخراج والتفاعل للمستخدم"        verif
 run_check "عقد تنسيق المرجعيات ووسوم @image"      verify_reference_orchestration.py
 run_check "اختبار Prompt Compiler والمحوّلات"        test_prompt_compiler.py
 run_check "عقد ورقة الإنتاج المتكيفة (مدة/لقطات/CSV)" verify_production_sheet.py
+run_check "تسجيل LOCK-K للملصق التحريري" verify_style_k.py
 
 echo
 echo "═══════════════════════════════════════════"

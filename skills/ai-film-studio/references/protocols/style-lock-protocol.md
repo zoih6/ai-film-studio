@@ -121,6 +121,7 @@ SCENE: [البطل + التسمية إن وُجدت + 2-3 مساند + الخل�
 | H | `Every element must appear physically hand-sculpted from real clay with visible thumb texture and soft rounded forms; the product the only photoreal object.` |
 | I | `Crisp flat-vector execution, solid fills, clean edges, modular grid, infographic clarity.` |
 | J | `Contemporary Arabic editorial execution, flat confident fields, calligraphic architecture, all text added in post.` |
+| K | `CLOSER-oversized-ink-editorial.txt` |
 
 → `styles/locks/README.md`
 
@@ -166,6 +167,7 @@ SCENE: [البطل + التسمية إن وُجدت + 2-3 مساند + الخل�
 1. املأ `styles/style-pack-template.md` (بطاقة + بنية + مفردات + خاتمة).
 2. اجتز **اختبار الصلاحية** (5 أسئلة في القالب).
 3. احفظه في `styles/locks/LOCK-K-[slug].txt` — **ملف مستقل، لا تعدّل الموجود**.
+   لأسلوب الملصق التحريري الجاهز، استخدم `LOCK-K-oversized-ink-editorial.txt` ودليله `styles/oversized-ink-editorial.md` بدل إنشاء نسخة ثانية.
 4. سجّله في `styles/index.md` (الجدول + شجرة القرار).
 5. أضف خاتمته في `styles/locks/README.md`.
 6. شغّل `python3 scripts/verify_styles.py`.

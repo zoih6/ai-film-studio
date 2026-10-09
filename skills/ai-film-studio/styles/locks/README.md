@@ -37,6 +37,7 @@ when_to_load: "عند كتابة أي برومبت صورة أو فيديو — 
 | `LOCK-H-clay-diorama.txt` | طين/صلصال مصغّر | سناكس، أطفال، حملات دافئة |
 | `LOCK-I-flat-vector-explainer.txt` | **Flat Vector — نمط VOX المسطح** | شروح، بيانات، infographic |
 | `LOCK-J-arabic-calligraphic.txt` | هوية عربية معاصرة | مشاريع عربية، تراث، رمضان |
+| `LOCK-K-oversized-ink-editorial.txt` | ملصق تحريري بأشكال ضخمة وحبر مطبوع | ملصقات 9:16، سوشيال، شخصيات مبسطة |
 | `CLOSER-master.txt` | الخاتمة العامة (تجاري/عام) | آخر سطر في برومبت الصورة |
 | `CLOSER-documentary.txt` | الخاتمة الوثائقية | آخر سطر في برومبت وثائقي |
 | `CLOSER-thumbnail.txt` | خاتمة الثامبنيل | آخر سطر في برومبت ثامبنيل |
@@ -64,6 +65,7 @@ when_to_load: "عند كتابة أي برومبت صورة أو فيديو — 
 | H | استبدل: `Every element must appear physically hand-sculpted from real clay with visible thumb texture and soft rounded forms; the product the only photoreal object.` |
 | I | استبدل: `Crisp flat-vector execution, solid fills, clean edges, modular grid, infographic clarity.` |
 | J | استبدل: `Contemporary Arabic editorial execution, flat confident fields, calligraphic architecture, all text added in post.` |
+| K | استخدم `CLOSER-oversized-ink-editorial.txt` حرفيًا |
 
 ## موضع القفل داخل البرومبت
 
