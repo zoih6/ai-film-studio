@@ -42,7 +42,7 @@ run_check "الفحص البنيوي (structure + YAML)"   verify_structure.py
 run_check "الفحص الوظيفي (المسار السردي)"      verify_functional.py
 run_check "فحص المثال الحي"                    verify_example.py
 run_check "الفحص الوظيفي (مسار الموشن جرافيك)"  verify_motion.py
-run_check "مكتبة الأنماط (LOCK A–J + Closers)" verify_styles.py
+run_check "مكتبة الأنماط (LOCK A–K + Closers)" verify_styles.py
 run_check "المحركات والتكامل (E1–E5)"          verify_vox.py
 run_check "سلامة الروابط الداخلية"             verify_links.py
 run_check "فاحص البرومبتات (اختبار ذاتي)"      prompt_lint.py --selftest
